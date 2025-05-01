@@ -36,6 +36,7 @@
         <script async src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
     </head>
     <body>
+    <div id="body-container">
         <!-- Provide site root to javascript -->
         <script>
             var path_to_root = "../";
@@ -73,10 +74,12 @@
         <!-- Hide / unhide sidebar before it is displayed -->
         <script>
             var html = document.querySelector('html');
-            var sidebar = 'hidden';
+            var sidebar = null;
             if (document.body.clientWidth >= 1080) {
                 try { sidebar = localStorage.getItem('mdbook-sidebar'); } catch(e) { }
                 sidebar = sidebar || 'visible';
+            } else {
+                sidebar = 'hidden';
             }
             html.classList.remove('sidebar-visible');
             html.classList.add("sidebar-" + sidebar);
@@ -154,7 +157,7 @@
                         <!--
 # Special Types
 -->
-<h1 id="特殊类型--special-types-"><a class="header" href="#特殊类型--special-types-">特殊类型 { #special-types }</a></h1>
+<h1 id="special-types"><a class="header" href="#special-types">特殊类型</a></h1>
 <!--
 Understanding the representation of data in memory is very important.
 Usually, the representation can be understood from the definition of a datatype.
@@ -253,7 +256,7 @@ The following types have special representations:
 </div><!--
 ## Exercise
 -->
-<h2 id="练习--exercise-"><a class="header" href="#练习--exercise-">练习 { #exercise }</a></h2>
+<h2 id="exercise"><a class="header" href="#exercise">练习</a></h2>
 <!--
 The [definition of `Pos`](../type-classes/pos.html) does not take advantage of Lean's compilation of `Nat` to an efficient type.
 At run time, it is essentially a linked list.
@@ -321,5 +324,6 @@ After proving the theorem `∀ {n k : Nat}, n ≠ 0 → k ≠ 0 → n + k ≠ 0`
         <script src="../custom.js"></script>
 
 
+    </div>
     </body>
 </html>

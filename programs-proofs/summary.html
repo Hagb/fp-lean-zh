@@ -36,6 +36,7 @@
         <script async src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
     </head>
     <body>
+    <div id="body-container">
         <!-- Provide site root to javascript -->
         <script>
             var path_to_root = "../";
@@ -73,10 +74,12 @@
         <!-- Hide / unhide sidebar before it is displayed -->
         <script>
             var html = document.querySelector('html');
-            var sidebar = 'hidden';
+            var sidebar = null;
             if (document.body.clientWidth >= 1080) {
                 try { sidebar = localStorage.getItem('mdbook-sidebar'); } catch(e) { }
                 sidebar = sidebar || 'visible';
+            } else {
+                sidebar = 'hidden';
             }
             html.classList.remove('sidebar-visible');
             html.classList.add("sidebar-" + sidebar);
@@ -154,11 +157,11 @@
                         <!--
 # Summary
 -->
-<h1 id="总结--summary-"><a class="header" href="#总结--summary-">总结 { #summary }</a></h1>
+<h1 id="summary"><a class="header" href="#summary">总结</a></h1>
 <!--
 ## Tail Recursion
 -->
-<h2 id="尾递归--tail-recursion-"><a class="header" href="#尾递归--tail-recursion-">尾递归 { #tail-recursion }</a></h2>
+<h2 id="tail-recursion"><a class="header" href="#tail-recursion">尾递归</a></h2>
 <!--
 Tail recursion is recursion in which the results of recursive calls are returned immediately, rather than being used in some other way.
 These recursive calls are called _tail calls_.
@@ -185,7 +188,7 @@ In other words, two functions that each end with a tail call to the other will n
 <!--
 ## Reference Counting and In-Place Updates
 -->
-<h2 id="引用计数与原地更新--reference-counting-and-in-place-updates-"><a class="header" href="#引用计数与原地更新--reference-counting-and-in-place-updates-">引用计数与原地更新 { #reference-counting-and-in-place-updates }</a></h2>
+<h2 id="reference-counting-and-in-place-updates"><a class="header" href="#reference-counting-and-in-place-updates">引用计数与原地更新</a></h2>
 <!--
 Rather than using a tracing garbage collector, as is done in Java, C#, and most JavaScript implementations, Lean uses reference counting for memory management.
 This means that each value in memory contains a field that tracks how many other values refer to it, and the run-time system maintains these counts as references appear or disappear.
@@ -215,7 +218,7 @@ The debugging helper `dbgTraceIfShared` can be used at key locations in the prog
 <!--
 ## Proving Programs Correct
 -->
-<h2 id="证明程序的正确性--proving-programs-correct-"><a class="header" href="#证明程序的正确性--proving-programs-correct-">证明程序的正确性 { #proving-programs-correct }</a></h2>
+<h2 id="proving-programs-correct"><a class="header" href="#proving-programs-correct">证明程序的正确性</a></h2>
 <!--
 Rewriting a program in accumulator-passing style, or making other transformations that make it run faster, can also make it more difficult to understand.
 It can be useful to keep the original version of the program that is more clearly correct, and then use it as an executable specification for the optimized version.
@@ -243,7 +246,7 @@ In particular, to prove that a function is equivalent to an accumulator-passing 
 <!--
 ## Safe Array Indices
 -->
-<h2 id="安全的数组索引--safe-array-indices-"><a class="header" href="#安全的数组索引--safe-array-indices-">安全的数组索引 { #safe-array-indices }</a></h2>
+<h2 id="safe-array-indices"><a class="header" href="#safe-array-indices">安全的数组索引</a></h2>
 <!--
 The type `Fin n` represents natural numbers that are strictly less than `n`.
 `Fin` is short for "finite".
@@ -268,7 +271,7 @@ The `OfNat` instances for `Fin` perform modular arithmetic rather than failing a
 <!--
 ## Provisional Proofs
 -->
-<h2 id="临时性证明--provisional-proofs-"><a class="header" href="#临时性证明--provisional-proofs-">临时性证明 { #provisional-proofs }</a></h2>
+<h2 id="provisional-proofs"><a class="header" href="#provisional-proofs">临时性证明</a></h2>
 <!--
 Sometimes, it can be useful to pretend that a statement is proved without actually doing the work of proving it.
 This can be useful when making sure that a proof of a statement would be suitable for some task, such as a rewrite in another proof, determining that an array access is safe, or showing that a recursive call is made on a smaller value than the original argument.
@@ -298,7 +301,7 @@ Using `sorry` is convenient during development, but keeping it in the code is da
 <!--
 ## Proving Termination
 -->
-<h2 id="停机证明--proving-termination-"><a class="header" href="#停机证明--proving-termination-">停机证明 { #proving-termination }</a></h2>
+<h2 id="proving-termination"><a class="header" href="#proving-termination">停机证明</a></h2>
 <!--
 When a recursive function does not use structural recursion, Lean cannot automatically determine that it terminates.
 In these situations, the function could just be marked `partial`.
@@ -393,5 +396,6 @@ Lean 会在需要证明的每个递归调用上放置错误高亮，其中包含
         <script src="../custom.js"></script>
 
 
+    </div>
     </body>
 </html>

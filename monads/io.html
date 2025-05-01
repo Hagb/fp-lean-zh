@@ -36,6 +36,7 @@
         <script async src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
     </head>
     <body>
+    <div id="body-container">
         <!-- Provide site root to javascript -->
         <script>
             var path_to_root = "../";
@@ -73,10 +74,12 @@
         <!-- Hide / unhide sidebar before it is displayed -->
         <script>
             var html = document.querySelector('html');
-            var sidebar = 'hidden';
+            var sidebar = null;
             if (document.body.clientWidth >= 1080) {
                 try { sidebar = localStorage.getItem('mdbook-sidebar'); } catch(e) { }
                 sidebar = sidebar || 'visible';
+            } else {
+                sidebar = 'hidden';
             }
             html.classList.remove('sidebar-visible');
             html.classList.add("sidebar-" + sidebar);
@@ -154,7 +157,7 @@
                         <!--
 # The IO Monad
 -->
-<h1 id="io-单子--the-io-monad-"><a class="header" href="#io-单子--the-io-monad-">IO 单子 { #the-io-monad }</a></h1>
+<h1 id="the-io-monad"><a class="header" href="#the-io-monad">IO 单子</a></h1>
 <!--
 `IO` as a monad can be understood from two perspectives, which were described in the section on [running programs](../hello-world/running-a-program.md).
 Each can help to understand the meanings of `pure` and `bind` for `IO`.
@@ -441,5 +444,6 @@ Unit
         <script src="../custom.js"></script>
 
 
+    </div>
     </body>
 </html>

@@ -36,6 +36,7 @@
         <script async src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
     </head>
     <body>
+    <div id="body-container">
         <!-- Provide site root to javascript -->
         <script>
             var path_to_root = "../";
@@ -73,10 +74,12 @@
         <!-- Hide / unhide sidebar before it is displayed -->
         <script>
             var html = document.querySelector('html');
-            var sidebar = 'hidden';
+            var sidebar = null;
             if (document.body.clientWidth >= 1080) {
                 try { sidebar = localStorage.getItem('mdbook-sidebar'); } catch(e) { }
                 sidebar = sidebar || 'visible';
+            } else {
+                sidebar = 'hidden';
             }
             html.classList.remove('sidebar-visible');
             html.classList.add("sidebar-" + sidebar);
@@ -154,7 +157,7 @@
                         <!--
 # Evaluating Expressions
 -->
-<h1 id="求值表达式--evaluating-expressions-"><a class="header" href="#求值表达式--evaluating-expressions-">求值表达式 { #evaluating-expressions }</a></h1>
+<h1 id="evaluating-expressions"><a class="header" href="#evaluating-expressions">求值表达式</a></h1>
 <!--
 The most important thing to understand as a programmer learning Lean
 is how evaluation works. Evaluation is the process of finding the
@@ -326,7 +329,7 @@ String.append &quot;it is &quot; &quot;no&quot;
 <!--
 ## Messages You May Meet
 -->
-<h2 id="可能会遇到的信息--messages-you-may-meet-"><a class="header" href="#可能会遇到的信息--messages-you-may-meet-">可能会遇到的信息 { #messages-you-may-meet }</a></h2>
+<h2 id="messages-you-may-meet"><a class="header" href="#messages-you-may-meet">可能会遇到的信息</a></h2>
 <!--
 Asking Lean to evaluate a function application that is missing an argument will lead to an error message.
 In particular, the example
@@ -364,7 +367,7 @@ Lean 无法向用户显示函数，因此在被要求这样做时会返回错误
 <!--
 ## Exercises
 -->
-<h2 id="练习--exercises-"><a class="header" href="#练习--exercises-">练习 { #exercises }</a></h2>
+<h2 id="exercises"><a class="header" href="#exercises">练习</a></h2>
 <!--
 What are the values of the following expressions? Work them out by hand,
 then enter them into Lean to check your work.
@@ -427,5 +430,6 @@ then enter them into Lean to check your work.
         <script src="../custom.js"></script>
 
 
+    </div>
     </body>
 </html>

@@ -36,6 +36,7 @@
         <script async src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
     </head>
     <body>
+    <div id="body-container">
         <!-- Provide site root to javascript -->
         <script>
             var path_to_root = "../";
@@ -73,10 +74,12 @@
         <!-- Hide / unhide sidebar before it is displayed -->
         <script>
             var html = document.querySelector('html');
-            var sidebar = 'hidden';
+            var sidebar = null;
             if (document.body.clientWidth >= 1080) {
                 try { sidebar = localStorage.getItem('mdbook-sidebar'); } catch(e) { }
                 sidebar = sidebar || 'visible';
+            } else {
+                sidebar = 'hidden';
             }
             html.classList.remove('sidebar-visible');
             html.classList.add("sidebar-" + sidebar);
@@ -154,11 +157,11 @@
                         <!--
 # Summary
 -->
-<h1 id="总结--summary-"><a class="header" href="#总结--summary-">总结 { #summary }</a></h1>
+<h1 id="summary"><a class="header" href="#summary">总结</a></h1>
 <!--
 ## Encoding Side Effects
 -->
-<h2 id="编码副作用--encoding-side-effects-"><a class="header" href="#编码副作用--encoding-side-effects-">编码副作用 { #encoding-side-effects }</a></h2>
+<h2 id="encoding-side-effects"><a class="header" href="#encoding-side-effects">编码副作用</a></h2>
 <!--
 Lean is a pure functional language.
 This means that it does not include side effects such as mutable variables, logging, or exceptions.
@@ -181,7 +184,7 @@ Lean 类型签名不仅描述了函数期望的参数类型和它返回的结果
 <!--
 ## The Monad Type Class
 -->
-<h2 id="单子类型类--the-monad-type-class-"><a class="header" href="#单子类型类--the-monad-type-class-">单子类型类 { #the-monad-type-class }</a></h2>
+<h2 id="the-monad-type-class"><a class="header" href="#the-monad-type-class">单子类型类</a></h2>
 <!--
 It's possible to write purely functional programs in languages that allow effects anywhere.
 For example, `2 + 3` is a valid Python program that has no effects at all.
@@ -202,7 +205,7 @@ The contract for `Monad` instances ensures that `bind` and `pure` actually captu
 <!--
 ## `do`-Notation for Monads
 -->
-<h2 id="单子的-do-记法--do-notation-for-monads-"><a class="header" href="#单子的-do-记法--do-notation-for-monads-">单子的 <code>do</code>-记法 { #do-notation-for-monads }</a></h2>
+<h2 id="do-notation-for-monads"><a class="header" href="#do-notation-for-monads">单子的 <code>do</code>-记法</a></h2>
 <!--
 Rather than being limited to `IO`, `do`-notation works for any monad.
 It allows programs that use monads to be written in a style that is reminiscent of statement-oriented languages, with statements sequenced after one another.
@@ -216,7 +219,7 @@ A program written with `do` is translated to applications of `>>=` behind the sc
 <!--
 ## Custom Monads
 -->
-<h2 id="定制单子--custom-monads-"><a class="header" href="#定制单子--custom-monads-">定制单子 { #custom-monads }</a></h2>
+<h2 id="custom-monads"><a class="header" href="#custom-monads">定制单子</a></h2>
 <!--
 Different languages provide different sets of side effects.
 While most languages feature mutable variables and file I/O, not all have features like exceptions.
@@ -233,7 +236,7 @@ Because Lean is designed to make programming with any monad convenient, programm
 <!--
 ## The `IO` Monad
 -->
-<h2 id="io-单子--the-io-monad-"><a class="header" href="#io-单子--the-io-monad-"><code>IO</code> 单子 { #the-io-monad }</a></h2>
+<h2 id="the-io-monad"><a class="header" href="#the-io-monad"><code>IO</code> 单子</a></h2>
 <!--
 Programs that can affect the real world are written as `IO` actions in Lean.
 `IO` is one monad among many.
@@ -292,5 +295,6 @@ The `IO` monad encodes state and exceptions, with the state being used to keep t
         <script src="../custom.js"></script>
 
 
+    </div>
     </body>
 </html>

@@ -36,6 +36,7 @@
         <script async src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
     </head>
     <body>
+    <div id="body-container">
         <!-- Provide site root to javascript -->
         <script>
             var path_to_root = "";
@@ -73,10 +74,12 @@
         <!-- Hide / unhide sidebar before it is displayed -->
         <script>
             var html = document.querySelector('html');
-            var sidebar = 'hidden';
+            var sidebar = null;
             if (document.body.clientWidth >= 1080) {
                 try { sidebar = localStorage.getItem('mdbook-sidebar'); } catch(e) { }
                 sidebar = sidebar || 'visible';
+            } else {
+                sidebar = 'hidden';
             }
             html.classList.remove('sidebar-visible');
             html.classList.add("sidebar-" + sidebar);
@@ -154,7 +157,7 @@
                         <!--
 # Next Steps
 -->
-<h1 id="下一步--next-steps-"><a class="header" href="#下一步--next-steps-">下一步 { #next-steps }</a></h1>
+<h1 id="next-steps"><a class="header" href="#next-steps">下一步</a></h1>
 <!--
 This book introduces the very basics of functional programming in Lean, including a tiny amount of interactive theorem proving. Using dependently-typed functional languages like Lean is a deep topic, and much can be said. Depending on your interests, the following resources might be useful for learning Lean 4.
 -->
@@ -164,7 +167,7 @@ This book introduces the very basics of functional programming in Lean, includin
 <!--
 ### Learning Lean
 -->
-<h2 id="学习-lean--learning-lean-"><a class="header" href="#学习-lean--learning-lean-">学习 Lean { #learning-lean }</a></h2>
+<h2 id="learning-lean"><a class="header" href="#learning-lean">学习 Lean</a></h2>
 <!--
 Lean 4 itself is described in the following resources:
 
@@ -193,7 +196,7 @@ However, the best way to continue learning Lean is to start reading and writing 
 <!--
 ## The Standard Library
 -->
-<h2 id="标准库--the-standard-library-"><a class="header" href="#标准库--the-standard-library-">标准库 { #the-standard-library }</a></h2>
+<h2 id="the-standard-library"><a class="header" href="#the-standard-library">标准库</a></h2>
 <!--
 Out of the box, Lean itself includes a fairly minimal library. Lean is self-hosted, and the included code is just enough to implement Lean itself. For many applications, a larger standard library is needed.
 
@@ -214,7 +217,7 @@ To use std4, the first step is to find a commit in its history that's compatible
 <!--
 ## Mathematics in Lean
 -->
-<h2 id="lean-形式化数学--mathematics-in-lean-"><a class="header" href="#lean-形式化数学--mathematics-in-lean-">Lean 形式化数学 { #mathematics-in-lean }</a></h2>
+<h2 id="mathematics-in-lean"><a class="header" href="#mathematics-in-lean">Lean 形式化数学</a></h2>
 <!--
 Most resources for mathematicians are written for Lean 3. A wide selection are available at the community site. To get started doing mathematics in Lean 4, it is probably easiest to participate in the process of porting the mathematics library mathlib from Lean 3 to Lean 4. Please see the mathlib4 README for further information.
 -->
@@ -225,7 +228,7 @@ Most resources for mathematicians are written for Lean 3. A wide selection are a
 <!--
 ## Using Dependent Types in Computer Science
 -->
-<h2 id="在计算机科学中使用依值类型--using-dependent-types-in-computer-science-"><a class="header" href="#在计算机科学中使用依值类型--using-dependent-types-in-computer-science-">在计算机科学中使用依值类型 { #using-dependent-types-in-computer-science }</a></h2>
+<h2 id="using-dependent-types-in-computer-science"><a class="header" href="#using-dependent-types-in-computer-science">在计算机科学中使用依值类型</a></h2>
 <!--
 Coq is a language that has a lot in common with Lean. For computer scientists, the Software Foundations series of interactive textbooks provides an excellent introduction to applications of Coq in computer science. The fundamental ideas of Lean and Coq are very similar, and skills are readily transferable between the systems.
 -->
@@ -236,7 +239,7 @@ Coq is a language that has a lot in common with Lean. For computer scientists, t
 <!--
 ## Programming with Dependent Types
 -->
-<h2 id="使用依值类型编程--programming-with-dependent-types-"><a class="header" href="#使用依值类型编程--programming-with-dependent-types-">使用依值类型编程 { #programming-with-dependent-types }</a></h2>
+<h2 id="programming-with-dependent-types"><a class="header" href="#programming-with-dependent-types">使用依值类型编程</a></h2>
 <!--
 For programmers who are interested in learning to use indexed families and dependent types to structure programs, Edwin Brady's Type Driven Development with Idris provides an excellent introduction. Like Coq, Idris is a close cousin of Lean, though it lacks tactics.
 -->
@@ -246,7 +249,7 @@ For programmers who are interested in learning to use indexed families and depen
 <!--
 ## Understanding Dependent Types
 -->
-<h2 id="理解依值类型--understanding-dependent-types-"><a class="header" href="#理解依值类型--understanding-dependent-types-">理解依值类型 { #understanding-dependent-types }</a></h2>
+<h2 id="understanding-dependent-types"><a class="header" href="#understanding-dependent-types">理解依值类型</a></h2>
 <!--
 The Little Typer is a book for programmers who haven't formally studied logic or the theory of programming languages, but who want to build an understanding of the core ideas of dependent type theory. While all of the above resources aim to be as practical as possible, The Little Typer presents an approach to dependent type theory where the very basics are built up from scratch, using only concepts from programming. Disclaimer: the author of Functional Programming in Lean is also an author of The Little Typer.
 -->
@@ -298,5 +301,6 @@ The Little Typer is a book for programmers who haven't formally studied logic or
         <script src="custom.js"></script>
 
 
+    </div>
     </body>
 </html>

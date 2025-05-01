@@ -36,6 +36,7 @@
         <script async src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
     </head>
     <body>
+    <div id="body-container">
         <!-- Provide site root to javascript -->
         <script>
             var path_to_root = "";
@@ -73,10 +74,12 @@
         <!-- Hide / unhide sidebar before it is displayed -->
         <script>
             var html = document.querySelector('html');
-            var sidebar = 'hidden';
+            var sidebar = null;
             if (document.body.clientWidth >= 1080) {
                 try { sidebar = localStorage.getItem('mdbook-sidebar'); } catch(e) { }
                 sidebar = sidebar || 'visible';
+            } else {
+                sidebar = 'hidden';
             }
             html.classList.remove('sidebar-visible');
             html.classList.add("sidebar-" + sidebar);
@@ -151,8 +154,8 @@
 
                 <div id="content" class="content">
                     <main>
-                        <h1 id="小插曲策略归纳与证明--interlude-tactics-induction-and-proofs-"><a class="header" href="#小插曲策略归纳与证明--interlude-tactics-induction-and-proofs-">小插曲：策略，归纳与证明 { #interlude-tactics-induction-and-proofs }</a></h1>
-<h2 id="一个关于证明与用户界面的说明--a-note-on-proofs-and-user-interfaces-"><a class="header" href="#一个关于证明与用户界面的说明--a-note-on-proofs-and-user-interfaces-">一个关于证明与用户界面的说明 { #a-note-on-proofs-and-user-interfaces }</a></h2>
+                        <h1 id="interlude-tactics-induction-and-proofs"><a class="header" href="#interlude-tactics-induction-and-proofs">小插曲：策略，归纳与证明</a></h1>
+<h2 id="a-note-on-proofs-and-user-interfaces"><a class="header" href="#a-note-on-proofs-and-user-interfaces">一个关于证明与用户界面的说明</a></h2>
 <!--
 This book presents the process of writing proofs as if they are written in one go and submitted to Lean, which then replies with error messages that describe what remains to be done. The actual process of interacting with Lean is much more pleasant. Lean provides information about the proof as the cursor is moved through it and there are a number of interactive features that make proving easier. Please consult the documentation of your Lean development environment for more information.
 -->
@@ -161,7 +164,7 @@ This book presents the process of writing proofs as if they are written in one g
 The approach in this book that focuses on incrementally building a proof and showing the messages that result demonstrates the kinds of interactive feedback that Lean provides while writing a proof, even though it is much slower than the process used by experts. At the same time, seeing incomplete proofs evolve towards completeness is a useful perspective on proving. As your skill in writing proofs increases, Lean's feedback will come to feel less like errors and more like support for your own thought processes. Learning the interactive approach is very important.
 -->
 <p>本书中的方法侧重于逐步构建证明并显示产生的消息，这展示了 Lean 在编写证明时提供的各种互动反馈，尽管这比专家使用的过程慢得多。同时，看到不完整的证明逐步趋向完整是一种对证明有益的视角。随着您编写证明技能的提高，Lean 的反馈将不再感觉像错误，而更像是对您自己思维过程的支持。学习互动方法非常重要。</p>
-<h2 id="递归和归纳--recursion-and-induction-"><a class="header" href="#递归和归纳--recursion-and-induction-">递归和归纳 { #recursion-and-induction }</a></h2>
+<h2 id="recursion-and-induction"><a class="header" href="#recursion-and-induction">递归和归纳</a></h2>
 <!--
 The functions plusR_succ_left and plusR_zero_left from the preceding chapter can be seen from two perspectives. On the one hand, they are recursive functions that build up evidence for a proposition, just as other recursive functions might construct a list, a string, or any other data structure. On the other, they also correspond to proofs by mathematical induction.
 -->
@@ -181,7 +184,7 @@ Mathematical induction is a proof technique where a statement is proven for all 
 Because it's impossible to check the statement for every natural number, induction provides a means of writing a proof that could, in principle, be expanded to any particular natural number. For example, if a concrete proof were desired for the number 3, then it could be constructed by using first the base case and then the induction step three times, to show the statement for 0, 1, 2, and finally 3. Thus, it proves the statement for all natural numbers.
 -->
 <p>因为我们不可能对<strong>每个</strong>自然数进行检查，归纳提供了一种手段来编写原则上可以扩展到任何特定自然数的证明。例如，如果需要对数字 3 进行具体证明，那么可以首先使用基本情况，然后归纳步骤三次，分别证明命题对 0、1、2，最后对 3 成立。因此，它证明了该命题对所有自然数成立。</p>
-<h2 id="归纳策略--the-induction-tactic-"><a class="header" href="#归纳策略--the-induction-tactic-">归纳策略 { #the-induction-tactic }</a></h2>
+<h2 id="the-induction-tactic"><a class="header" href="#the-induction-tactic">归纳策略</a></h2>
 <!--
 Writing proofs by induction as recursive functions that use helpers such as congrArg does not always do a good job of expressing the intentions behind the proof. While recursive functions indeed have the structure of induction, they should probably be viewed as an encoding of a proof. Furthermore, Lean's tactic system provides a number of opportunities to automate the construction of a proof that are not available when writing the recursive function explicitly. Lean provides an induction tactic that can carry out an entire proof by induction in a single tactic block. Behind the scenes, Lean constructs the recursive function that corresponds the use of induction.
 -->
@@ -325,7 +328,7 @@ This can be remedied by placing a left arrow before ih in the call to rewrite, w
 This rewrite makes both sides of the equation identical, and Lean takes care of the rfl on its own. The proof is complete.
 -->
 <p>这个重写使得等式的两边相同，Lean 会自己处理 <strong>rfl</strong>。证毕。</p>
-<h2 id="策略高尔夫--tactic-golf-"><a class="header" href="#策略高尔夫--tactic-golf-">策略高尔夫 { #tactic-golf }</a></h2>
+<h2 id="tactic-golf"><a class="header" href="#tactic-golf">策略高尔夫</a></h2>
 <!--
 So far, the tactic language has not shown its true value. The above proof is no shorter than the recursive function; it's merely written in a domain-specific language instead of the full Lean language. But proofs with tactics can be shorter, easier, and more maintainable. Just as a lower score is better in the game of golf, a shorter proof is better in the game of tactic golf.
 
@@ -434,7 +437,7 @@ Here, exact would not have been possible, because ih was never explicitly named.
 For beginners, this proof is not easier to read. However, a common pattern for expert users is to take care of a number of simple cases with powerful tactics like simp, allowing them to focus the text of the proof on the interesting cases. Additionally, these proofs tend to be more robust in the face of small changes to the functions and datatypes involved in the proof. The game of tactic golf is a useful part of developing good taste and style when writing proofs.
 -->
 <p>对于初学者来说，这个证明并不容易阅读。然而，专家用户的常见模式是使用像 <strong>simp</strong> 这样的强大策略处理一些简单情况，使他们可以将证明的文本集中在有趣的情况下。此外，这些证明在面对函数和数据类型的小变化时往往更稳健。策略高尔夫游戏是培养编写证明时的良好品味和风格的有用部分。</p>
-<h2 id="其他数据类型的归纳--induction-on-other-datatypes-"><a class="header" href="#其他数据类型的归纳--induction-on-other-datatypes-">其他数据类型的归纳 { #induction-on-other-datatypes }</a></h2>
+<h2 id="induction-on-other-datatypes"><a class="header" href="#induction-on-other-datatypes">其他数据类型的归纳</a></h2>
 <!--
 Mathematical induction proves a statement for natural numbers by providing a base case for Nat.zero and an induction step for Nat.succ. The principle of induction is also valid for other datatypes. Constructors without recursive arguments form the base cases, while constructors with recursive arguments form the induction steps. The ability to carry out proofs by induction is the very reason why they are called inductive datatypes.
 -->
@@ -582,7 +585,7 @@ Because both branches are using the simplifier, the proof can be reduced to:
 <pre><code class="language-lean">theorem BinTree.mirror_count (t : BinTree α) : t.mirror.count = t.count := by
   induction t &lt;;&gt; simp_arith [BinTree.mirror, BinTree.count, *]
 </code></pre>
-<h2 id="练习--exercises-"><a class="header" href="#练习--exercises-">练习 { #exercises }</a></h2>
+<h2 id="exercises"><a class="header" href="#exercises">练习</a></h2>
 <!--
 1. Prove plusR_succ_left using the induction ... with tactic.
 2. Rewrite the proof of plus_succ_left to use <;> in a single line.
@@ -643,5 +646,6 @@ Because both branches are using the simplifier, the proof can be reduced to:
         <script src="custom.js"></script>
 
 
+    </div>
     </body>
 </html>

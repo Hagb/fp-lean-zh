@@ -36,6 +36,7 @@
         <script async src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
     </head>
     <body>
+    <div id="body-container">
         <!-- Provide site root to javascript -->
         <script>
             var path_to_root = "../";
@@ -73,10 +74,12 @@
         <!-- Hide / unhide sidebar before it is displayed -->
         <script>
             var html = document.querySelector('html');
-            var sidebar = 'hidden';
+            var sidebar = null;
             if (document.body.clientWidth >= 1080) {
                 try { sidebar = localStorage.getItem('mdbook-sidebar'); } catch(e) { }
                 sidebar = sidebar || 'visible';
+            } else {
+                sidebar = 'hidden';
             }
             html.classList.remove('sidebar-visible');
             html.classList.add("sidebar-" + sidebar);
@@ -154,7 +157,7 @@
                         <!--
 # Indices, Parameters, and Universe Levels
 -->
-<h1 id="索引参量和宇宙层级--indices-parameters-and-universe-levels-"><a class="header" href="#索引参量和宇宙层级--indices-parameters-and-universe-levels-">索引、参量和宇宙层级 { #indices-parameters-and-universe-levels }</a></h1>
+<h1 id="indices-parameters-and-universe-levels"><a class="header" href="#indices-parameters-and-universe-levels">索引、参量和宇宙层级</a></h1>
 <!--
 The distinction between indices and parameters of an inductive type is more than just a way to describe arguments to the type that either vary or do not between the constructors.
 Whether an argument to an inductive type is a parameter or an index also matters when it comes time to determine the relationships between their universe levels.
@@ -394,5 +397,6 @@ This makes the intention clear to readers, and it causes Lean to report an error
         <script src="../custom.js"></script>
 
 
+    </div>
     </body>
 </html>

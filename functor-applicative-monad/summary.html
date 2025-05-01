@@ -36,6 +36,7 @@
         <script async src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
     </head>
     <body>
+    <div id="body-container">
         <!-- Provide site root to javascript -->
         <script>
             var path_to_root = "../";
@@ -73,10 +74,12 @@
         <!-- Hide / unhide sidebar before it is displayed -->
         <script>
             var html = document.querySelector('html');
-            var sidebar = 'hidden';
+            var sidebar = null;
             if (document.body.clientWidth >= 1080) {
                 try { sidebar = localStorage.getItem('mdbook-sidebar'); } catch(e) { }
                 sidebar = sidebar || 'visible';
+            } else {
+                sidebar = 'hidden';
             }
             html.classList.remove('sidebar-visible');
             html.classList.add("sidebar-" + sidebar);
@@ -154,11 +157,11 @@
                         <!--
 # Summary
 -->
-<h1 id="总结--summary-"><a class="header" href="#总结--summary-">总结 { #summary }</a></h1>
+<h1 id="summary"><a class="header" href="#summary">总结</a></h1>
 <!--
 ## Type Classes and Structures
 -->
-<h2 id="类型类与结构体--type-classes-and-structures-"><a class="header" href="#类型类与结构体--type-classes-and-structures-">类型类与结构体 { #type-classes-and-structures }</a></h2>
+<h2 id="type-classes-and-structures"><a class="header" href="#type-classes-and-structures">类型类与结构体</a></h2>
 <!--
 Behind the scenes, type classes are represented by structures.
 Defining a class defines a structure, and additionally creates an empty table of instances.
@@ -174,7 +177,7 @@ Both structures and classes may provide default values for fields (which are def
 <!--
 ## Structures and Inheritance
 -->
-<h2 id="结构体和继承--structures-and-inheritance-"><a class="header" href="#结构体和继承--structures-and-inheritance-">结构体和继承 { #structures-and-inheritance }</a></h2>
+<h2 id="structures-and-inheritance"><a class="header" href="#structures-and-inheritance">结构体和继承</a></h2>
 <!--
 Structures may inherit from other structures.
 Behind the scenes, a structure that inherits from another structure contains an instance of the original structure as a field.
@@ -196,7 +199,7 @@ Together with default methods, this can be used to create a fine-grained hierarc
 <!--
 ## Applicative Functors
 -->
-<h2 id="应用函子--applicative-functors-"><a class="header" href="#应用函子--applicative-functors-">应用函子 { #applicative-functors }</a></h2>
+<h2 id="applicative-functors"><a class="header" href="#applicative-functors">应用函子</a></h2>
 <!--
 An applicative functor is a functor with two additional operations:
  * `pure`, which is the same operator as that for `Monad`
@@ -238,7 +241,7 @@ The default implementations of `Functor`'s methods in terms of `Applicative`'s, 
 <!--
 ## Universes
 -->
-<h2 id="宇宙--universes-"><a class="header" href="#宇宙--universes-">宇宙 { #universes }</a></h2>
+<h2 id="universes"><a class="header" href="#universes">宇宙</a></h2>
 <!--
 To allow Lean to be used as both a programming language and a theorem prover, some restrictions on the language are necessary.
 This includes restrictions on recursive functions that ensure that they all either terminate or are marked as `partial` and written to return types that are not uninhabited.
@@ -315,5 +318,6 @@ Generally speaking, Lean libraries should use universe polymorphism when impleme
         <script src="../custom.js"></script>
 
 
+    </div>
     </body>
 </html>

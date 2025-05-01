@@ -36,6 +36,7 @@
         <script async src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
     </head>
     <body>
+    <div id="body-container">
         <!-- Provide site root to javascript -->
         <script>
             var path_to_root = "../";
@@ -73,10 +74,12 @@
         <!-- Hide / unhide sidebar before it is displayed -->
         <script>
             var html = document.querySelector('html');
-            var sidebar = 'hidden';
+            var sidebar = null;
             if (document.body.clientWidth >= 1080) {
                 try { sidebar = localStorage.getItem('mdbook-sidebar'); } catch(e) { }
                 sidebar = sidebar || 'visible';
+            } else {
+                sidebar = 'hidden';
             }
             html.classList.remove('sidebar-visible');
             html.classList.add("sidebar-" + sidebar);
@@ -154,7 +157,7 @@
                         <!--
 # Additional Conveniences
 -->
-<h1 id="其他便利功能--additional-conveniences-"><a class="header" href="#其他便利功能--additional-conveniences-">其他便利功能 { #additional-conveniences }</a></h1>
+<h1 id="additional-conveniences"><a class="header" href="#additional-conveniences">其他便利功能</a></h1>
 <!--
 Lean contains a number of convenience features that make programs much more concise.
 -->
@@ -162,7 +165,7 @@ Lean contains a number of convenience features that make programs much more conc
 <!--
 ## Automatic Implicit Arguments
 -->
-<h2 id="自动隐式参数--automatic-implicit-arguments-"><a class="header" href="#自动隐式参数--automatic-implicit-arguments-">自动隐式参数 { #automatic-implicit-arguments }</a></h2>
+<h2 id="automatic-implicit-arguments"><a class="header" href="#automatic-implicit-arguments">自动隐式参数</a></h2>
 <!--
 When writing polymorphic functions in Lean, it is typically not necessary to list all the implicit arguments.
 Instead, they can simply be mentioned.
@@ -192,7 +195,7 @@ This can greatly simplify highly polymorphic definitions that take many implicit
 <!--
 ## Pattern-Matching Definitions
 -->
-<h2 id="模式匹配定义--pattern-matching-definitions-"><a class="header" href="#模式匹配定义--pattern-matching-definitions-">模式匹配定义 { #pattern-matching-definitions }</a></h2>
+<h2 id="pattern-matching-definitions"><a class="header" href="#pattern-matching-definitions">模式匹配定义</a></h2>
 <!--
 When defining functions with `def`, it is quite common to name an argument and then immediately use it with pattern matching.
 For instance, in `length`, the argument `xs` is used only in `match`.
@@ -249,7 +252,7 @@ This function is called `Option.getD` in the standard library, and can be called
 <!--
 ## Local Definitions
 -->
-<h2 id="局部定义--local-definitions-"><a class="header" href="#局部定义--local-definitions-">局部定义 { #local-definitions }</a></h2>
+<h2 id="local-definitions"><a class="header" href="#local-definitions">局部定义</a></h2>
 <!--
 It is often useful to name intermediate steps in a computation.
 In many cases, intermediate values represent useful concepts all on their own, and naming them explicitly can make the program easier to read.
@@ -343,7 +346,7 @@ When it reaches the end of the input list, `soFar` contains a reversed version o
 <!--
 ## Type Inference
 -->
-<h2 id="类型推断--type-inference-"><a class="header" href="#类型推断--type-inference-">类型推断 { #type-inference }</a></h2>
+<h2 id="type-inference"><a class="header" href="#type-inference">类型推断</a></h2>
 <!--
 In many situations, Lean can automatically determine an expression's type.
 In these cases, explicit types may be omitted from both top-level definitions (with `def`) and local definitions (with `let`).
@@ -468,7 +471,7 @@ Especially while still learning Lean, it is useful to provide most types explici
 <!--
 ## Simultaneous Matching
 -->
-<h2 id="同时匹配--simultaneous-matching-"><a class="header" href="#同时匹配--simultaneous-matching-">同时匹配 { #simultaneous-matching }</a></h2>
+<h2 id="simultaneous-matching"><a class="header" href="#simultaneous-matching">同时匹配</a></h2>
 <!--
 Pattern-matching expressions, just like pattern-matching definitions, can match on multiple values at once.
 Both the expressions to be inspected and the patterns that they match against are written with commas between them, similarly to the syntax used for definitions.
@@ -486,7 +489,7 @@ Here is a version of `drop` that uses simultaneous matching:
 <!--
 ## Natural Number Patterns
 -->
-<h2 id="自然数模式--natural-number-patterns-"><a class="header" href="#自然数模式--natural-number-patterns-">自然数模式 { #natural-number-patterns }</a></h2>
+<h2 id="natural-number-patterns"><a class="header" href="#natural-number-patterns">自然数模式</a></h2>
 <!--
 In the section on [datatypes and patterns](datatypes-and-patterns.md), `even` was defined like this:
 -->
@@ -555,7 +558,7 @@ This restriction enables Lean to transform all uses of the `+` notation in a pat
 <!--
 ## Anonymous Functions
 -->
-<h2 id="匿名函数--anonymous-functions-"><a class="header" href="#匿名函数--anonymous-functions-">匿名函数 { #anonymous-functions }</a></h2>
+<h2 id="anonymous-functions"><a class="header" href="#anonymous-functions">匿名函数</a></h2>
 <!--
 Functions in Lean need not be defined at the top level.
 As expressions, functions are produced with the `fun` syntax.
@@ -666,7 +669,7 @@ while `#eval (· * 2) 5` results in:
 <!--
 ## Namespaces
 -->
-<h2 id="命名空间--namespaces-"><a class="header" href="#命名空间--namespaces-">命名空间 { #namespaces }</a></h2>
+<h2 id="namespaces"><a class="header" href="#namespaces">命名空间</a></h2>
 <!--
 Each name in Lean occurs in a _namespace_, which is a collection of names.
 Names are placed in namespaces using `.`, so `List.map` is the name `map` in the `List` namespace.
@@ -754,7 +757,7 @@ To do this, simply omit the `in` from a top-level usage of `open`.
 <!--
 ## if let
 -->
-<h2 id="if-let--if-let-"><a class="header" href="#if-let--if-let-">if let { #if-let }</a></h2>
+<h2 id="if-let"><a class="header" href="#if-let">if let</a></h2>
 <!--
 When consuming values that have a sum type, it is often the case that only a single constructor is of interest.
 For instance, given this type that represents a subset of Markdown inline elements:
@@ -796,7 +799,7 @@ In some contexts, using `if let` instead of `match` can make code easier to read
 <!--
 ## Positional Structure Arguments
 -->
-<h2 id="带位置的结构体参数--positional-structure-arguments-"><a class="header" href="#带位置的结构体参数--positional-structure-arguments-">带位置的结构体参数 { #positional-structure-arguments }</a></h2>
+<h2 id="positional-structure-arguments"><a class="header" href="#positional-structure-arguments">带位置的结构体参数</a></h2>
 <!--
 The [section on structures](structures.md) presents two ways of constructing structures:
 
@@ -844,7 +847,7 @@ Adding an annotation, such as in `#eval (⟨1, 2⟩ : Point)`, solves the proble
 <!--
 ## String Interpolation
 -->
-<h2 id="字符串插值--string-interpolation-"><a class="header" href="#字符串插值--string-interpolation-">字符串插值 { #string-interpolation }</a></h2>
+<h2 id="string-interpolation"><a class="header" href="#string-interpolation">字符串插值</a></h2>
 <!--
 In Lean, prefixing a string with `s!` triggers _interpolation_, where expressions contained in curly braces inside the string are replaced with their values.
 This is similar to `f`-strings in Python and `$`-prefixed strings in C#.
@@ -934,5 +937,6 @@ This uses the same language feature as the `deriving Repr` syntax that was descr
         <script src="../custom.js"></script>
 
 
+    </div>
     </body>
 </html>

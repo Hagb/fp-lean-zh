@@ -36,6 +36,7 @@
         <script async src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
     </head>
     <body>
+    <div id="body-container">
         <!-- Provide site root to javascript -->
         <script>
             var path_to_root = "../";
@@ -73,10 +74,12 @@
         <!-- Hide / unhide sidebar before it is displayed -->
         <script>
             var html = document.querySelector('html');
-            var sidebar = 'hidden';
+            var sidebar = null;
             if (document.body.clientWidth >= 1080) {
                 try { sidebar = localStorage.getItem('mdbook-sidebar'); } catch(e) { }
                 sidebar = sidebar || 'visible';
+            } else {
+                sidebar = 'hidden';
             }
             html.classList.remove('sidebar-visible');
             html.classList.add("sidebar-" + sidebar);
@@ -154,7 +157,7 @@
                         <!--
 # Tail Recursion
 -->
-<h1 id="尾递归--tail-recursion-"><a class="header" href="#尾递归--tail-recursion-">尾递归 { #tail-recursion }</a></h1>
+<h1 id="tail-recursion"><a class="header" href="#tail-recursion">尾递归</a></h1>
 <!--
 While Lean's `do`-notation makes it possible to use traditional loop syntax such as `for` and `while`, these constructs are translated behind the scenes to invocations of recursive functions.
 In most programming languages, recursive functions have a key disadvantage with respect to loops: loops consume no space on the stack, while recursive functions consume stack space proportional to the number of recursive calls.
@@ -314,7 +317,7 @@ At each recursive call, the function argument on the stack is simply replaced wi
 <!--
 ## Tail and Non-Tail Positions
 -->
-<h2 id="尾部与非尾部位置--tail-and-non-tail-positions-"><a class="header" href="#尾部与非尾部位置--tail-and-non-tail-positions-">尾部与非尾部位置 { #tail-and-non-tail-positions }</a></h2>
+<h2 id="tail-and-non-tail-positions"><a class="header" href="#tail-and-non-tail-positions">尾部与非尾部位置</a></h2>
 <!--
 The reason why `Tail.sumHelper` is tail recursive is that the recursive call is in _tail position_.
 Informally speaking, a function call is in tail position when the caller does not need to modify the returned value in any way, but will just return it directly.
@@ -363,7 +366,7 @@ While it is certainly possible to eliminate a tail call to some other function, 
 <!--
 ## Reversing Lists
 -->
-<h2 id="反转列表--reversing-lists-"><a class="header" href="#反转列表--reversing-lists-">反转列表 { #reversing-lists }</a></h2>
+<h2 id="reversing-lists"><a class="header" href="#reversing-lists">反转列表</a></h2>
 <!--
 The function `NonTail.reverse` reverses lists by appending the head of each sub-list to the end of the result:
 -->
@@ -443,7 +446,7 @@ Appending `[x]` after the result of the recursion in `NonTail.reverse` is analog
 <!--
 ## Multiple Recursive Calls
 -->
-<h2 id="多个递归调用--multiple-recursive-calls-"><a class="header" href="#多个递归调用--multiple-recursive-calls-">多个递归调用 { #multiple-recursive-calls }</a></h2>
+<h2 id="multiple-recursive-calls"><a class="header" href="#multiple-recursive-calls">多个递归调用</a></h2>
 <!--
 In the definition of `BinTree.mirror`, there are two recursive calls:
 -->
@@ -474,7 +477,7 @@ There are systematic techniques for making these functions tail-recursive, such 
 <!--
 ## Exercises
 -->
-<h2 id="练习--exercises-"><a class="header" href="#练习--exercises-">练习 { #exercises }</a></h2>
+<h2 id="exercises"><a class="header" href="#exercises">练习</a></h2>
 <!--
 Translate each of the following non-tail-recursive functions into accumulator-passing tail-recursive functions:
 -->
@@ -551,5 +554,6 @@ A constant factor overhead is acceptable relative to the original:
         <script src="../custom.js"></script>
 
 
+    </div>
     </body>
 </html>

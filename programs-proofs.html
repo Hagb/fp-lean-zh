@@ -36,6 +36,7 @@
         <script async src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
     </head>
     <body>
+    <div id="body-container">
         <!-- Provide site root to javascript -->
         <script>
             var path_to_root = "";
@@ -73,10 +74,12 @@
         <!-- Hide / unhide sidebar before it is displayed -->
         <script>
             var html = document.querySelector('html');
-            var sidebar = 'hidden';
+            var sidebar = null;
             if (document.body.clientWidth >= 1080) {
                 try { sidebar = localStorage.getItem('mdbook-sidebar'); } catch(e) { }
                 sidebar = sidebar || 'visible';
+            } else {
+                sidebar = 'hidden';
             }
             html.classList.remove('sidebar-visible');
             html.classList.add("sidebar-" + sidebar);
@@ -154,7 +157,7 @@
                         <!--
 # Programming, Proving, and Performance
 -->
-<h1 id="编程证明与性能--programming-proving-and-performance-"><a class="header" href="#编程证明与性能--programming-proving-and-performance-">编程、证明与性能 { #programming-proving-and-performance }</a></h1>
+<h1 id="programming-proving-and-performance"><a class="header" href="#programming-proving-and-performance">编程、证明与性能</a></h1>
 <!--
 This chapter is about programming.
 Programs need to compute the correct result, but they also need to do so efficiently.
@@ -249,5 +252,6 @@ Just as when learning programming, however, there's no substitute for hands-on e
         <script src="custom.js"></script>
 
 
+    </div>
     </body>
 </html>

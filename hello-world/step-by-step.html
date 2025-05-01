@@ -36,6 +36,7 @@
         <script async src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
     </head>
     <body>
+    <div id="body-container">
         <!-- Provide site root to javascript -->
         <script>
             var path_to_root = "../";
@@ -73,10 +74,12 @@
         <!-- Hide / unhide sidebar before it is displayed -->
         <script>
             var html = document.querySelector('html');
-            var sidebar = 'hidden';
+            var sidebar = null;
             if (document.body.clientWidth >= 1080) {
                 try { sidebar = localStorage.getItem('mdbook-sidebar'); } catch(e) { }
                 sidebar = sidebar || 'visible';
+            } else {
+                sidebar = 'hidden';
             }
             html.classList.remove('sidebar-visible');
             html.classList.add("sidebar-" + sidebar);
@@ -154,7 +157,7 @@
                         <!--
 # Step By Step
 -->
-<h1 id="逐步执行--step-by-step-"><a class="header" href="#逐步执行--step-by-step-">逐步执行 { #step-by-step }</a></h1>
+<h1 id="step-by-step"><a class="header" href="#step-by-step">逐步执行</a></h1>
 <!--
 A `do` block can be executed one line at a time.
 Start with the program from the prior section:
@@ -170,7 +173,7 @@ Start with the program from the prior section:
 <!--
 ## Standard IO
 -->
-<h2 id="标准-io--standard-io-"><a class="header" href="#标准-io--standard-io-">标准 IO { #standard-io }</a></h2>
+<h2 id="standard-io"><a class="header" href="#standard-io">标准 IO</a></h2>
 <!--
 The first line is `  let stdin ← IO.getStdin`, while the remainder is:
 -->
@@ -204,7 +207,7 @@ Finally, this value is associated with the name `stdout` for the remainder of th
 <!--
 ## Asking a Question
 -->
-<h2 id="提问--asking-a-question-"><a class="header" href="#提问--asking-a-question-">提问 { #asking-a-question }</a></h2>
+<h2 id="asking-a-question"><a class="header" href="#asking-a-question">提问</a></h2>
 <!--
 Now that `stdin` and `stdout` have been found, the remainder of the block consists of a question and an answer:
 -->
@@ -289,7 +292,7 @@ In the current line of the program, whitespace characters (including the newline
 <!--
 ## Greeting the User
 -->
-<h2 id="向用户问好--greeting-the-user-"><a class="header" href="#向用户问好--greeting-the-user-">向用户问好 { #greeting-the-user }</a></h2>
+<h2 id="greeting-the-user"><a class="header" href="#greeting-the-user">向用户问好</a></h2>
 <!--
 All that remains to be executed in the `do` block is a single statement:
 -->
@@ -310,7 +313,7 @@ Once the expression has been evaluated, the resulting `IO` action is executed, r
 <!--
 ## `IO` Actions as Values
 -->
-<h2 id="io-活动作为值--io-actions-as-values-"><a class="header" href="#io-活动作为值--io-actions-as-values-"><code>IO</code> 活动作为值 { #io-actions-as-values }</a></h2>
+<h2 id="io-actions-as-values"><a class="header" href="#io-actions-as-values"><code>IO</code> 活动作为值</a></h2>
 <!--
 In the above description, it can be difficult to see why the distinction between evaluating expressions and executing `IO` actions is necessary.
 After all, each action is executed immediately after it is produced.
@@ -470,7 +473,7 @@ The final step, `pure ()`, does not have any effects, and it is only present bec
 <!--
 ## Exercise
 -->
-<h2 id="练习--exercise-"><a class="header" href="#练习--exercise-">练习 { #exercise }</a></h2>
+<h2 id="exercise"><a class="header" href="#exercise">练习</a></h2>
 <!--
 Step through the execution of the following program on a piece of paper:
 -->
@@ -538,5 +541,6 @@ After doing this, run the program with Lean and double-check that your predictio
         <script src="../custom.js"></script>
 
 
+    </div>
     </body>
 </html>

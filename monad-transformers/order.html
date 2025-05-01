@@ -36,6 +36,7 @@
         <script async src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
     </head>
     <body>
+    <div id="body-container">
         <!-- Provide site root to javascript -->
         <script>
             var path_to_root = "../";
@@ -73,10 +74,12 @@
         <!-- Hide / unhide sidebar before it is displayed -->
         <script>
             var html = document.querySelector('html');
-            var sidebar = 'hidden';
+            var sidebar = null;
             if (document.body.clientWidth >= 1080) {
                 try { sidebar = localStorage.getItem('mdbook-sidebar'); } catch(e) { }
                 sidebar = sidebar || 'visible';
+            } else {
+                sidebar = 'hidden';
             }
             html.classList.remove('sidebar-visible');
             html.classList.add("sidebar-" + sidebar);
@@ -154,7 +157,7 @@
                         <!--
 # Ordering Monad Transformers
 -->
-<h1 id="对单子转换器排序--ordering-monad-transformers-"><a class="header" href="#对单子转换器排序--ordering-monad-transformers-">对单子转换器排序 { #ordering-monad-transformers }</a></h1>
+<h1 id="ordering-monad-transformers"><a class="header" href="#ordering-monad-transformers">对单子转换器排序</a></h1>
 <!--
 When composing a monad from a stack of monad transformers, it's important to be aware that the order in which the monad transformers are layered matters.
 Different orderings of the same set of transformers result in different monads.
@@ -299,7 +302,7 @@ When an exception is thrown in `M2`, it is accompanied by a state.
 <!--
 ## Commuting Monads
 -->
-<h2 id="交换单子--commuting-monads-"><a class="header" href="#交换单子--commuting-monads-">交换单子 { #commuting-monads }</a></h2>
+<h2 id="commuting-monads"><a class="header" href="#commuting-monads">交换单子</a></h2>
 <!--
 In the jargon of functional programming, two monad transformers are said to _commute_ if they can be re-ordered without the meaning of the program changing.
 The fact that the result of the program can differ when `StateT` and `ExceptT` are reordered means that state and exceptions do not commute.
@@ -335,7 +338,7 @@ With great expressive power comes the responsibility to check that what's being 
 <!--
 ## Exercises
 -->
-<h2 id="练习--exercises-"><a class="header" href="#练习--exercises-">练习 { #exercises }</a></h2>
+<h2 id="exercises"><a class="header" href="#exercises">练习</a></h2>
 <!--
  * Check that `ReaderT` and `StateT` commute by expanding their definitions and reasoning about the resulting types.
  * Do `ReaderT` and `ExceptT` commute? Check your answer by expanding their definitions and reasoning about the resulting types.
@@ -398,5 +401,6 @@ With great expressive power comes the responsibility to check that what's being 
         <script src="../custom.js"></script>
 
 
+    </div>
     </body>
 </html>

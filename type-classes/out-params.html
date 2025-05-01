@@ -36,6 +36,7 @@
         <script async src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
     </head>
     <body>
+    <div id="body-container">
         <!-- Provide site root to javascript -->
         <script>
             var path_to_root = "../";
@@ -73,10 +74,12 @@
         <!-- Hide / unhide sidebar before it is displayed -->
         <script>
             var html = document.querySelector('html');
-            var sidebar = 'hidden';
+            var sidebar = null;
             if (document.body.clientWidth >= 1080) {
                 try { sidebar = localStorage.getItem('mdbook-sidebar'); } catch(e) { }
                 sidebar = sidebar || 'visible';
+            } else {
+                sidebar = 'hidden';
             }
             html.classList.remove('sidebar-visible');
             html.classList.add("sidebar-" + sidebar);
@@ -154,7 +157,7 @@
                         <!--
 # Controlling Instance Search
 -->
-<h1 id="控制实例搜索--controlling-instance-search-"><a class="header" href="#控制实例搜索--controlling-instance-search-">控制实例搜索 { #controlling-instance-search }</a></h1>
+<h1 id="controlling-instance-search"><a class="header" href="#controlling-instance-search">控制实例搜索</a></h1>
 <!--
 An instance of the `Add` class is sufficient to allow two expressions with type `Pos` to be conveniently added, producing another `Pos`.
 However, in many cases, it can be useful to be more flexible and allow _heterogeneous_ operator overloading, where the arguments may have different types.
@@ -178,7 +181,7 @@ These functions allow natural numbers to be added to positive numbers, but they 
 <!--
 ## Heterogeneous Overloadings
 -->
-<h2 id="异质重载--heterogeneous-overloadings-"><a class="header" href="#异质重载--heterogeneous-overloadings-">异质重载 { #heterogeneous-overloadings }</a></h2>
+<h2 id="heterogeneous-overloadings"><a class="header" href="#heterogeneous-overloadings">异质重载</a></h2>
 <!--
 As mentioned in the section on [overloaded addition](pos.md#overloaded-addition), Lean provides a type class called `HAdd` for overloading addition heterogeneously.
 The `HAdd` class takes three type parameters: the two argument types and the return type.
@@ -260,7 +263,7 @@ However, this solution is not very convenient for users of the positive number l
 <!--
 ## Output Parameters
 -->
-<h2 id="输出参数--output-parameters-"><a class="header" href="#输出参数--output-parameters-">输出参数 { #output-parameters }</a></h2>
+<h2 id="output-parameters"><a class="header" href="#output-parameters">输出参数</a></h2>
 <!--
 This problem can also be solved by declaring `γ` to be an _output parameter_.
 Most type class parameters are inputs to the search algorithm: they are used to select an instance.
@@ -300,7 +303,7 @@ Output parameters can determine other types in the program, and instance search 
 <!--
 ## Default Instances
 -->
-<h2 id="默认实例--default-instances-"><a class="header" href="#默认实例--default-instances-">默认实例 { #default-instances }</a></h2>
+<h2 id="default-instances"><a class="header" href="#default-instances">默认实例</a></h2>
 <!--
 Deciding whether a parameter is an input or an output controls the circumstances under which Lean will initiate type class search.
 In particular, type class search does not occur until all inputs are known.
@@ -414,7 +417,7 @@ For more information on default instance priorities, please consult the Lean man
 <!--
 ## Exercises
 -->
-<h2 id="练习--exercises-"><a class="header" href="#练习--exercises-">练习 { #exercises }</a></h2>
+<h2 id="exercises"><a class="header" href="#exercises">练习</a></h2>
 <!--
 Define an instance of `HMul (PPoint α) α (PPoint α)` that multiplies both projections by the scalar.
 It should work for any type `α` for which there is a `Mul α` instance.
@@ -480,5 +483,6 @@ should yield
         <script src="../custom.js"></script>
 
 
+    </div>
     </body>
 </html>

@@ -36,6 +36,7 @@
         <script async src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
     </head>
     <body>
+    <div id="body-container">
         <!-- Provide site root to javascript -->
         <script>
             var path_to_root = "../";
@@ -73,10 +74,12 @@
         <!-- Hide / unhide sidebar before it is displayed -->
         <script>
             var html = document.querySelector('html');
-            var sidebar = 'hidden';
+            var sidebar = null;
             if (document.body.clientWidth >= 1080) {
                 try { sidebar = localStorage.getItem('mdbook-sidebar'); } catch(e) { }
                 sidebar = sidebar || 'visible';
+            } else {
+                sidebar = 'hidden';
             }
             html.classList.remove('sidebar-visible');
             html.classList.add("sidebar-" + sidebar);
@@ -154,7 +157,7 @@
                         <!--
 # Combining IO and Reader
 -->
-<h1 id="组合-io-与-reader--combining-io-and-reader-"><a class="header" href="#组合-io-与-reader--combining-io-and-reader-">组合 IO 与 Reader { #combining-io-and-reader }</a></h1>
+<h1 id="combining-io-and-reader"><a class="header" href="#combining-io-and-reader">组合 IO 与 Reader</a></h1>
 <!--
 One case where a reader monad can be useful is when there is some notion of the "current configuration" of the application that is passed through many recursive calls.
 An example of such a program is `tree`, which recursively prints the files in the current directory and its subdirectories, indicating their tree structure using characters.
@@ -194,7 +197,7 @@ Running `doug` results in the following:
 <!--
 ## Implementation
 -->
-<h2 id="实现--implementation-"><a class="header" href="#实现--implementation-">实现 { #implementation }</a></h2>
+<h2 id="implementation"><a class="header" href="#implementation">实现</a></h2>
 <!--
 Internally, `doug` passes a configuration value downwards as it recursively traverses the directory structure.
 This configuration contains two fields: `useASCII` determines whether to use Unicode box-drawing characters or ASCII vertical line and dash characters to indicate structure, and `currentPrefix` contains a string to prepend to each line of output.
@@ -365,7 +368,7 @@ Because `doList` carries out all the actions in a list and does not base control
 <!--
 ## Using a Custom Monad
 -->
-<h2 id="使用自定义单子--using-a-custom-monad-"><a class="header" href="#使用自定义单子--using-a-custom-monad-">使用自定义单子 { #using-a-custom-monad }</a></h2>
+<h2 id="using-a-custom-monad"><a class="header" href="#using-a-custom-monad">使用自定义单子</a></h2>
 <!--
 While this implementation of `doug` works, manually passing the configuration around is verbose and error-prone.
 The type system will not catch it if the wrong configuration is passed downwards, for instance.
@@ -525,7 +528,7 @@ Monad transformers consist of:
 <!--
 ## Adding a Reader to Any Monad
 -->
-<h2 id="将读取器添加到任意单子--adding-a-reader-to-any-monad-"><a class="header" href="#将读取器添加到任意单子--adding-a-reader-to-any-monad-">将读取器添加到任意单子 { #adding-a-reader-to-any-monad }</a></h2>
+<h2 id="adding-a-reader-to-any-monad"><a class="header" href="#adding-a-reader-to-any-monad">将读取器添加到任意单子</a></h2>
 <!--
 Adding a reader effect to `IO` was accomplished in `ConfigIO` by wrapping `IO α` in a function type.
 The Lean standard library contains a function that can do this to _any_ polymorphic type, called `ReaderT`:
@@ -703,11 +706,11 @@ Just as some functions work in any monad, others can work in any monad that prov
 <!--
 ## Exercises
 -->
-<h2 id="练习--exercises-"><a class="header" href="#练习--exercises-">练习 { #exercises }</a></h2>
+<h2 id="exercises"><a class="header" href="#exercises">练习</a></h2>
 <!--
 ### Controlling the Display of Dotfiles
 -->
-<h3 id="控制点文件的显示--controlling-the-display-of-dotfiles-"><a class="header" href="#控制点文件的显示--controlling-the-display-of-dotfiles-">控制点文件的显示 { #controlling-the-display-of-dotfiles }</a></h3>
+<h3 id="controlling-the-display-of-dotfiles"><a class="header" href="#controlling-the-display-of-dotfiles">控制点文件的显示</a></h3>
 <!--
 Files whose names begin with a dot character (`'.'`) typically represent files that should usually be hidden, such as source-control metadata and configuration files.
 Modify `doug` with an option to show or hide filenames that begin with a dot.
@@ -719,7 +722,7 @@ This option should be controlled with a `-a` command-line option.
 <!--
 ### Starting Directory as Argument
 -->
-<h3 id="起始目录作为参数--starting-directory-as-argument-"><a class="header" href="#起始目录作为参数--starting-directory-as-argument-">起始目录作为参数 { #starting-directory-as-argument }</a></h3>
+<h3 id="starting-directory-as-argument"><a class="header" href="#starting-directory-as-argument">起始目录作为参数</a></h3>
 <!--
 Modify `doug` so that it takes a starting directory as an additional command-line argument.
 -->
@@ -774,5 +777,6 @@ Modify `doug` so that it takes a starting directory as an additional command-lin
         <script src="../custom.js"></script>
 
 
+    </div>
     </body>
 </html>

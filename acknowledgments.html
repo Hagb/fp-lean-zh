@@ -36,6 +36,7 @@
         <script async src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
     </head>
     <body>
+    <div id="body-container">
         <!-- Provide site root to javascript -->
         <script>
             var path_to_root = "";
@@ -73,10 +74,12 @@
         <!-- Hide / unhide sidebar before it is displayed -->
         <script>
             var html = document.querySelector('html');
-            var sidebar = 'hidden';
+            var sidebar = null;
             if (document.body.clientWidth >= 1080) {
                 try { sidebar = localStorage.getItem('mdbook-sidebar'); } catch(e) { }
                 sidebar = sidebar || 'visible';
+            } else {
+                sidebar = 'hidden';
             }
             html.classList.remove('sidebar-visible');
             html.classList.add("sidebar-" + sidebar);
@@ -154,7 +157,7 @@
                         <!--
 # Acknowledgments
 -->
-<h1 id="鸣谢--acknowledgments-"><a class="header" href="#鸣谢--acknowledgments-">鸣谢 { #acknowledgments }</a></h1>
+<h1 id="acknowledgments"><a class="header" href="#acknowledgments">鸣谢</a></h1>
 <!--
 This free online book was made possible by the generous support of Microsoft Research, who paid for it to be written and given away.
 During the process of writing, they made the expertise of the Lean development team available to both answer my questions and make Lean easier to use.
@@ -240,5 +243,6 @@ Paul Chisholm、Pietro Monticone、Tomas Puverle、Yaël Dillies、Zhiyuan Bao
         <script src="custom.js"></script>
 
 
+    </div>
     </body>
 </html>

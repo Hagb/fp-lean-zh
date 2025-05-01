@@ -36,6 +36,7 @@
         <script async src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
     </head>
     <body>
+    <div id="body-container">
         <!-- Provide site root to javascript -->
         <script>
             var path_to_root = "../";
@@ -73,10 +74,12 @@
         <!-- Hide / unhide sidebar before it is displayed -->
         <script>
             var html = document.querySelector('html');
-            var sidebar = 'hidden';
+            var sidebar = null;
             if (document.body.clientWidth >= 1080) {
                 try { sidebar = localStorage.getItem('mdbook-sidebar'); } catch(e) { }
                 sidebar = sidebar || 'visible';
+            } else {
+                sidebar = 'hidden';
             }
             html.classList.remove('sidebar-visible');
             html.classList.add("sidebar-" + sidebar);
@@ -154,7 +157,7 @@
                         <!--
 # More Inequalities
 -->
-<h1 id="更多不等式--more-inequalities-"><a class="header" href="#更多不等式--more-inequalities-">更多不等式 { #more-inequalities }</a></h1>
+<h1 id="more-inequalities"><a class="header" href="#more-inequalities">更多不等式</a></h1>
 <!--
 Lean's built-in proof automation is sufficient to check that `arrayMapHelper` and `findHelper` terminate.
 All that was needed was to provide an expression whose value decreases with each recursive call.
@@ -166,7 +169,7 @@ However, Lean's built-in automation is not magic, and it often needs some help.
 <!--
 ## Merge Sort
 -->
-<h2 id="归并排序--merge-sort-"><a class="header" href="#归并排序--merge-sort-">归并排序 { #merge-sort }</a></h2>
+<h2 id="merge-sort"><a class="header" href="#merge-sort">归并排序</a></h2>
 <p>一个停机证明非平凡的函数示例是 <code>List</code> 上的归并排序。归并排序包含两个阶段：
 首先，将列表分成两半。使用归并排序对每一半进行排序，
 然后使用一个将两个已排序列表合并为一个更大的已排序列表的函数合并结果。
@@ -302,7 +305,7 @@ halves : List α × List α := splitList xs
 <!--
 ## Splitting a List Makes it Shorter
 -->
-<h2 id="分割列表使其变短--splitting-a-list-makes-it-shorter-"><a class="header" href="#分割列表使其变短--splitting-a-list-makes-it-shorter-">分割列表使其变短 { #splitting-a-list-makes-it-shorter }</a></h2>
+<h2 id="splitting-a-list-makes-it-shorter"><a class="header" href="#splitting-a-list-makes-it-shorter">分割列表使其变短</a></h2>
 <!--
 It will also be necessary to prove that `(splitList xs).snd.length < xs.length`.
 Because `splitList` alternates between adding entries to the two lists, it is easiest to prove both statements at once, so the structure of the proof can follow the algorithm used to implement `splitList`.
@@ -498,7 +501,7 @@ It's time to prove that these wrappings of `Nat.succ` preserve the truth of the 
 <!--
 ### Adding One to Both Sides
 -->
-<h3 id="两边同时加一--adding-one-to-both-sides-"><a class="header" href="#两边同时加一--adding-one-to-both-sides-">两边同时加一 { #adding-one-to-both-sides }</a></h3>
+<h3 id="adding-one-to-both-sides"><a class="header" href="#adding-one-to-both-sides">两边同时加一</a></h3>
 <!--
 For the `left` goal, the statement to prove is `Nat.succ_le_succ : n ≤ m → Nat.succ n ≤ Nat.succ m`.
 In other words, if `n ≤ m`, then adding one to both sides doesn't change this fact.
@@ -620,7 +623,7 @@ Which proof steps correspond to which parts of the definition?
 <!--
 ### Adding One to the Greater Side
 -->
-<h3 id="在较大的一侧加一--adding-one-to-the-greater-side-"><a class="header" href="#在较大的一侧加一--adding-one-to-the-greater-side-">在较大的一侧加一 { #adding-one-to-the-greater-side }</a></h3>
+<h3 id="adding-one-to-the-greater-side"><a class="header" href="#adding-one-to-the-greater-side">在较大的一侧加一</a></h3>
 <!--
 The second inequality needed to prove `splitList_shorter_le` is `∀(n m : Nat), n ≤ m → n ≤ Nat.succ m`.
 This proof is almost identical to `Nat.succ_le_succ`.
@@ -689,7 +692,7 @@ The recursive function is typically both harder to understand from the perspecti
 <!--
 ### Finishing the Proof
 -->
-<h3 id="完成证明--finishing-the-proof-"><a class="header" href="#完成证明--finishing-the-proof-">完成证明 { #finishing-the-proof }</a></h3>
+<h3 id="finishing-the-proof"><a class="header" href="#finishing-the-proof">完成证明</a></h3>
 <!--
 Now that both helper theorems have been proved, the rest of `splitList_shorter_le` will be completed quickly.
 The current proof state has two goals, for the left and right sides of the `And`:
@@ -876,7 +879,7 @@ theorem splitList_shorter_snd (lst : List α) (h : lst.length ≥ 2) :
 <!--
 ## Merge Sort Terminates
 -->
-<h2 id="归并排序停机证明--merge-sort-terminates-"><a class="header" href="#归并排序停机证明--merge-sort-terminates-">归并排序停机证明 { #merge-sort-terminates }</a></h2>
+<h2 id="merge-sort-terminates"><a class="header" href="#merge-sort-terminates">归并排序停机证明</a></h2>
 <!--
 Merge sort has two recursive calls, one for each sub-list returned by `splitList`.
 Each recursive call will require a proof that the length of the list being passed to it is shorter than the length of the input list.
@@ -1030,7 +1033,7 @@ The function can be tested on examples:
 <!--
 ## Division as Iterated Subtraction
 -->
-<h2 id="用减法迭代表示除法--division-as-iterated-subtraction-"><a class="header" href="#用减法迭代表示除法--division-as-iterated-subtraction-">用减法迭代表示除法 { #division-as-iterated-subtraction }</a></h2>
+<h2 id="division-as-iterated-subtraction"><a class="header" href="#division-as-iterated-subtraction">用减法迭代表示除法</a></h2>
 <!--
 Just as multiplication is iterated addition and exponentiation is iterated multiplication, division can be understood as iterated subtraction.
 The [very first description of recursive functions in this book](../getting-to-know/datatypes-and-patterns.md#recursive-functions) presents a version of division that terminates when the divisor is not zero, but that Lean does not accept.
@@ -1150,7 +1153,7 @@ termination_by div n k ok =&gt; n
 <!--
 ## Exercises
 -->
-<h2 id="练习--exercises-"><a class="header" href="#练习--exercises-">练习 { #exercises }</a></h2>
+<h2 id="exercises"><a class="header" href="#exercises">练习</a></h2>
 <!--
 Prove the following theorems:
 
@@ -1220,5 +1223,6 @@ Prove the following theorems:
         <script src="../custom.js"></script>
 
 
+    </div>
     </body>
 </html>

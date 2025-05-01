@@ -36,6 +36,7 @@
         <script async src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
     </head>
     <body>
+    <div id="body-container">
         <!-- Provide site root to javascript -->
         <script>
             var path_to_root = "../";
@@ -73,10 +74,12 @@
         <!-- Hide / unhide sidebar before it is displayed -->
         <script>
             var html = document.querySelector('html');
-            var sidebar = 'hidden';
+            var sidebar = null;
             if (document.body.clientWidth >= 1080) {
                 try { sidebar = localStorage.getItem('mdbook-sidebar'); } catch(e) { }
                 sidebar = sidebar || 'visible';
+            } else {
+                sidebar = 'hidden';
             }
             html.classList.remove('sidebar-visible');
             html.classList.add("sidebar-" + sidebar);
@@ -154,11 +157,11 @@
                         <!--
 # Additional Conveniences
 -->
-<h1 id="其他便利功能--additional-conveniences-"><a class="header" href="#其他便利功能--additional-conveniences-">其他便利功能 { #additional-conveniences }</a></h1>
+<h1 id="additional-conveniences"><a class="header" href="#additional-conveniences">其他便利功能</a></h1>
 <!--
 ## Constructor Syntax for Instances
 -->
-<h2 id="实例的构造子语法--constructor-syntax-for-instances-"><a class="header" href="#实例的构造子语法--constructor-syntax-for-instances-">实例的构造子语法 { #constructor-syntax-for-instances }</a></h2>
+<h2 id="constructor-syntax-for-instances"><a class="header" href="#constructor-syntax-for-instances">实例的构造子语法</a></h2>
 <!--
 Behind the scenes, type classes are structure types and instances are values of these types.
 The only differences are that Lean stores additional information about type classes, such as which parameters are output parameters, and that instances are registered for searching.
@@ -222,7 +225,7 @@ Placing a call to this function after `:=` in an instance declaration is the eas
 <!--
 ## Examples
 -->
-<h2 id="例子--examples-"><a class="header" href="#例子--examples-">例子 { #examples }</a></h2>
+<h2 id="examples"><a class="header" href="#examples">例子</a></h2>
 <!--
 When experimenting with Lean code, definitions can be more convenient to use than `#eval` or `#check` commands.
 First off, definitions don't produce any output, which can help keep the reader's focus on the most interesting output.
@@ -315,5 +318,6 @@ In source files, `example` declarations are best paired with comments that expla
         <script src="../custom.js"></script>
 
 
+    </div>
     </body>
 </html>

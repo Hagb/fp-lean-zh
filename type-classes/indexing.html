@@ -36,6 +36,7 @@
         <script async src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
     </head>
     <body>
+    <div id="body-container">
         <!-- Provide site root to javascript -->
         <script>
             var path_to_root = "../";
@@ -73,10 +74,12 @@
         <!-- Hide / unhide sidebar before it is displayed -->
         <script>
             var html = document.querySelector('html');
-            var sidebar = 'hidden';
+            var sidebar = null;
             if (document.body.clientWidth >= 1080) {
                 try { sidebar = localStorage.getItem('mdbook-sidebar'); } catch(e) { }
                 sidebar = sidebar || 'visible';
+            } else {
+                sidebar = 'hidden';
             }
             html.classList.remove('sidebar-visible');
             html.classList.add("sidebar-" + sidebar);
@@ -154,7 +157,7 @@
                         <!--
 # Arrays and Indexing
 -->
-<h1 id="数组与索引--arrays-and-indexing-"><a class="header" href="#数组与索引--arrays-and-indexing-">数组与索引 { #arrays-and-indexing }</a></h1>
+<h1 id="arrays-and-indexing"><a class="header" href="#arrays-and-indexing">数组与索引</a></h1>
 <!--
 The [Interlude](../props-proofs-indexing.md) describes how to use indexing notation in order to look up entries in a list by their position.
 This syntax is also governed by a type class, and it can be used for a variety of different types.
@@ -164,7 +167,7 @@ This syntax is also governed by a type class, and it can be used for a variety o
 <!--
 ## Arrays
 -->
-<h2 id="数组--arrays-"><a class="header" href="#数组--arrays-">数组 { #arrays }</a></h2>
+<h2 id="arrays"><a class="header" href="#arrays">数组</a></h2>
 <!--
 For instance, Lean arrays are much more efficient than linked lists for most purposes.
 In Lean, the type `Array α` is a dynamically-sized array holding values of type `α`, much like a Java `ArrayList`, a C++ `std::vector`, or a Rust `Vec`.
@@ -214,7 +217,7 @@ For instance, `northernTrees[8]` results in:
 <!--
 ## Non-Empty Lists
 -->
-<h2 id="非空列表--non-empty-lists-"><a class="header" href="#非空列表--non-empty-lists-">非空列表 { #non-empty-lists }</a></h2>
+<h2 id="non-empty-lists"><a class="header" href="#non-empty-lists">非空列表</a></h2>
 <!--
 A datatype that represents non-empty lists can be defined as a structure with a field for the head of the list and a field for the tail, which is an ordinary, potentially empty list:
 -->
@@ -326,7 +329,7 @@ This requires techniques for working with proofs and propositions that are descr
 <!--
 ## Overloading Indexing
 -->
-<h2 id="重载索引--overloading-indexing-"><a class="header" href="#重载索引--overloading-indexing-">重载索引 { #overloading-indexing }</a></h2>
+<h2 id="overloading-indexing"><a class="header" href="#overloading-indexing">重载索引</a></h2>
 <!--
 Indexing notation for a collection type can be overloaded by defining an instance of the `GetElem` type class.
 For the sake of flexiblity, `GetElem` has four parameters:
@@ -463,5 +466,6 @@ Because every possible `Bool` is in bounds, the evidence is simply the true prop
         <script src="../custom.js"></script>
 
 
+    </div>
     </body>
 </html>

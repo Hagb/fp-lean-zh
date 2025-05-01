@@ -36,6 +36,7 @@
         <script async src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
     </head>
     <body>
+    <div id="body-container">
         <!-- Provide site root to javascript -->
         <script>
             var path_to_root = "../";
@@ -73,10 +74,12 @@
         <!-- Hide / unhide sidebar before it is displayed -->
         <script>
             var html = document.querySelector('html');
-            var sidebar = 'hidden';
+            var sidebar = null;
             if (document.body.clientWidth >= 1080) {
                 try { sidebar = localStorage.getItem('mdbook-sidebar'); } catch(e) { }
                 sidebar = sidebar || 'visible';
+            } else {
+                sidebar = 'hidden';
             }
             html.classList.remove('sidebar-visible');
             html.classList.add("sidebar-" + sidebar);
@@ -154,7 +157,7 @@
                         <!--
 # Starting a Project
 -->
-<h1 id="创建项目--starting-a-project-"><a class="header" href="#创建项目--starting-a-project-">创建项目 { #starting-a-project }</a></h1>
+<h1 id="starting-a-project"><a class="header" href="#starting-a-project">创建项目</a></h1>
 <!--
 As a program written in Lean becomes more serious, an ahead-of-time compiler-based workflow that results in an executable becomes more attractive.
 Like other languages, Lean has tools for building multiple-file packages and managing dependencies.
@@ -178,7 +181,7 @@ Lake 也包含一门用于配置构建的特殊语言。
 <!--
 ## First steps
 -->
-<h2 id="入门--first-steps-"><a class="header" href="#入门--first-steps-">入门 { #first-steps }</a></h2>
+<h2 id="first-steps"><a class="header" href="#first-steps">入门</a></h2>
 <!--
 To get started with a project that uses Lake, use the command `lake new greeting` in a directory that does not already contain a file or directory called `greeting`.
 This creates a directory called `greeting` that contains the following files:
@@ -256,7 +259,7 @@ Running `./build/bin/greeting` results in `Hello, world!`.
 <!--
 ## Lakefiles
 -->
-<h2 id="lakefile-构建文件--lakefiles-"><a class="header" href="#lakefile-构建文件--lakefiles-">Lakefile 构建文件 { #lakefiles }</a></h2>
+<h2 id="lakefiles"><a class="header" href="#lakefiles">Lakefile 构建文件</a></h2>
 <!--
 A `lakefile.lean` describes a _package_, which is a coherent collection of Lean code for distribution, analogous to an `npm` or `nuget` package or a Rust crate.
 A package may contain any number of libraries or executables.
@@ -330,7 +333,7 @@ To build a target that is not annotated with `@[default_target]`, specify the ta
 <!--
 ## Libraries and Imports
 -->
-<h2 id="库与导入--libraries-and-imports-"><a class="header" href="#库与导入--libraries-and-imports-">库与导入 { #libraries-and-imports }</a></h2>
+<h2 id="libraries-and-imports"><a class="header" href="#libraries-and-imports">库与导入</a></h2>
 <!--
 A Lean library consists of a hierarchically organized collection of source files from which names can be imported, called _modules_.
 By default, a library has a single root file that matches its name.
@@ -438,5 +441,6 @@ It can be made available as `toFloat` using `open Nat (toFloat)`.
         <script src="../custom.js"></script>
 
 
+    </div>
     </body>
 </html>

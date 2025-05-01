@@ -36,6 +36,7 @@
         <script async src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
     </head>
     <body>
+    <div id="body-container">
         <!-- Provide site root to javascript -->
         <script>
             var path_to_root = "../";
@@ -73,10 +74,12 @@
         <!-- Hide / unhide sidebar before it is displayed -->
         <script>
             var html = document.querySelector('html');
-            var sidebar = 'hidden';
+            var sidebar = null;
             if (document.body.clientWidth >= 1080) {
                 try { sidebar = localStorage.getItem('mdbook-sidebar'); } catch(e) { }
                 sidebar = sidebar || 'visible';
+            } else {
+                sidebar = 'hidden';
             }
             html.classList.remove('sidebar-visible');
             html.classList.add("sidebar-" + sidebar);
@@ -154,7 +157,7 @@
                         <!--
 # Type Classes and Polymorphism
 -->
-<h1 id="类型类与多态--type-classes-and-polymorphism-"><a class="header" href="#类型类与多态--type-classes-and-polymorphism-">类型类与多态 { #type-classes-and-polymorphism }</a></h1>
+<h1 id="type-classes-and-polymorphism"><a class="header" href="#type-classes-and-polymorphism">类型类与多态</a></h1>
 <!--
 It can be useful to write functions that work for _any_ overloading of a given function.
 For instance, `IO.println` works for any type that has an instance of `ToString`.
@@ -171,7 +174,7 @@ It returns an `IO` action.
 <!--
 ## Checking Polymorphic Functions' Types
 -->
-<h2 id="对多态函数的类型检查--checking-polymorphic-functions-types-"><a class="header" href="#对多态函数的类型检查--checking-polymorphic-functions-types-">对多态函数的类型检查 { #checking-polymorphic-functions-types }</a></h2>
+<h2 id="checking-polymorphic-functions-types"><a class="header" href="#checking-polymorphic-functions-types">对多态函数的类型检查</a></h2>
 <!--
 Checking the type of a function that takes implicit arguments or uses type classes requires the use of some additional syntax.
 Simply writing
@@ -207,7 +210,7 @@ For now, ignore these parameters to `Type`.
 <!--
 ## Defining Polymorphic Functions with Instance Implicits
 -->
-<h2 id="定义含隐式实例的多态函数--defining-polymorphic-functions-with-instance-implicits-"><a class="header" href="#定义含隐式实例的多态函数--defining-polymorphic-functions-with-instance-implicits-">定义含隐式实例的多态函数 { #defining-polymorphic-functions-with-instance-implicits }</a></h2>
+<h2 id="defining-polymorphic-functions-with-instance-implicits"><a class="header" href="#defining-polymorphic-functions-with-instance-implicits">定义含隐式实例的多态函数</a></h2>
 <!--
 A function that sums all entries in a list needs two instances: `Add` allows the entries to be added, and an `OfNat` instance for `0` provides a sensible value to return for the empty list:
 -->
@@ -303,7 +306,7 @@ API的客户端无需手工组合所有必要的部分，从而使用户从这�
 <!--
 ## Methods and Implicit Arguments
 -->
-<h2 id="方法与隐式参数--methods-and-implicit-arguments-"><a class="header" href="#方法与隐式参数--methods-and-implicit-arguments-">方法与隐式参数 { #methods-and-implicit-arguments }</a></h2>
+<h2 id="methods-and-implicit-arguments"><a class="header" href="#methods-and-implicit-arguments">方法与隐式参数</a></h2>
 <!--
 The type of `@OfNat.ofNat` may be surprising.
 It is `{α : Type} → (n : Nat) → [OfNat α n] → α`, in which the `Nat` argument `n` occurs as an explicit function argument.
@@ -357,11 +360,11 @@ Thus, in these cases, Lean uses an explicit argument for the class's method.
 <!--
 ## Exercises
 -->
-<h2 id="练习--exercises-"><a class="header" href="#练习--exercises-">练习 { #exercises }</a></h2>
+<h2 id="exercises"><a class="header" href="#exercises">练习</a></h2>
 <!--
 ### Even Number Literals
 -->
-<h3 id="偶数数字字面量--even-number-literals-"><a class="header" href="#偶数数字字面量--even-number-literals-">偶数数字字面量 { #even-number-literals }</a></h3>
+<h3 id="even-number-literals"><a class="header" href="#even-number-literals">偶数数字字面量</a></h3>
 <!--
 Write an instance of `OfNat` for the even number datatype from the [previous section's exercises](pos.md#even-numbers) that uses recursive instance search.
 For the base instance, it is necessary to write `OfNat Even Nat.zero` instead of `OfNat Even 0`.
@@ -371,7 +374,7 @@ For the base instance, it is necessary to write `OfNat Even Nat.zero` instead of
 <!--
 ### Recursive Instance Search Depth
 -->
-<h3 id="递归实例搜索深度--recursive-instance-search-depth-"><a class="header" href="#递归实例搜索深度--recursive-instance-search-depth-">递归实例搜索深度 { #recursive-instance-search-depth }</a></h3>
+<h3 id="recursive-instance-search-depth"><a class="header" href="#recursive-instance-search-depth">递归实例搜索深度</a></h3>
 <!--
 There is a limit to how many times the Lean compiler will attempt a recursive instance search.
 This places a limit on the size of even number literals defined in the previous exercise.
@@ -430,5 +433,6 @@ Experimentally determine what the limit is.
         <script src="../custom.js"></script>
 
 
+    </div>
     </body>
 </html>

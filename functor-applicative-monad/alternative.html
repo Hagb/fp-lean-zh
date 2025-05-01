@@ -36,6 +36,7 @@
         <script async src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
     </head>
     <body>
+    <div id="body-container">
         <!-- Provide site root to javascript -->
         <script>
             var path_to_root = "../";
@@ -73,10 +74,12 @@
         <!-- Hide / unhide sidebar before it is displayed -->
         <script>
             var html = document.querySelector('html');
-            var sidebar = 'hidden';
+            var sidebar = null;
             if (document.body.clientWidth >= 1080) {
                 try { sidebar = localStorage.getItem('mdbook-sidebar'); } catch(e) { }
                 sidebar = sidebar || 'visible';
+            } else {
+                sidebar = 'hidden';
             }
             html.classList.remove('sidebar-visible');
             html.classList.add("sidebar-" + sidebar);
@@ -154,11 +157,11 @@
                         <!--
 # Alternatives
 -->
-<h1 id="选择子--alternatives-"><a class="header" href="#选择子--alternatives-">选择子 { #alternatives }</a></h1>
+<h1 id="alternatives"><a class="header" href="#alternatives">选择子</a></h1>
 <!--
 ## Recovery from Failure
 -->
-<h2 id="从失败中恢复--recovery-from-failure-"><a class="header" href="#从失败中恢复--recovery-from-failure-">从失败中恢复 { #recovery-from-failure }</a></h2>
+<h2 id="recovery-from-failure"><a class="header" href="#recovery-from-failure">从失败中恢复</a></h2>
 <!--
 `Validate` can also be used in situations where there is more than one way for input to be acceptable.
 For the input form `RawInput`, an alternative set of business rules that implement conventions from a legacy system might be the following:
@@ -477,7 +480,7 @@ Validate.errors
 <!--
 ## The `Alternative` Class
 -->
-<h2 id="alternative-类--the-alternative-class-"><a class="header" href="#alternative-类--the-alternative-class-"><code>Alternative</code> 类 { #the-alternative-class }</a></h2>
+<h2 id="the-alternative-class"><a class="header" href="#the-alternative-class"><code>Alternative</code> 类</a></h2>
 <!--
 Many types support a notion of failure and recovery.
 The `Many` monad from the section on [evaluating arithmetic expressions in a variety of monads](../monads/arithmetic.md#nondeterministic-search) is one such type, as is `Option`.
@@ -601,11 +604,11 @@ def evenDivisors (n : Nat) : Many Nat := do
 <!--
 ## Exercises
 -->
-<h2 id="练习题--exercises-"><a class="header" href="#练习题--exercises-">练习题 { #exercises }</a></h2>
+<h2 id="exercises"><a class="header" href="#exercises">练习题</a></h2>
 <!--
 ### Improve Validation Friendliness
 -->
-<h3 id="提高验证的友好性--improve-validation-friendliness-"><a class="header" href="#提高验证的友好性--improve-validation-friendliness-">提高验证的友好性 { #improve-validation-friendliness }</a></h3>
+<h3 id="improve-validation-friendliness"><a class="header" href="#improve-validation-friendliness">提高验证的友好性</a></h3>
 <!--
 The errors returned from `Validate` programs that use `<|>` can be difficult to read, because inclusion in the list of errors simply means that the error can be reached through _some_ code path.
 A more structured error report can be used to guide the user through the process more accurately:
@@ -691,5 +694,6 @@ instance : Append TreeError where
         <script src="../custom.js"></script>
 
 
+    </div>
     </body>
 </html>

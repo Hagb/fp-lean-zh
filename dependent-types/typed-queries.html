@@ -36,6 +36,7 @@
         <script async src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
     </head>
     <body>
+    <div id="body-container">
         <!-- Provide site root to javascript -->
         <script>
             var path_to_root = "../";
@@ -73,10 +74,12 @@
         <!-- Hide / unhide sidebar before it is displayed -->
         <script>
             var html = document.querySelector('html');
-            var sidebar = 'hidden';
+            var sidebar = null;
             if (document.body.clientWidth >= 1080) {
                 try { sidebar = localStorage.getItem('mdbook-sidebar'); } catch(e) { }
                 sidebar = sidebar || 'visible';
+            } else {
+                sidebar = 'hidden';
             }
             html.classList.remove('sidebar-visible');
             html.classList.add("sidebar-" + sidebar);
@@ -154,7 +157,7 @@
                         <!--
 # Worked Example: Typed Queries
 -->
-<h1 id="实际案例类型化查询--worked-example-typed-queries-"><a class="header" href="#实际案例类型化查询--worked-example-typed-queries-">实际案例：类型化查询 { #worked-example-typed-queries }</a></h1>
+<h1 id="worked-example-typed-queries"><a class="header" href="#worked-example-typed-queries">实际案例：类型化查询</a></h1>
 <!--
 Indexed families are very useful when building an API that is supposed to resemble some other language.
 They can be used to write a library of HTML constructors that don't permit generating invalid HTML, to encode the specific rules of a configuration file format, or to model complicated business constraints.
@@ -174,7 +177,7 @@ However, it is large enough to demonstrate useful principles and techniques.
 <!--
 ## A Universe of Data
 -->
-<h2 id="一个数据的宇宙--a-universe-of-data-"><a class="header" href="#一个数据的宇宙--a-universe-of-data-">一个数据的宇宙 { #a-universe-of-data }</a></h2>
+<h2 id="a-universe-of-data"><a class="header" href="#a-universe-of-data">一个数据的宇宙</a></h2>
 <!--
 In this relational algebra, the base data that can be held in columns can have types `Int`, `String`, and `Bool` and are described by the universe `DBType`:
 -->
@@ -264,7 +267,7 @@ Refining the type through dependent pattern matching allows the `reprPrec` metho
 <!--
 ## Schemas and Tables
 -->
-<h2 id="数据库模式和表--schemas-and-tables-"><a class="header" href="#数据库模式和表--schemas-and-tables-">数据库模式和表 { #schemas-and-tables }</a></h2>
+<h2 id="schemas-and-tables"><a class="header" href="#schemas-and-tables">数据库模式和表</a></h2>
 <!--
 A schema describes the name and type of each column in a database:
 -->
@@ -338,7 +341,7 @@ def waterfallDiary : Table waterfall := [
 <!--
 ### Recursion and Universes, Revisited
 -->
-<h3 id="回顾递归和宇宙--recursion-and-universes-revisited-"><a class="header" href="#回顾递归和宇宙--recursion-and-universes-revisited-">回顾递归和宇宙 { #recursion-and-universes-revisited }</a></h3>
+<h3 id="recursion-and-universes-revisited"><a class="header" href="#recursion-and-universes-revisited">回顾递归和宇宙</a></h3>
 <!--
 The convenient structuring of rows as tuples comes at a cost: the fact that `Row` treats its two base cases separately means that functions that use `Row` in their types and are defined recursively over the codes (that, is the schema) need to make the same distinctions.
 One example of a case where this matters is an equality check that uses recursion over the schema to define a function that checks rows for equality.
@@ -393,7 +396,7 @@ A big part of the skill of programming with dependent types is the selection of 
 <!--
 ### Column Pointers
 -->
-<h3 id="列指针--column-pointers-"><a class="header" href="#列指针--column-pointers-">列指针 { #column-pointers }</a></h3>
+<h3 id="column-pointers"><a class="header" href="#column-pointers">列指针</a></h3>
 <!--
 Some queries only make sense if a schema contains a particular column.
 For example, a query that returns mountains with an elevation greater than 1000 meters only makes sense in the context of a schema with a `"elevation"` column that contains integers.
@@ -489,7 +492,7 @@ Programming with indexed families often requires the ability to switch fluently 
 <!--
 ### Subschemas
 -->
-<h3 id="子数据库模式--subschemas-"><a class="header" href="#子数据库模式--subschemas-">子数据库模式 { #subschemas }</a></h3>
+<h3 id="subschemas"><a class="header" href="#subschemas">子数据库模式</a></h3>
 <!--
 One important operation in relational algebra is to _project_ a table or row into a smaller schema.
 Every column not present in the smaller schema is forgotten.
@@ -693,7 +696,7 @@ This relation is reflexive, meaning that every schema is a subschema of itself:
 <!--
 ### Projecting Rows
 -->
-<h3 id="投影行--projecting-rows-"><a class="header" href="#投影行--projecting-rows-">投影行 { #projecting-rows }</a></h3>
+<h3 id="projecting-rows"><a class="header" href="#projecting-rows">投影行</a></h3>
 <!--
 Given evidence that `s'` is a subschema of `s`, a row in `s` can be projected into a row in `s'`.
 This is done using the evidence that `s'` is a subschema of `s`, which explains where each column of `s'` is found in `s`.
@@ -716,7 +719,7 @@ It uses `Row.get` together with each `HasCol` in the `Subschema` argument to con
 <!--
 ## Conditions and Selection
 -->
-<h2 id="条件和选取--conditions-and-selection-"><a class="header" href="#条件和选取--conditions-and-selection-">条件和选取 { #conditions-and-selection }</a></h2>
+<h2 id="conditions-and-selection"><a class="header" href="#conditions-and-selection">条件和选取</a></h2>
 <!--
 Projection removes unwanted columns from a table, but queries must also be able to remove unwanted rows.
 This operation is called _selection_.
@@ -822,7 +825,7 @@ Evaluating it for the highest peak in the US state of Idaho yields `false`, as I
 <!--
 ## Queries
 -->
-<h2 id="查询--queries-"><a class="header" href="#查询--queries-">查询 { #queries }</a></h2>
+<h2 id="queries"><a class="header" href="#queries">查询</a></h2>
 <!--
 The query language is based on relational algebra.
 In addition to tables, it includes the following operators:
@@ -900,7 +903,7 @@ TODO: coercion
 <!--
 ## Executing Queries
 -->
-<h2 id="执行查询--executing-queries-"><a class="header" href="#执行查询--executing-queries-">执行查询 { #executing-queries }</a></h2>
+<h2 id="executing-queries"><a class="header" href="#executing-queries">执行查询</a></h2>
 <!--
 Executing queries requires a number of helper functions.
 The result of a query is a table; this means that each operation in the query language requires a corresponding implementation that works with tables.
@@ -911,7 +914,7 @@ The result of a query is a table; this means that each operation in the query la
 <!--
 ### Cartesian Product
 -->
-<h3 id="笛卡尔积--cartesian-product-"><a class="header" href="#笛卡尔积--cartesian-product-">笛卡尔积 { #cartesian-product }</a></h3>
+<h3 id="cartesian-product"><a class="header" href="#cartesian-product">笛卡尔积</a></h3>
 <!--
 Taking the Cartesian product of two tables is done by appending each row from the first table to each row from the second.
 First off, due to the structure of `Row`, adding a single column to a row requires pattern matching on its schema in order to determine whether the result will be a bare value or a tuple.
@@ -980,7 +983,7 @@ Just as with `List.product`, a loop with mutation in the identity monad can be u
 <!--
 ### Difference
 -->
-<h3 id="差--difference-"><a class="header" href="#差--difference-">差 { #difference }</a></h3>
+<h3 id="difference"><a class="header" href="#difference">差</a></h3>
 <!--
 Removing undesired rows from a table can be done using `List.filter`, which takes a list and a function that returns a `Bool`.
 A new list is returned that contains only the entries for which the function returns `true`.
@@ -1013,7 +1016,7 @@ This will be used with the `BEq` instance for `Row` when interpreting queries.
 <!--
 ### Renaming Columns
 -->
-<h3 id="重命名--renaming-columns-"><a class="header" href="#重命名--renaming-columns-">重命名 { #renaming-columns }</a></h3>
+<h3 id="renaming-columns"><a class="header" href="#renaming-columns">重命名</a></h3>
 <!--
 Renaming a column in a row is done with a recursive function that traverses the row until the column in question is found, at which point the column with the new name gets the same value as the column with the old name:
 -->
@@ -1038,7 +1041,7 @@ It takes a very careful, often brittle, design to eliminate these kinds of "re-i
 <!--
 ### Prefixing Column Names
 -->
-<h3 id="添加前缀--prefixing-column-names-"><a class="header" href="#添加前缀--prefixing-column-names-">添加前缀 { #prefixing-column-names }</a></h3>
+<h3 id="prefixing-column-names"><a class="header" href="#prefixing-column-names">添加前缀</a></h3>
 <!--
 Adding a prefix to column names is very similar to renaming a column.
 Instead of proceeding to a desired column and then returning, `prefixRow` must process all columns:
@@ -1060,7 +1063,7 @@ Once again, this function only exists to change the type of a value.
 <!--
 ### Putting the Pieces Together
 -->
-<h3 id="将所有东西组合在一起--putting-the-pieces-together-"><a class="header" href="#将所有东西组合在一起--putting-the-pieces-together-">将所有东西组合在一起 { #putting-the-pieces-together }</a></h3>
+<h3 id="putting-the-pieces-together"><a class="header" href="#putting-the-pieces-together">将所有东西组合在一起</a></h3>
 <!--
 With all of these helpers defined, executing a query requires only a short recursive function:
 -->
@@ -1151,7 +1154,7 @@ Because the example data includes only waterfalls in the USA, executing the quer
 <!--
 ### Errors You May Meet
 -->
-<h3 id="可能遇到的错误--errors-you-may-meet-"><a class="header" href="#可能遇到的错误--errors-you-may-meet-">可能遇到的错误 { #errors-you-may-meet }</a></h3>
+<h3 id="errors-you-may-meet"><a class="header" href="#errors-you-may-meet">可能遇到的错误</a></h3>
 <!--
 Many potential errors are ruled out by the definition of `Query`.
 For instance, forgetting the added qualifier in `"mountain.location"` yields a compile-time error that highlights the column reference `c! "location"`:
@@ -1212,11 +1215,11 @@ An indexed family such as `Query` is probably best as the core of a typed databa
 <!--
 ## Exercises
 -->
-<h2 id="练习--exercises-"><a class="header" href="#练习--exercises-">练习 { #exercises }</a></h2>
+<h2 id="exercises"><a class="header" href="#exercises">练习</a></h2>
 <!--
 ### Dates
 -->
-<h3 id="日期--dates-"><a class="header" href="#日期--dates-">日期 { #dates }</a></h3>
+<h3 id="dates"><a class="header" href="#dates">日期</a></h3>
 <!--
 Define a structure to represent dates. Add it to the `DBType` universe and update the rest of the code accordingly. Provide the extra `DBExpr` constructors that seem to be necessary.
 -->
@@ -1225,7 +1228,7 @@ Define a structure to represent dates. Add it to the `DBType` universe and updat
 <!--
 ### Nullable Types
 -->
-<h3 id="可空类型--nullable-types-"><a class="header" href="#可空类型--nullable-types-">可空类型 { #nullable-types }</a></h3>
+<h3 id="nullable-types"><a class="header" href="#nullable-types">可空类型</a></h3>
 <!--
 Add support for nullable columns to the query language by representing database types with the following structure:
 -->
@@ -1247,7 +1250,7 @@ Use this type in place of `DBType` in `Column` and `DBExpr`, and look up SQL's r
 <!--
 ### Experimenting with Tactics
 -->
-<h3 id="尝试策术--experimenting-with-tactics-"><a class="header" href="#尝试策术--experimenting-with-tactics-">尝试策术 { #experimenting-with-tactics }</a></h3>
+<h3 id="experimenting-with-tactics"><a class="header" href="#experimenting-with-tactics">尝试策术</a></h3>
 <!--
 What is the result of asking Lean to find values of the following types using `by repeat constructor`? Explain why each gives the result that it does.
 -->
@@ -1311,5 +1314,6 @@ What is the result of asking Lean to find values of the following types using `b
         <script src="../custom.js"></script>
 
 
+    </div>
     </body>
 </html>

@@ -36,6 +36,7 @@
         <script async src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
     </head>
     <body>
+    <div id="body-container">
         <!-- Provide site root to javascript -->
         <script>
             var path_to_root = "";
@@ -73,10 +74,12 @@
         <!-- Hide / unhide sidebar before it is displayed -->
         <script>
             var html = document.querySelector('html');
-            var sidebar = 'hidden';
+            var sidebar = null;
             if (document.body.clientWidth >= 1080) {
                 try { sidebar = localStorage.getItem('mdbook-sidebar'); } catch(e) { }
                 sidebar = sidebar || 'visible';
+            } else {
+                sidebar = 'hidden';
             }
             html.classList.remove('sidebar-visible');
             html.classList.add("sidebar-" + sidebar);
@@ -152,10 +155,6 @@
                 <div id="content" class="content">
                     <main>
                         <!--
-# Introduction
--->
-<h1 id="引言--introduce-"><a class="header" href="#引言--introduce-">引言 { #introduce }</a></h1>
-<!--
 Lean is an interactive theorem prover developed at Microsoft Research, based on dependent type theory.
 Dependent type theory unites the worlds of programs and proofs; thus, Lean is also a programming language.
 Lean takes its dual nature seriously, and it is designed to be suitable for use as a general-purpose programming language—Lean is even implemented in itself.
@@ -221,7 +220,7 @@ It is also useful to explore Lean as you read the book, finding creative new way
 <!--
 # Getting Lean
 -->
-<h1 id="获取-lean--getting-lean-"><a class="header" href="#获取-lean--getting-lean-">获取 Lean { #getting-lean }</a></h1>
+<h1 id="getting-lean"><a class="header" href="#getting-lean">获取 Lean</a></h1>
 <!--
 Before writing and running programs written in Lean, you'll need to set up Lean on your own computer.
 The Lean tooling consists of the following:
@@ -248,7 +247,7 @@ Please refer to the [Lean manual](https://lean-lang.org/lean4/doc/quickstart.htm
 <!--
 # Typographical Conventions
 -->
-<h1 id="排版约定--typographical-conventions-"><a class="header" href="#排版约定--typographical-conventions-">排版约定 { #typographical-conventions }</a></h1>
+<h1 id="typographical-conventions"><a class="header" href="#typographical-conventions">排版约定</a></h1>
 <!--
 Code examples that are provided to Lean as _input_ are formatted like this:
 -->
@@ -283,7 +282,7 @@ Warnings are formatted like this:
 <p>警告格式如下：</p>
 <pre><code class="language-output warning">declaration uses 'sorry'
 </code></pre>
-<h1 id="unicode--unicode-"><a class="header" href="#unicode--unicode-">Unicode { #unicode }</a></h1>
+<h1 id="unicode"><a class="header" href="#unicode">Unicode</a></h1>
 <!--
 Idiomatic Lean code makes use of a variety of Unicode characters that are not part of ASCII.
 For instance, Greek letters like `α` and `β` and the arrow `→` both occur in the first chapter of this book.
@@ -350,5 +349,6 @@ In Emacs, use `C-c C-k` with point on the character in question.
         <script src="custom.js"></script>
 
 
+    </div>
     </body>
 </html>

@@ -36,6 +36,7 @@
         <script async src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
     </head>
     <body>
+    <div id="body-container">
         <!-- Provide site root to javascript -->
         <script>
             var path_to_root = "../";
@@ -73,10 +74,12 @@
         <!-- Hide / unhide sidebar before it is displayed -->
         <script>
             var html = document.querySelector('html');
-            var sidebar = 'hidden';
+            var sidebar = null;
             if (document.body.clientWidth >= 1080) {
                 try { sidebar = localStorage.getItem('mdbook-sidebar'); } catch(e) { }
                 sidebar = sidebar || 'visible';
+            } else {
+                sidebar = 'hidden';
             }
             html.classList.remove('sidebar-visible');
             html.classList.add("sidebar-" + sidebar);
@@ -154,11 +157,11 @@
                         <!--
 # Additional Conveniences
 -->
-<h1 id="其他便利功能--additional-conveniences-"><a class="header" href="#其他便利功能--additional-conveniences-">其他便利功能 { #additional-conveniences }</a></h1>
+<h1 id="additional-conveniences"><a class="header" href="#additional-conveniences">其他便利功能</a></h1>
 <!--
 ## Shared Argument Types
 -->
-<h2 id="共享参数类型--shared-argument-types-"><a class="header" href="#共享参数类型--shared-argument-types-">共享参数类型 { #shared-argument-types }</a></h2>
+<h2 id="shared-argument-types"><a class="header" href="#shared-argument-types">共享参数类型</a></h2>
 <!--
 When defining a function that takes multiple arguments that have the same type, both can be written before the same colon.
 For example,
@@ -188,7 +191,7 @@ This is especially useful when the type signature is large.
 <!--
 ## Leading Dot Notation
 -->
-<h2 id="开头的点号--leading-dot-notation-"><a class="header" href="#开头的点号--leading-dot-notation-">开头的点号 { #leading-dot-notation }</a></h2>
+<h2 id="leading-dot-notation"><a class="header" href="#leading-dot-notation">开头的点号</a></h2>
 <!--
 The constructors of an inductive type are in a namespace.
 This allows multiple related inductive types to use the same constructor names, but it can lead to programs becoming verbose.
@@ -226,7 +229,7 @@ If `BinTree.empty` is defined as an alternative way of creating `BinTree`s, then
 <!--
 ## Or-Patterns
 -->
-<h2 id="或-模式--or-patterns-"><a class="header" href="#或-模式--or-patterns-">或-模式 { #or-patterns }</a></h2>
+<h2 id="or-patterns"><a class="header" href="#or-patterns">或-模式</a></h2>
 <!--
 In contexts that allow multiple patterns, such as `match`-expressions, multiple patterns may share their result expressions.
 The datatype `Weekday` that represents days of the week:
@@ -400,5 +403,6 @@ Because there is a potential for confusing behavior, it's a good idea to be care
         <script src="../custom.js"></script>
 
 
+    </div>
     </body>
 </html>

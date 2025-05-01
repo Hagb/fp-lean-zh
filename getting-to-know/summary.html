@@ -36,6 +36,7 @@
         <script async src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
     </head>
     <body>
+    <div id="body-container">
         <!-- Provide site root to javascript -->
         <script>
             var path_to_root = "../";
@@ -73,10 +74,12 @@
         <!-- Hide / unhide sidebar before it is displayed -->
         <script>
             var html = document.querySelector('html');
-            var sidebar = 'hidden';
+            var sidebar = null;
             if (document.body.clientWidth >= 1080) {
                 try { sidebar = localStorage.getItem('mdbook-sidebar'); } catch(e) { }
                 sidebar = sidebar || 'visible';
+            } else {
+                sidebar = 'hidden';
             }
             html.classList.remove('sidebar-visible');
             html.classList.add("sidebar-" + sidebar);
@@ -154,11 +157,11 @@
                         <!--
 # Summary
 -->
-<h1 id="总结--summary-"><a class="header" href="#总结--summary-">总结 { #summary }</a></h1>
+<h1 id="summary"><a class="header" href="#summary">总结</a></h1>
 <!--
 ## Evaluating Expressions
 -->
-<h2 id="求值表达式--evaluating-expressions-"><a class="header" href="#求值表达式--evaluating-expressions-">求值表达式 { #evaluating-expressions }</a></h2>
+<h2 id="evaluating-expressions"><a class="header" href="#evaluating-expressions">求值表达式</a></h2>
 <!--
 In Lean, computation occurs when expressions are evaluated.
 This follows the usual rules of mathematical expressions: sub-expressions are replaced by their values following the usual order of operations, until the entire expression has become a value.
@@ -178,7 +181,7 @@ Lean 变量只是值的占位符，而非可以写入新值的位置。变量的
 <!--
 ## Functions
 -->
-<h2 id="函数--functions-"><a class="header" href="#函数--functions-">函数 { #functions }</a></h2>
+<h2 id="functions"><a class="header" href="#functions">函数</a></h2>
 <!--
 Functions in Lean are first-class values, meaning that they can be passed as arguments to other functions, saved in variables, and used like any other value.
 Every Lean function takes exactly one argument.
@@ -213,7 +216,7 @@ There are three primary ways of creating functions:
 <!--
 ## Types
 -->
-<h2 id="类型--types-"><a class="header" href="#类型--types-">类型 { #types }</a></h2>
+<h2 id="types"><a class="header" href="#types">类型</a></h2>
 <!--
 Lean checks that every expression has a type.
 Types, such as `Int`, `Point`, `{α : Type} → Nat → α → List α`, and `Option (String ⊕ (Nat × String))`, describe the values that may eventually be found for an expression.
@@ -263,7 +266,7 @@ Giving an argument a name in a function type allows later types to mention that 
 <!--
 ## Structures and Inductive Types
 -->
-<h2 id="结构体与归纳类型--structures-and-inductive-types-"><a class="header" href="#结构体与归纳类型--structures-and-inductive-types-">结构体与归纳类型 { #structures-and-inductive-types }</a></h2>
+<h2 id="structures-and-inductive-types"><a class="header" href="#structures-and-inductive-types">结构体与归纳类型</a></h2>
 <!--
 Brand new datatypes can be introduced to Lean using the `structure` or `inductive` features.
 These new types are not considered to be equivalent to any other type, even if their definitions are otherwise identical.
@@ -290,7 +293,7 @@ Pattern matching means that knowing how to create a value implies knowing how to
 <!--
 ## Recursion
 -->
-<h2 id="递归--recursion-"><a class="header" href="#递归--recursion-">递归 { #recursion }</a></h2>
+<h2 id="recursion"><a class="header" href="#recursion">递归</a></h2>
 <!--
 A definition is recursive when the name being defined is used in the definition itself.
 Because Lean is an interactive theorem prover in addition to being a programming language, there are certain restrictions placed on recursive definitions.
@@ -359,5 +362,6 @@ Lean 都必须能够证明所有函数都会停机。在实践中，这意味着
         <script src="../custom.js"></script>
 
 
+    </div>
     </body>
 </html>

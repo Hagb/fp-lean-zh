@@ -36,6 +36,7 @@
         <script async src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
     </head>
     <body>
+    <div id="body-container">
         <!-- Provide site root to javascript -->
         <script>
             var path_to_root = "../";
@@ -73,10 +74,12 @@
         <!-- Hide / unhide sidebar before it is displayed -->
         <script>
             var html = document.querySelector('html');
-            var sidebar = 'hidden';
+            var sidebar = null;
             if (document.body.clientWidth >= 1080) {
                 try { sidebar = localStorage.getItem('mdbook-sidebar'); } catch(e) { }
                 sidebar = sidebar || 'visible';
+            } else {
+                sidebar = 'hidden';
             }
             html.classList.remove('sidebar-visible');
             html.classList.add("sidebar-" + sidebar);
@@ -154,7 +157,7 @@
                         <!--
 # The Monad Type Class
 -->
-<h1 id="monad类型类--the-monad-type-class-"><a class="header" href="#monad类型类--the-monad-type-class-">Monad类型类 { #the-monad-type-class }</a></h1>
+<h1 id="the-monad-type-class"><a class="header" href="#the-monad-type-class">Monad类型类</a></h1>
 <!--
 Rather than having to import an operator like `ok` or `andThen` for each type that is a monad, the Lean standard library contains a type class that allow them to be overloaded, so that the same operators can be used for _any_ monad.
 Monads have two operations, which are the equivalent of `ok` and `andThen`:
@@ -257,7 +260,7 @@ The fact that `m` must have a `Monad` instance means that the `>>=` and `pure` o
 <!--
 ## General Monad Operations
 -->
-<h2 id="通用的单子运算符--general-monad-operations-"><a class="header" href="#通用的单子运算符--general-monad-operations-">通用的单子运算符 { #general-monad-operations }</a></h2>
+<h2 id="general-monad-operations"><a class="header" href="#general-monad-operations">通用的单子运算符</a></h2>
 <!--
 Because many different types are monads, functions that are polymorphic over _any_ monad are very powerful.
 For example, the function `mapM` is a version of `map` that uses a `Monad` to sequence and combine the results of applying a function:
@@ -357,7 +360,7 @@ Using this function with `mapM` results in a log containing even numbers paired 
 <!--
 ## The Identity Monad
 -->
-<h2 id="恒等单子--the-identity-monad-"><a class="header" href="#恒等单子--the-identity-monad-">恒等单子 { #the-identity-monad }</a></h2>
+<h2 id="the-identity-monad"><a class="header" href="#the-identity-monad">恒等单子</a></h2>
 <!--
 Monads encode programs with effects, such as failure, exceptions, or logging, into explicit representations as data and functions.
 Sometimes, however, an API will be written to use a monad for flexibility, but the API's client may not require any encoded effects.
@@ -414,7 +417,7 @@ Similarly, using `mapM` with a function whose type doesn't provide any specific 
 <!--
 ## The Monad Contract
 -->
-<h2 id="单子约定--the-monad-contract-"><a class="header" href="#单子约定--the-monad-contract-">单子约定 { #the-monad-contract }</a></h2>
+<h2 id="the-monad-contract"><a class="header" href="#the-monad-contract">单子约定</a></h2>
 <!--
 Just as every pair of instances of `BEq` and `Hashable` should ensure that any two equal values have the same hash, there is a contract that each instance of `Monad` should obey.
 First, `pure` should be a left identity of `bind`.
@@ -437,11 +440,11 @@ The associative property of `bind` basically says that the sequencing bookkeepin
 <!--
 ## Exercises
 -->
-<h2 id="练习--exercises-"><a class="header" href="#练习--exercises-">练习 { #exercises }</a></h2>
+<h2 id="exercises"><a class="header" href="#exercises">练习</a></h2>
 <!--
 ### Mapping on a Tree
 -->
-<h3 id="映射一棵树--mapping-on-a-tree-"><a class="header" href="#映射一棵树--mapping-on-a-tree-">映射一棵树 { #mapping-on-a-tree }</a></h3>
+<h3 id="mapping-on-a-tree"><a class="header" href="#mapping-on-a-tree">映射一棵树</a></h3>
 <!--
 Define a function `BinTree.mapM`.
 By analogy to `mapM` for lists, this function should apply a monadic function to each data entry in a tree, as a preorder traversal.
@@ -455,7 +458,7 @@ The type signature should be:
 <!--
 ### The Option Monad Contract
 -->
-<h3 id="option单子的约定--the-option-monad-contract-"><a class="header" href="#option单子的约定--the-option-monad-contract-">Option单子的约定 { #the-option-monad-contract }</a></h3>
+<h3 id="the-option-monad-contract"><a class="header" href="#the-option-monad-contract">Option单子的约定</a></h3>
 <!--
 First, write a convincing argument that the `Monad` instance for `Option` satisfies the monad contract.
 Then, consider the following instance:
@@ -522,5 +525,6 @@ Why does this instance violate the monad contract?
         <script src="../custom.js"></script>
 
 
+    </div>
     </body>
 </html>

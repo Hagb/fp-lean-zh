@@ -36,6 +36,7 @@
         <script async src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
     </head>
     <body>
+    <div id="body-container">
         <!-- Provide site root to javascript -->
         <script>
             var path_to_root = "../";
@@ -73,10 +74,12 @@
         <!-- Hide / unhide sidebar before it is displayed -->
         <script>
             var html = document.querySelector('html');
-            var sidebar = 'hidden';
+            var sidebar = null;
             if (document.body.clientWidth >= 1080) {
                 try { sidebar = localStorage.getItem('mdbook-sidebar'); } catch(e) { }
                 sidebar = sidebar || 'visible';
+            } else {
+                sidebar = 'hidden';
             }
             html.classList.remove('sidebar-visible');
             html.classList.add("sidebar-" + sidebar);
@@ -154,11 +157,11 @@
                         <!--
 # Summary
 -->
-<h1 id="总结--summary-"><a class="header" href="#总结--summary-">总结 { #summary }</a></h1>
+<h1 id="summary"><a class="header" href="#summary">总结</a></h1>
 <!--
 ## Evaluation vs Execution
 -->
-<h2 id="求值与执行--evaluation-vs-execution-"><a class="header" href="#求值与执行--evaluation-vs-execution-">求值与执行 { #evaluation-vs-execution }</a></h2>
+<h2 id="evaluation-vs-execution"><a class="header" href="#evaluation-vs-execution">求值与执行</a></h2>
 <!--
 Side effects are aspects of program execution that go beyond the evaluation of mathematical expressions, such as reading files, throwing exceptions, or triggering industrial machinery.
 While most languages allow side effects to occur during evaluation, Lean does not.
@@ -196,7 +199,7 @@ An `IO` action `main` is executed when the program starts.
 <!--
 ## `do` Notation
 -->
-<h2 id="do-记法--do-notation-"><a class="header" href="#do-记法--do-notation-"><code>do</code> 记法 { #do-notation }</a></h2>
+<h2 id="do-notation"><a class="header" href="#do-notation"><code>do</code> 记法</a></h2>
 <!--
 The Lean standard library provides a number of basic `IO` actions that represent effects such as reading from and writing to files and interacting with standard input and standard output.
 These base `IO` actions are composed into larger `IO` actions using `do` notation, which is a built-in domain-specific language for writing descriptions of programs with side effects.
@@ -233,7 +236,7 @@ Lean 编译器会隐式地将它们提升到最近的封闭 <code>do</code> 中�
 <!--
 ## Compiling and Running Programs
 -->
-<h2 id="编译并运行程序--compiling-and-running-programs-"><a class="header" href="#编译并运行程序--compiling-and-running-programs-">编译并运行程序 { #compiling-and-running-programs }</a></h2>
+<h2 id="compiling-and-running-programs"><a class="header" href="#compiling-and-running-programs">编译并运行程序</a></h2>
 <!--
 A Lean program that consists of a single file with a `main` definition can be run using `lean --run FILE`.
 While this can be a nice way to get started with a simple program, most programs will eventually graduate to a multiple-file project that should be compiled before running.
@@ -255,7 +258,7 @@ Use `lake build` to build a project.
 <!--
 ## Partiality
 -->
-<h2 id="偏函数--partiality-"><a class="header" href="#偏函数--partiality-">偏函数 { #partiality }</a></h2>
+<h2 id="partiality"><a class="header" href="#partiality">偏函数</a></h2>
 <!--
 One consequence of following the mathematical model of expression evaluation is that every expression must have a value.
 This rules out both incomplete pattern matches that fail to cover all constructors of a datatype and programs that can fall into an infinite loop.
@@ -328,5 +331,6 @@ Lean 提供了一个逃生舱：标记为 <code>partial</code> 的 <strong>偏�
         <script src="../custom.js"></script>
 
 
+    </div>
     </body>
 </html>

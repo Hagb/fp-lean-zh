@@ -36,6 +36,7 @@
         <script async src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
     </head>
     <body>
+    <div id="body-container">
         <!-- Provide site root to javascript -->
         <script>
             var path_to_root = "../";
@@ -73,10 +74,12 @@
         <!-- Hide / unhide sidebar before it is displayed -->
         <script>
             var html = document.querySelector('html');
-            var sidebar = 'hidden';
+            var sidebar = null;
             if (document.body.clientWidth >= 1080) {
                 try { sidebar = localStorage.getItem('mdbook-sidebar'); } catch(e) { }
                 sidebar = sidebar || 'visible';
+            } else {
+                sidebar = 'hidden';
             }
             html.classList.remove('sidebar-visible');
             html.classList.add("sidebar-" + sidebar);
@@ -154,7 +157,7 @@
                         <!--
 # Insertion Sort and Array Mutation
 -->
-<h1 id="插入排序与数组可变性--insertion-sort-and-array-mutation-"><a class="header" href="#插入排序与数组可变性--insertion-sort-and-array-mutation-">插入排序与数组可变性 { #insertion-sort-and-array-mutation }</a></h1>
+<h1 id="insertion-sort-and-array-mutation"><a class="header" href="#insertion-sort-and-array-mutation">插入排序与数组可变性</a></h1>
 <!--
 While insertion sort does not have the optimal worst-case time complexity for a sorting algorithm, it still has a number of useful properties:
 
@@ -264,7 +267,7 @@ In other words, each iteration inserts the next element of the array into the ap
 <!--
 ## The Inner Loop
 -->
-<h2 id="内层循环--the-inner-loop-"><a class="header" href="#内层循环--the-inner-loop-">内层循环 { #the-inner-loop }</a></h2>
+<h2 id="the-inner-loop"><a class="header" href="#the-inner-loop">内层循环</a></h2>
 <!--
 The inner loop of insertion sort can be implemented as a tail-recursive function that takes the array and the index of the element being inserted as arguments.
 The element being inserted is repeatedly swapped with the element to its left until either the element to the left is smaller or the beginning of the array is reached.
@@ -341,7 +344,7 @@ The `simp` tactic's database contains the fact that swapping two elements of an 
 <!--
 ## The Outer Loop
 -->
-<h2 id="外层循环--the-outer-loop-"><a class="header" href="#外层循环--the-outer-loop-">外层循环 { #the-outer-loop }</a></h2>
+<h2 id="the-outer-loop"><a class="header" href="#the-outer-loop">外层循环</a></h2>
 <!--
 The outer loop of insertion sort moves the pointer from left to right, invoking `insertSorted` at each iteration to insert the element at the pointer into the correct position in the array.
 The basic form of the loop resembles the implementation of `Array.map`:
@@ -391,7 +394,7 @@ Before constructing the termination proof, it can be convenient to test the defi
 <!--
 ### Termination
 -->
-<h3 id="停机性--termination-"><a class="header" href="#停机性--termination-">停机性 { #termination }</a></h3>
+<h3 id="termination"><a class="header" href="#termination">停机性</a></h3>
 <!--
 Once again, the function terminates because the difference between the index and the size of the array being processed decreases on each recursive call.
 This time, however, Lean does not accept the `termination_by`:
@@ -1006,7 +1009,7 @@ termination_by insertionSortLoop arr i =&gt; arr.size - i
 <!--
 ## The Driver Function
 -->
-<h2 id="驱动函数--the-driver-function-"><a class="header" href="#驱动函数--the-driver-function-">驱动函数 { #the-driver-function }</a></h2>
+<h2 id="the-driver-function"><a class="header" href="#the-driver-function">驱动函数</a></h2>
 <!--
 Insertion sort itself calls `insertionSortLoop`, initializing the index that demarcates the sorted region of the array from the unsorted region to `0`:
 -->
@@ -1029,7 +1032,7 @@ A few quick tests show the function is at least not blatantly wrong:
 <!--
 ## Is This Really Insertion Sort?
 -->
-<h2 id="它真的是插入排序吗--is-this-really-insertion-sort-"><a class="header" href="#它真的是插入排序吗--is-this-really-insertion-sort-">它真的是插入排序吗？ { #is-this-really-insertion-sort }</a></h2>
+<h2 id="is-this-really-insertion-sort"><a class="header" href="#is-this-really-insertion-sort">它真的是插入排序吗？</a></h2>
 <!--
 Insertion sort is _defined_ to be an in-place sorting algorithm.
 What makes it useful, despite its quadratic worst-case run time, is that it is a stable sorting algorithm that doesn't allocate extra space and that handles almost-sorted data efficiently.
@@ -1264,7 +1267,7 @@ When running `sort --shared`, the array is copied as needed to preserve the pure
 <!--
 ## Other Opportunities for Mutation
 -->
-<h2 id="其他可变性的机会--other-opportunities-for-mutation-"><a class="header" href="#其他可变性的机会--other-opportunities-for-mutation-">其他可变性的机会 { #other-opportunities-for-mutation }</a></h2>
+<h2 id="other-opportunities-for-mutation"><a class="header" href="#other-opportunities-for-mutation">其他可变性的机会</a></h2>
 <!--
 The use of mutation instead of copying when references are unique is not limited to array update operators.
 Lean also attempts to "recycle" constructors whose reference counts are about to fall to zero, reusing them instead of allocating new data.
@@ -1278,7 +1281,7 @@ Lean 还会尝试「回收」引用计数即将降至零的构造函数，重新
 <!--
 ## Exercises
 -->
-<h2 id="练习--exercises-"><a class="header" href="#练习--exercises-">练习 { #exercises }</a></h2>
+<h2 id="exercises"><a class="header" href="#exercises">练习</a></h2>
 <!--
  * Write a function that reverses arrays. Test that if the input array has a reference count of one, then your function does not allocate a new array.
 -->
@@ -1342,5 +1345,6 @@ Lean 还会尝试「回收」引用计数即将降至零的构造函数，重新
         <script src="../custom.js"></script>
 
 
+    </div>
     </body>
 </html>

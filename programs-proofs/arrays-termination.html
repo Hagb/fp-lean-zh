@@ -36,6 +36,7 @@
         <script async src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
     </head>
     <body>
+    <div id="body-container">
         <!-- Provide site root to javascript -->
         <script>
             var path_to_root = "../";
@@ -73,10 +74,12 @@
         <!-- Hide / unhide sidebar before it is displayed -->
         <script>
             var html = document.querySelector('html');
-            var sidebar = 'hidden';
+            var sidebar = null;
             if (document.body.clientWidth >= 1080) {
                 try { sidebar = localStorage.getItem('mdbook-sidebar'); } catch(e) { }
                 sidebar = sidebar || 'visible';
+            } else {
+                sidebar = 'hidden';
             }
             html.classList.remove('sidebar-visible');
             html.classList.add("sidebar-" + sidebar);
@@ -154,7 +157,7 @@
                         <!--
 # Arrays and Termination
 -->
-<h1 id="数组与停机性--arrays-and-termination-"><a class="header" href="#数组与停机性--arrays-and-termination-">数组与停机性 { #arrays-and-termination }</a></h1>
+<h1 id="arrays-and-termination"><a class="header" href="#arrays-and-termination">数组与停机性</a></h1>
 <!--
 To write efficient code, it is important to select appropriate data structures.
 Linked lists have their place: in some applications, the ability to share the tails of lists is very important.
@@ -184,7 +187,7 @@ Both of these are expressed using an inequality proposition, rather than proposi
 <!--
 ## Inequality
 -->
-<h2 id="不等式--inequality-"><a class="header" href="#不等式--inequality-">不等式 { #inequality }</a></h2>
+<h2 id="inequality"><a class="header" href="#inequality">不等式</a></h2>
 <!--
 Because different types have different notions of ordering, inequality is governed by two type classes, called `LE` and `LT`.
 The table in the section on [standard type classes](../type-classes/standard-classes.md#equality-and-ordering) describes how these classes relate to the syntax:
@@ -227,7 +230,7 @@ Defining `Nat.le` requires a feature of Lean that has not yet been presented: it
 <!--
 ### Inductively-Defined Propositions, Predicates, and Relations
 -->
-<h3 id="归纳定义的命题谓词和关系--inductively-defined-propositions-predicates-and-relations-"><a class="header" href="#归纳定义的命题谓词和关系--inductively-defined-propositions-predicates-and-relations-">归纳定义的命题、谓词和关系 { #inductively-defined-propositions-predicates-and-relations }</a></h3>
+<h3 id="inductively-defined-propositions-predicates-and-relations"><a class="header" href="#inductively-defined-propositions-predicates-and-relations">归纳定义的命题、谓词和关系</a></h3>
 <!--
 `Nat.le` is an _inductively-defined relation_.
 Just as `inductive` can be used to create new datatypes, it can also be used to create new propositions.
@@ -437,7 +440,7 @@ Just as a pattern match on a `Vect String 2` doesn't need to include a case for 
 <!--
 ### Inequality of Natural Numbers
 -->
-<h3 id="自然数不等式--inequality-of-natural-numbers-"><a class="header" href="#自然数不等式--inequality-of-natural-numbers-">自然数不等式 { #inequality-of-natural-numbers }</a></h3>
+<h3 id="inequality-of-natural-numbers"><a class="header" href="#inequality-of-natural-numbers">自然数不等式</a></h3>
 <!--
 The definition of `Nat.le` has a parameter and an index:
 -->
@@ -491,7 +494,7 @@ This is because `4 < 7` is equivalent to `5 ≤ 7`.
 <!--
 ## Proving Termination
 -->
-<h2 id="停机性证明--proving-termination-"><a class="header" href="#停机性证明--proving-termination-">停机性证明 { #proving-termination }</a></h2>
+<h2 id="proving-termination"><a class="header" href="#proving-termination">停机性证明</a></h2>
 <!--
 The function `Array.map` transforms an array with a function, returning a new array that contains the result of applying the function to each element of the input array.
 Writing it as a tail-recursive function follows the usual pattern of delegating to a function that passes the output array in an accumulator.
@@ -620,7 +623,7 @@ Sometimes, creativity can be required in order to figure out just why a function
 <!--
 ## Exercises
 -->
-<h2 id="练习--exercises-"><a class="header" href="#练习--exercises-">练习 { #exercises }</a></h2>
+<h2 id="exercises"><a class="header" href="#exercises">练习</a></h2>
 <!--
  * Implement a `ForM (Array α)` instance on arrays using a tail-recursive accumulator-passing function and a `termination_by` clause.
  * Implement a function to reverse arrays using a tail-recursive accumulator-passing function that _doesn't_ need a `termination_by` clause.
@@ -684,5 +687,6 @@ Sometimes, creativity can be required in order to figure out just why a function
         <script src="../custom.js"></script>
 
 
+    </div>
     </body>
 </html>

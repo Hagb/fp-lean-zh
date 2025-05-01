@@ -36,6 +36,7 @@
         <script async src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
     </head>
     <body>
+    <div id="body-container">
         <!-- Provide site root to javascript -->
         <script>
             var path_to_root = "../";
@@ -73,10 +74,12 @@
         <!-- Hide / unhide sidebar before it is displayed -->
         <script>
             var html = document.querySelector('html');
-            var sidebar = 'hidden';
+            var sidebar = null;
             if (document.body.clientWidth >= 1080) {
                 try { sidebar = localStorage.getItem('mdbook-sidebar'); } catch(e) { }
                 sidebar = sidebar || 'visible';
+            } else {
+                sidebar = 'hidden';
             }
             html.classList.remove('sidebar-visible');
             html.classList.add("sidebar-" + sidebar);
@@ -154,11 +157,11 @@
                         <!--
 # Summary
 -->
-<h1 id="总结--summary-"><a class="header" href="#总结--summary-">总结 { #summary }</a></h1>
+<h1 id="summary"><a class="header" href="#summary">总结</a></h1>
 <!--
 ## Type Classes and Overloading
 -->
-<h2 id="类型类和重载--type-classes-and-overloading-"><a class="header" href="#类型类和重载--type-classes-and-overloading-">类型类和重载 { #type-classes-and-overloading }</a></h2>
+<h2 id="type-classes-and-overloading"><a class="header" href="#type-classes-and-overloading">类型类和重载</a></h2>
 <!--
 Type classes are Lean's mechanism for overloading functions and operators.
 A polymorphic function can be used with multiple types, but it behaves in the same manner no matter which type it is used with.
@@ -208,7 +211,7 @@ When an instance is a default instance, then it will be chosen as a fallback whe
 <!--
 ## Type Classes for Common Syntax
 -->
-<h2 id="常见语法的类型类--type-classes-for-common-syntax-"><a class="header" href="#常见语法的类型类--type-classes-for-common-syntax-">常见语法的类型类 { #type-classes-for-common-syntax }</a></h2>
+<h2 id="type-classes-for-common-syntax"><a class="header" href="#type-classes-for-common-syntax">常见语法的类型类</a></h2>
 <!--
 Most infix operators in Lean are overridden with a type class.
 For instance, the addition operator corresponds to a type class called `Add`.
@@ -232,7 +235,7 @@ When Lean is unable to check that list or array access operations are in bounds 
 <!--
 ## Functors
 -->
-<h2 id="函子--functors-"><a class="header" href="#函子--functors-">函子 { #functors }</a></h2>
+<h2 id="functors"><a class="header" href="#functors">函子</a></h2>
 <!--
 A functor is a polymorphic type that supports a mapping operation.
 This mapping operation transforms all elements "in place", changing no other structure.
@@ -251,7 +254,7 @@ Lean 中的 <code>Functor</code> 类型类还包含了额外的默认方法，�
 <!--
 ## Deriving Instances
 -->
-<h2 id="派生实例--deriving-instances-"><a class="header" href="#派生实例--deriving-instances-">派生实例 { #deriving-instances }</a></h2>
+<h2 id="deriving-instances"><a class="header" href="#deriving-instances">派生实例</a></h2>
 <!--
 Many type classes have very standard implementations.
 For instance, the Boolean equality class `BEq` is usually implemented by first checking whether both arguments are built with the same constructor, and then checking whether all their arguments are equal.
@@ -271,7 +274,7 @@ Because each class for which instances can be derived requires special handling,
 <!--
 ## Coercions
 -->
-<h2 id="强制转换--coercions-"><a class="header" href="#强制转换--coercions-">强制转换 { #coercions }</a></h2>
+<h2 id="coercions"><a class="header" href="#coercions">强制转换</a></h2>
 <!--
 Coercions allow Lean to recover from what would normally be a compile-time error by inserting a call to a function that transforms data from one type to another.
 For example, the coercion from any type `α` to the type `Option α` allows values to be written directly, rather than with the `some` constructor, making `Option` work more like nullable types from object-oriented languages.
@@ -343,5 +346,6 @@ The `CoeFun` class intercepts what would otherwise be a "not a function" error w
         <script src="../custom.js"></script>
 
 
+    </div>
     </body>
 </html>

@@ -36,6 +36,7 @@
         <script async src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
     </head>
     <body>
+    <div id="body-container">
         <!-- Provide site root to javascript -->
         <script>
             var path_to_root = "../";
@@ -73,10 +74,12 @@
         <!-- Hide / unhide sidebar before it is displayed -->
         <script>
             var html = document.querySelector('html');
-            var sidebar = 'hidden';
+            var sidebar = null;
             if (document.body.clientWidth >= 1080) {
                 try { sidebar = localStorage.getItem('mdbook-sidebar'); } catch(e) { }
                 sidebar = sidebar || 'visible';
+            } else {
+                sidebar = 'hidden';
             }
             html.classList.remove('sidebar-visible');
             html.classList.add("sidebar-" + sidebar);
@@ -154,7 +157,7 @@
                         <!--
 # Structures and Inheritance
 -->
-<h1 id="结构体和继承--structures-and-inheritance-"><a class="header" href="#结构体和继承--structures-and-inheritance-">结构体和继承 { #structures-and-inheritance }</a></h1>
+<h1 id="structures-and-inheritance"><a class="header" href="#structures-and-inheritance">结构体和继承</a></h1>
 <!--
 In order to understand the full definitions of `Functor`, `Applicative`, and `Monad`, another Lean feature is necessary: structure inheritance.
 Structure inheritance allows one structure type to provide the interface of another, along with additional fields.
@@ -312,7 +315,7 @@ but is expected to have type
 <!--
 ### Multiple Inheritance
 -->
-<h3 id="多重继承--multiple-inheritance-"><a class="header" href="#多重继承--multiple-inheritance-">多重继承 { #multiple-inheritance }</a></h3>
+<h3 id="multiple-inheritance"><a class="header" href="#multiple-inheritance">多重继承</a></h3>
 <!--
 A helper is a mythical creature that can provide assistance when given the correct payment:
 -->
@@ -393,7 +396,7 @@ The `@[reducible]` attribute has the same effect as writing `abbrev`.
 <!--
 ### Default Declarations
 -->
-<h3 id="默认声明--default-declarations-"><a class="header" href="#默认声明--default-declarations-">默认声明 { #default-declarations }</a></h3>
+<h3 id="default-declarations"><a class="header" href="#default-declarations">默认声明</a></h3>
 <!--
 When one structure inherits from another, default field definitions can be used to instantiate the parent structure's fields based on the child structure's fields.
 If more size specificity is required than whether a creature is large or not, a dedicated datatype describing sizes can be used together with inheritance, yielding a structure in which the `large` field is computed from the contents of the `size` field:
@@ -460,7 +463,7 @@ example : SizesMatch huldre := by
 <!--
 ### Type Class Inheritance
 -->
-<h3 id="类型类继承--type-class-inheritance-"><a class="header" href="#类型类继承--type-class-inheritance-">类型类继承 { #type-class-inheritance }</a></h3>
+<h3 id="type-class-inheritance"><a class="header" href="#type-class-inheritance">类型类继承</a></h3>
 <!--
 Behind the scenes, type classes are structures.
 Defining a new type class defines a new structure, and defining an instance creates a value of that structure type.
@@ -529,5 +532,6 @@ By carefully designing type class inheritance hierarchies, programmers can get t
         <script src="../custom.js"></script>
 
 
+    </div>
     </body>
 </html>
