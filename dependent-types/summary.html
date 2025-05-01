@@ -154,11 +154,11 @@
                         <!--
 # Summary
 -->
-<h1 id="总结"><a class="header" href="#总结">总结</a></h1>
+<h1 id="总结--summary-"><a class="header" href="#总结--summary-">总结 { #summary }</a></h1>
 <!--
 ## Dependent Types
 -->
-<h2 id="依值类型"><a class="header" href="#依值类型">依值类型</a></h2>
+<h2 id="依值类型--dependent-types-"><a class="header" href="#依值类型--dependent-types-">依值类型 { #dependent-types }</a></h2>
 <!--
 Dependent types, where types contain non-type code such as function calls and ordinary data constructors, lead to a massive increase in the expressive power of a type system.
 The ability to _compute_ a type from the _value_ of an argument means that the return type of a function can vary based on which argument is provided.
@@ -193,7 +193,7 @@ Type-level computation can be seen as a kind of partial evaluation, where only t
 <!--
 ## The Universe Pattern
 -->
-<h1 id="宇宙设计模式"><a class="header" href="#宇宙设计模式">宇宙设计模式</a></h1>
+<h2 id="宇宙设计模式--the-universe-pattern-"><a class="header" href="#宇宙设计模式--the-universe-pattern-">宇宙设计模式 { #the-universe-pattern }</a></h2>
 <!--
 A common pattern when working with dependent types is to section off some subset of the type system.
 For example, a database query library might be able to return varying-length strings, fixed-length strings, or numbers in certain ranges, but it will never return a function, a user-defined datatype, or an `IO` action.
@@ -224,7 +224,7 @@ Defining a custom universe has a number of advantages over using the types direc
 <!--
 ## Indexed Families
 -->
-<h2 id="索引族"><a class="header" href="#索引族">索引族</a></h2>
+<h2 id="索引族--indexed-families-"><a class="header" href="#索引族--indexed-families-">索引族 { #indexed-families }</a></h2>
 <!--
 Datatypes can take two separate kinds of arguments: _parameters_ are identical in each constructor of the datatype, while _indices_ may vary between constructors.
 For a given choice of index, only some constructors of the datatype are available.
@@ -266,7 +266,7 @@ Avoiding these slowdowns for complicated programs can require specialized techni
 <!--
 ## Definitional and Propositional Equality
 -->
-<h2 id="定义相等性和命题相等性"><a class="header" href="#定义相等性和命题相等性">定义相等性和命题相等性</a></h2>
+<h2 id="定义相等性和命题相等性--definitional-and-propositional-equality-"><a class="header" href="#定义相等性和命题相等性--definitional-and-propositional-equality-">定义相等性和命题相等性 { #definitional-and-propositional-equality }</a></h2>
 <!--
 Lean's type checker must, from time to time, check whether two types should be considered interchangeable.
 Because types can contain arbitrary programs, it must therefore be able to check arbitrary programs for equality.

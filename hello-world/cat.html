@@ -154,7 +154,7 @@
                         <!--
 # Worked Example: `cat`
 -->
-<h1 id="现实示例-cat"><a class="header" href="#现实示例-cat">现实示例 <code>cat</code></a></h1>
+<h1 id="现实示例-cat--worked-example-cat-"><a class="header" href="#现实示例-cat--worked-example-cat-">现实示例 <code>cat</code> { #worked-example-cat }</a></h1>
 <!--
 The standard Unix utility `cat` takes a number of command-line options, followed by zero or more input files.
 If no files are provided, or if one of them is a dash (`-`), then it takes the standard input as the corresponding input instead of reading a file.
@@ -184,7 +184,7 @@ This makes it easier to learn the mechanical process of typing in code, recoveri
 <!--
 ## Getting started
 -->
-<h2 id="开始"><a class="header" href="#开始">开始</a></h2>
+<h2 id="开始--getting-started-"><a class="header" href="#开始--getting-started-">开始 { #getting-started }</a></h2>
 <!--
 The first step in implementing `feline` is to create a package and decide how to organize the code.
 In this case, because the program is so simple, all the code will be placed in `Main.lean`.
@@ -225,7 +225,7 @@ Ensure that the code can be built by running `lake build`.
 <!--
 ## Concatenating Streams
 -->
-<h2 id="连接流"><a class="header" href="#连接流">连接流</a></h2>
+<h2 id="连接流--concatenating-streams-"><a class="header" href="#连接流--concatenating-streams-">连接流 { #concatenating-streams }</a></h2>
 <!--
 Now that the basic skeleton of the program has been built, it's time to actually enter the code.
 A proper implementation of `cat` can be used with infinite IO streams, such as `/dev/random`, which means that it can't read its input into memory before outputting it.
@@ -248,7 +248,7 @@ For the sake of simplicity, this implementation uses a conservative 20 kilobyte 
 <!--
 ### Streams
 -->
-<h3 id="流"><a class="header" href="#流">流</a></h3>
+<h3 id="流--streams-"><a class="header" href="#流--streams-">流 { #streams }</a></h3>
 <!--
 The main work of `feline` is done by `dump`, which reads input one block at a time, dumping the result to standard output, until the end of the input has been reached:
 -->
@@ -356,7 +356,7 @@ Lean 文件勾柄跟踪了一个底层文件的描述符。当没有对文件勾
 <!--
 ### Handling Input
 -->
-<h3 id="处理输入"><a class="header" href="#处理输入">处理输入</a></h3>
+<h3 id="处理输入--handling-input-"><a class="header" href="#处理输入--handling-input-">处理输入 { #handling-input }</a></h3>
 <!--
 The main loop of `feline` is another tail-recursive function, called `process`.
 In order to return a non-zero exit code if any of the inputs could not be read, `process` takes an argument `exitCode` that represents the current exit code for the whole program.
@@ -412,7 +412,7 @@ Thus, `process` does not introduce any non-termination.
 <!--
 ### Main
 -->
-<h3 id="main-活动"><a class="header" href="#main-活动">Main 活动</a></h3>
+<h3 id="main-活动--main-"><a class="header" href="#main-活动--main-">Main 活动 { #main }</a></h3>
 <!--
 The final step is to write the `main` action.
 Unlike prior examples, `main` in `feline` is a function.
@@ -444,7 +444,7 @@ Otherwise, the arguments should be processed one after the other.
 <!--
 ## Meow!
 -->
-<h2 id="喵"><a class="header" href="#喵">喵！</a></h2>
+<h2 id="喵--meow-"><a class="header" href="#喵--meow-">喵！ { #meow }</a></h2>
 <!--
 To check whether `feline` works, the first step is to build it with `lake build`.
 First off, when called without arguments, it should emit what it receives from standard input.
@@ -501,7 +501,7 @@ and curl up!
 <!--
 ## Exercise
 -->
-<h2 id="练习"><a class="header" href="#练习">练习</a></h2>
+<h2 id="练习--exercise-"><a class="header" href="#练习--exercise-">练习 { #exercise }</a></h2>
 <!--
 Extend `feline` with support for usage information.
 The extended version should accept a command-line argument `--help` that causes documentation about the available command-line options to be written to standard output.

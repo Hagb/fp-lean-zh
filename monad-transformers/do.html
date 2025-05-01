@@ -154,7 +154,7 @@
                         <!--
 # More do Features
 -->
-<h1 id="更多-do-的特性"><a class="header" href="#更多-do-的特性">更多 do 的特性</a></h1>
+<h1 id="更多-do-的特性--more-do-features-"><a class="header" href="#更多-do-的特性--more-do-features-">更多 do 的特性 { #more-do-features }</a></h1>
 <!--
 Lean's `do`-notation provides a syntax for writing programs with monads that resembles imperative programming languages.
 In addition to providing a convenient syntax for programs with monads, `do`-notation provides syntax for using certain monad transformers.
@@ -164,7 +164,7 @@ In addition to providing a convenient syntax for programs with monads, `do`-nota
 <!--
 ## Single-Branched `if`
 -->
-<h2 id="单分支-if"><a class="header" href="#单分支-if">单分支 <code>if</code></a></h2>
+<h2 id="单分支-if--single-branched-if-"><a class="header" href="#单分支-if--single-branched-if-">单分支 <code>if</code> { #single-branched-if }</a></h2>
 <!--
 When working in a monad, a common pattern is to carry out a side effect only if some condition is true.
 For instance, `countLetters` contains a check for vowels or consonants, and letters that are neither have no effect on the state.
@@ -244,7 +244,7 @@ The remaining extensions in this section, however, require Lean to automatically
 <!--
 ## Early Return
 -->
-<h2 id="提前返回"><a class="header" href="#提前返回">提前返回</a></h2>
+<h2 id="提前返回--early-return-"><a class="header" href="#提前返回--early-return-">提前返回 { #early-return }</a></h2>
 <!--
 The standard library contains a function `List.find?` that returns the first entry in a list that satisfies some check.
 A simple implementation that doesn't make use of the fact that `Option` is a monad loops over the list using a recursive function, with an `if` to stop the loop when the desired entry is found:
@@ -405,7 +405,7 @@ the expression `greet "David"` evaluates to `"Hello, David"`, not just `"David"`
 <!--
 ## Loops
 -->
-<h2 id="循环"><a class="header" href="#循环">循环</a></h2>
+<h2 id="循环--loops-"><a class="header" href="#循环--loops-">循环 { #loops }</a></h2>
 <!--
 Just as every program with mutable state can be rewritten to a program that passes the state as arguments, every loop can be rewritten as a recursive function.
 From one perspective, `List.find?` is most clear as a recursive function.
@@ -425,7 +425,7 @@ If the loop terminates without having returned, the answer is `none`.
 <!--
 ### Looping with ForM
 -->
-<h3 id="使用-form-循环"><a class="header" href="#使用-form-循环">使用 ForM 循环</a></h3>
+<h3 id="使用-form-循环--looping-with-form-"><a class="header" href="#使用-form-循环--looping-with-form-">使用 ForM 循环 { #looping-with-form }</a></h3>
 <!--
 Lean includes a type class that describes looping over a container type in some monad.
 This class is called `ForM`:
@@ -584,7 +584,7 @@ Ok
 <!--
 ### Stopping Iteration
 -->
-<h3 id="中止循环"><a class="header" href="#中止循环">中止循环</a></h3>
+<h3 id="中止循环--stopping-iteration-"><a class="header" href="#中止循环--stopping-iteration-">中止循环 { #stopping-iteration }</a></h3>
 <!--
 Terminating a loop early is difficult to do with `forM`.
 Writing a function that iterates over the `Nat`s in an `AllLessThan` only until `3` is reached requires a means of stopping the loop partway through.
@@ -758,7 +758,7 @@ produces three lines of output:
 <!--
 ## Mutable Variables
 -->
-<h2 id="可变变量"><a class="header" href="#可变变量">可变变量</a></h2>
+<h2 id="可变变量--mutable-variables-"><a class="header" href="#可变变量--mutable-variables-">可变变量 { #mutable-variables }</a></h2>
 <!--
 In addition to early `return`, `else`-less `if`, and `for` loops, Lean supports local mutable variables within a `do` block.
 Behind the scenes, these mutable variables desugar to a use of `StateT`, rather than being implemented by true mutable variables.
@@ -857,7 +857,7 @@ This is because the recursive function is written in the identity monad, and onl
 <!--
 ## What counts as a `do` block?
 -->
-<h2 id="什么算作-do-区块"><a class="header" href="#什么算作-do-区块">什么算作 <code>do</code> 区块？</a></h2>
+<h2 id="什么算作-do-区块--what-counts-as-a-do-block-"><a class="header" href="#什么算作-do-区块--what-counts-as-a-do-block-">什么算作 <code>do</code> 区块？ { #what-counts-as-a-do-block }</a></h2>
 <!--
 Many features of `do`-notation apply only to a single `do`-block.
 Early return terminates the current block, and mutable variables can only be mutated in the block that they are defined in.
@@ -979,7 +979,7 @@ example : Id Unit := do
 <!--
 ## Imperative or Functional Programming?
 -->
-<h2 id="命令式还是函数式编程"><a class="header" href="#命令式还是函数式编程">命令式还是函数式编程？</a></h2>
+<h2 id="命令式还是函数式编程--imperative-or-functional-programming-"><a class="header" href="#命令式还是函数式编程--imperative-or-functional-programming-">命令式还是函数式编程？ { #imperative-or-functional-programming }</a></h2>
 <!--
 The imperative features provided by Lean's `do`-notation allow many programs to very closely resemble their counterparts in languages like Rust, Java, or C#.
 This resemblance is very convenient when translating an imperative algorithm into Lean, and some tasks are just most naturally thought of imperatively.
@@ -993,7 +993,7 @@ Monads and monad transformers allow functional versus imperative programming to 
 <!--
 ## Exercises
 -->
-<h2 id="练习"><a class="header" href="#练习">练习</a></h2>
+<h2 id="练习--exercises-"><a class="header" href="#练习--exercises-">练习 { #exercises }</a></h2>
 <!--
 * Rewrite `doug` to use `for` instead of the `doList` function. Are there other opportunities to use the features introduced in this section to improve the code? If so, use them!
 -->

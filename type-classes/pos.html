@@ -154,7 +154,7 @@
                         <!--
 # Positive Numbers
 -->
-<h1 id="正数"><a class="header" href="#正数">正数</a></h1>
+<h1 id="正数--positive-numbers-"><a class="header" href="#正数--positive-numbers-">正数 { #positive-numbers }</a></h1>
 <!--
 In some applications, only positive numbers make sense.
 For example, compilers and interpreters typically use one-indexed line and column numbers for source positions, and a datatype that represents only non-empty lists will never report a length of zero.
@@ -211,7 +211,7 @@ This indicates that the error is due to an overloaded operation that has not bee
 <!--
 ## Classes and Instances
 -->
-<h2 id="类与实例"><a class="header" href="#类与实例">类与实例</a></h2>
+<h2 id="类与实例--classes-and-instances-"><a class="header" href="#类与实例--classes-and-instances-">类与实例 { #classes-and-instances }</a></h2>
 <!--
 A type class consists of a name, some parameters, and a collection of _methods_.
 The parameters describe the types for which overloadable operations are being defined, and the methods are the names and type signatures of the overloadable operations.
@@ -317,7 +317,7 @@ These errors mean that Lean was unable to find an instance for a given type clas
 <!--
 ## Overloaded Addition
 -->
-<h2 id="重载加法"><a class="header" href="#重载加法">重载加法</a></h2>
+<h2 id="重载加法--overloaded-addition-"><a class="header" href="#重载加法--overloaded-addition-">重载加法 { #overloaded-addition }</a></h2>
 <!--
 Lean's built-in addition operator is syntactic sugar for a type class called `HAdd`, which flexibly allows the arguments to addition to have different types.
 `HAdd` is short for _heterogeneous addition_.
@@ -346,7 +346,7 @@ def fourteen : Pos := seven + seven
 <!--
 ## Conversion to Strings
 -->
-<h2 id="转换为字符串"><a class="header" href="#转换为字符串">转换为字符串</a></h2>
+<h2 id="转换为字符串--conversion-to-strings-"><a class="header" href="#转换为字符串--conversion-to-strings-">转换为字符串 { #conversion-to-strings }</a></h2>
 <!--
 Another useful built-in class is called `ToString`.
 Instances of `ToString` provide a standard way of converting values from a given type into strings.
@@ -408,7 +408,7 @@ Additionally, if a type has a `ToString` instance, then it can be used to displa
 <!--
 ## Overloaded Multiplication
 -->
-<h2 id="重载乘法运算符"><a class="header" href="#重载乘法运算符">重载乘法运算符</a></h2>
+<h2 id="重载乘法运算符--overloaded-multiplication-"><a class="header" href="#重载乘法运算符--overloaded-multiplication-">重载乘法运算符 { #overloaded-multiplication }</a></h2>
 <!--
 For multiplication, there is a type class called `HMul` that allows mixed argument types, just like `HAdd`.
 Just as `x + y` is interpreted as `HAdd.hAdd x y`, `x * y` is interpreted as `HMul.hMul x y`.
@@ -441,7 +441,7 @@ With this instance, multiplication works as expected:
 <!--
 ## Literal Numbers
 -->
-<h2 id="数字字面量"><a class="header" href="#数字字面量">数字字面量</a></h2>
+<h2 id="数字字面量--literal-numbers-"><a class="header" href="#数字字面量--literal-numbers-">数字字面量 { #literal-numbers }</a></h2>
 <!--
 It is quite inconvenient to write out a sequence of constructors for positive numbers.
 One way to work around the problem would be to provide a function to convert a `Nat` into a `Pos`.
@@ -562,11 +562,11 @@ def zero : Pos := 0
 <!--
 ## Exercises
 -->
-<h2 id="练习"><a class="header" href="#练习">练习</a></h2>
+<h2 id="练习--exercises-"><a class="header" href="#练习--exercises-">练习 { #exercises }</a></h2>
 <!--
 ### Another Representation
 -->
-<h3 id="另一种表示"><a class="header" href="#另一种表示">另一种表示</a></h3>
+<h3 id="另一种表示--another-representation-"><a class="header" href="#另一种表示--another-representation-">另一种表示 { #another-representation }</a></h3>
 <!--
 An alternative way to represent a positive number is as the successor of some `Nat`.
 Replace the definition of `Pos` with a structure whose constructor is named `succ` that contains a `Nat`:
@@ -584,7 +584,7 @@ Define instances of `Add`, `Mul`, `ToString`, and `OfNat` that allow this versio
 <!--
 ### Even Numbers
 -->
-<h3 id="偶数"><a class="header" href="#偶数">偶数</a></h3>
+<h3 id="偶数--even-numbers-"><a class="header" href="#偶数--even-numbers-">偶数 { #even-numbers }</a></h3>
 <!--
 Define a datatype that represents only even numbers. Define instances of `Add`, `Mul`, and `ToString` that allow it to be used conveniently.
 `OfNat` requires a feature that is introduced in [the next section](polymorphism.md).
@@ -594,7 +594,7 @@ Define a datatype that represents only even numbers. Define instances of `Add`, 
 <!--
 ### HTTP Requests
 -->
-<h3 id="http-请求"><a class="header" href="#http-请求">HTTP 请求</a></h3>
+<h3 id="http-请求--http-requests-"><a class="header" href="#http-请求--http-requests-">HTTP 请求 { #http-requests }</a></h3>
 <!--
 An HTTP request begins with an identification of a HTTP method, such as `GET` or `POST`, along with a URI and an HTTP version.
 Define an inductive type that represents an interesting subset of the HTTP methods, and a structure that represents HTTP responses.

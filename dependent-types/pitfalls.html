@@ -154,7 +154,7 @@
                         <!--
 # Pitfalls of Programming with Dependent Types
 -->
-<h1 id="使用依值类型编程的陷阱"><a class="header" href="#使用依值类型编程的陷阱">使用依值类型编程的陷阱</a></h1>
+<h1 id="使用依值类型编程的陷阱--pitfalls-of-programming-with-dependent-types-"><a class="header" href="#使用依值类型编程的陷阱--pitfalls-of-programming-with-dependent-types-">使用依值类型编程的陷阱 { #pitfalls-of-programming-with-dependent-types }</a></h1>
 <!--
 The flexibility of dependent types allows more useful programs to be accepted by a type checker, because the language of types is expressive enough to describe variations that less-expressive type systems cannot.
 At the same time, the ability of dependent types to express very fine-grained specifications allows more buggy programs to be rejected by a type checker.
@@ -247,7 +247,7 @@ Here, `n✝` represents the `Nat` that is one less than the argument `n`.
 <!--
 ## Definitional Equality
 -->
-<h2 id="定义相等性"><a class="header" href="#定义相等性">定义相等性</a></h2>
+<h2 id="定义相等性--definitional-equality-"><a class="header" href="#定义相等性--definitional-equality-">定义相等性 { #definitional-equality }</a></h2>
 <!--
 In the definition of `plusL`, there is a pattern case `0, k => k`.
 This applies in the length used in the first placeholder, so another way to write the underscore's type `Vect α (Nat.plusL 0 k)` is `Vect α k`.
@@ -467,7 +467,7 @@ In particular, the fact that `plusL` is used in the type of `appendL` means that
 <!--
 ## Getting Stuck on Addition
 -->
-<h2 id="在加法上卡住"><a class="header" href="#在加法上卡住">在加法上卡住</a></h2>
+<h2 id="在加法上卡住--getting-stuck-on-addition-"><a class="header" href="#在加法上卡住--getting-stuck-on-addition-">在加法上卡住 { #getting-stuck-on-addition }</a></h2>
 <!--
 What happens if append is defined with `plusR` instead?
 Beginning in the same way, with explicit lengths and placeholder underscores in each case, reveals the following useful error messages:
@@ -547,7 +547,7 @@ Getting it unstuck requires [propositional equality](../type-classes/standard-cl
 <!--
 ## Propositional Equality
 -->
-<h2 id="命题相等性"><a class="header" href="#命题相等性">命题相等性</a></h2>
+<h2 id="命题相等性--propositional-equality-"><a class="header" href="#命题相等性--propositional-equality-">命题相等性 { #propositional-equality }</a></h2>
 <!--
 Propositional equality is the mathematical statement that two expressions are equal.
 While definitional equality is a kind of ambient fact that Lean automatically checks when required, statements of propositional equality require explicit proofs.
@@ -752,7 +752,7 @@ However, Lean's type checker has enough information to fill them in automaticall
 <!--
 ## Pros and Cons
 -->
-<h2 id="优势和劣势"><a class="header" href="#优势和劣势">优势和劣势</a></h2>
+<h2 id="优势和劣势--pros-and-cons-"><a class="header" href="#优势和劣势--pros-and-cons-">优势和劣势 { #pros-and-cons }</a></h2>
 <!--
 Indexed families have an important property: pattern matching on them affects definitional equality.
 For example, in the `nil` case in a `match` expression on a `Vect`, the length simply _becomes_ `0`.
@@ -813,7 +813,7 @@ Fluency in their use is an important part of knowing when to use them.
 <!--
 ## Exercises
 -->
-<h2 id="练习"><a class="header" href="#练习">练习</a></h2>
+<h2 id="练习--exercises-"><a class="header" href="#练习--exercises-">练习 { #exercises }</a></h2>
 <!--
  * Using a recursive function in the style of `plusR_succ_left`, prove that for all `Nat`s `n` and `k`, `n.plusR k = n + k`.
  -->

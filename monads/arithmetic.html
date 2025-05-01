@@ -154,7 +154,7 @@
                         <!--
 ## Example: Arithmetic in Monads
 -->
-<h2 id="例子利用单子实现算术表达式求值"><a class="header" href="#例子利用单子实现算术表达式求值">例子：利用单子实现算术表达式求值</a></h2>
+<h2 id="例子利用单子实现算术表达式求值--example-arithmetic-in-monads-"><a class="header" href="#例子利用单子实现算术表达式求值--example-arithmetic-in-monads-">例子：利用单子实现算术表达式求值 { #example-arithmetic-in-monads }</a></h2>
 <!--
 Monads are a way of encoding programs with side effects into a language that does not have them.
 It would be easy to read this as a sort of admission that pure functional programs are missing something important, requiring programmers to jump through hoops just to write a normal program.
@@ -176,7 +176,7 @@ One example of a program that can make sense in a variety of monads is an evalua
 <!--
 ### Arithmetic Expressions
 -->
-<h3 id="算术表达式"><a class="header" href="#算术表达式">算术表达式</a></h3>
+<h3 id="算术表达式--arithmetic-expressions-"><a class="header" href="#算术表达式--arithmetic-expressions-">算术表达式 { #arithmetic-expressions }</a></h3>
 <!--
 An arithmetic expression is either a literal integer or a primitive binary operator applied to two expressions. The operators are addition, subtraction, multiplication, and division:
 -->
@@ -213,7 +213,7 @@ def fourteenDivided : Expr Arith :=
 <!--
 ### Evaluating Expressions
 -->
-<h3 id="对表达式求值"><a class="header" href="#对表达式求值">对表达式求值</a></h3>
+<h3 id="对表达式求值--evaluating-expressions-"><a class="header" href="#对表达式求值--evaluating-expressions-">对表达式求值 { #evaluating-expressions }</a></h3>
 <!--
 Because expressions include division, and division by zero is undefined, evaluation might fail.
 One way to represent failure is to use `Option`:
@@ -359,7 +359,7 @@ In this refactored code, the fact that the two code paths differ only in their t
 <!--
 ### Further Effects
 -->
-<h3 id="额外的作用"><a class="header" href="#额外的作用">额外的作用</a></h3>
+<h3 id="额外的作用--further-effects-"><a class="header" href="#额外的作用--further-effects-">额外的作用 { #further-effects }</a></h3>
 <!--
 Failure and exceptions are not the only kinds of effects that can be interesting when working with an evaluator.
 While division's only side effect is failure, adding other primitive operators to the expressions make it possible to express other effects.
@@ -411,7 +411,7 @@ def evaluateM [Monad m] (applySpecial : special → Int → Int → m Int): Expr
 <!--
 #### No Effects
 -->
-<h4 id="无作用"><a class="header" href="#无作用">无作用</a></h4>
+<h4 id="无作用--no-effects-"><a class="header" href="#无作用--no-effects-">无作用 { #no-effects }</a></h4>
 <!--
 The type `Empty` has no constructors, and thus no values, like the `Nothing` type in Scala or Kotlin.
 In Scala and Kotlin, `Nothing` can represent computations that never return a result, such as functions that crash the program, throw exceptions, or always fall into infinite loops.
@@ -447,7 +447,7 @@ This can be used together with `Id`, the identity monad, to evaluate expressions
 <!--
 #### Nondeterministic Search
 -->
-<h4 id="非确定性搜索"><a class="header" href="#非确定性搜索">非确定性搜索</a></h4>
+<h4 id="非确定性搜索--nondeterministic-search-"><a class="header" href="#非确定性搜索--nondeterministic-search-">非确定性搜索 { #nondeterministic-search }</a></h4>
 <!--
 Instead of simply failing when encountering division by zero, it would also be sensible to backtrack and try a different input.
 Given the right monad, the very same `evaluateM` can perform a nondeterministic search for a _set_ of answers that do not result in failure.
@@ -690,7 +690,7 @@ Using these operators, the earlier examples can be evaluated:
 <!--
 #### Custom Environments
 -->
-<h4 id="自定义环境"><a class="header" href="#自定义环境">自定义环境</a></h4>
+<h4 id="自定义环境--custom-environments-"><a class="header" href="#自定义环境--custom-environments-">自定义环境 { #custom-environments }</a></h4>
 <!--
 The evaluator can be made user-extensible by allowing strings to be used as operators, and then providing a mapping from strings to a function that implements them.
 For example, users could extend the evaluator with a remainder operator or with one that returns the maximum of its two arguments.
@@ -991,11 +991,11 @@ Kotlin的上下文对象可以解决类似的问题，但根本上是一种自�
 <!--
 ## Exercises
 -->
-<h2 id="练习"><a class="header" href="#练习">练习</a></h2>
+<h2 id="练习--exercises-"><a class="header" href="#练习--exercises-">练习 { #exercises }</a></h2>
 <!--
 ### Checking Contracts
 -->
-<h3 id="检查约定"><a class="header" href="#检查约定">检查约定</a></h3>
+<h3 id="检查约定--checking-contracts-"><a class="header" href="#检查约定--checking-contracts-">检查约定 { #checking-contracts }</a></h3>
 <!--
 Check the monad contract for `State σ` and `Except ε`.
 -->
@@ -1003,7 +1003,7 @@ Check the monad contract for `State σ` and `Except ε`.
 <!--
 ### Readers with Failure
 -->
-<h3 id="允许reader失败"><a class="header" href="#允许reader失败">允许Reader失败</a></h3>
+<h3 id="允许reader失败--readers-with-failure-"><a class="header" href="#允许reader失败--readers-with-failure-">允许Reader失败 { #readers-with-failure }</a></h3>
 <!--
 Adapt the reader monad example so that it can also indicate failure when the custom operator is not defined, rather than just returning zero.
 In other words, given these definitions:
@@ -1031,7 +1031,7 @@ do the following:
 <!--
 ### A Tracing Evaluator
 -->
-<h3 id="带有跟踪信息的求值器"><a class="header" href="#带有跟踪信息的求值器">带有跟踪信息的求值器</a></h3>
+<h3 id="带有跟踪信息的求值器--a-tracing-evaluator-"><a class="header" href="#带有跟踪信息的求值器--a-tracing-evaluator-">带有跟踪信息的求值器 { #a-tracing-evaluator }</a></h3>
 <!--
 The `WithLog` type can be used with the evaluator to add optional tracing of some operations.
 In particular, the type `ToTrace` can serve as a signal to trace a given operator:

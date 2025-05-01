@@ -154,11 +154,11 @@
                         <!--
 # Alternatives
 -->
-<h1 id="选择子"><a class="header" href="#选择子">选择子</a></h1>
+<h1 id="选择子--alternatives-"><a class="header" href="#选择子--alternatives-">选择子 { #alternatives }</a></h1>
 <!--
 ## Recovery from Failure
 -->
-<h2 id="从失败中恢复"><a class="header" href="#从失败中恢复">从失败中恢复</a></h2>
+<h2 id="从失败中恢复--recovery-from-failure-"><a class="header" href="#从失败中恢复--recovery-from-failure-">从失败中恢复 { #recovery-from-failure }</a></h2>
 <!--
 `Validate` can also be used in situations where there is more than one way for input to be acceptable.
 For the input form `RawInput`, an alternative set of business rules that implement conventions from a legacy system might be the following:
@@ -477,7 +477,7 @@ Validate.errors
 <!--
 ## The `Alternative` Class
 -->
-<h2 id="alternative-类"><a class="header" href="#alternative-类"><code>Alternative</code> 类</a></h2>
+<h2 id="alternative-类--the-alternative-class-"><a class="header" href="#alternative-类--the-alternative-class-"><code>Alternative</code> 类 { #the-alternative-class }</a></h2>
 <!--
 Many types support a notion of failure and recovery.
 The `Many` monad from the section on [evaluating arithmetic expressions in a variety of monads](../monads/arithmetic.md#nondeterministic-search) is one such type, as is `Option`.
@@ -601,11 +601,11 @@ def evenDivisors (n : Nat) : Many Nat := do
 <!--
 ## Exercises
 -->
-<h2 id="练习题"><a class="header" href="#练习题">练习题</a></h2>
+<h2 id="练习题--exercises-"><a class="header" href="#练习题--exercises-">练习题 { #exercises }</a></h2>
 <!--
 ### Improve Validation Friendliness
 -->
-<h3 id="提高验证的友好性"><a class="header" href="#提高验证的友好性">提高验证的友好性</a></h3>
+<h3 id="提高验证的友好性--improve-validation-friendliness-"><a class="header" href="#提高验证的友好性--improve-validation-friendliness-">提高验证的友好性 { #improve-validation-friendliness }</a></h3>
 <!--
 The errors returned from `Validate` programs that use `<|>` can be difficult to read, because inclusion in the list of errors simply means that the error can be reached through _some_ code path.
 A more structured error report can be used to guide the user through the process more accurately:

@@ -154,7 +154,7 @@
                         <!--
 # Coercions
 -->
-<h1 id="强制转换"><a class="header" href="#强制转换">强制转换</a></h1>
+<h1 id="强制转换--coercions-"><a class="header" href="#强制转换--coercions-">强制转换 { #coercions }</a></h1>
 <!--
 In mathematics, it is common to use the same symbol to stand for different aspects of some object in different contexts.
 For example, if a ring is referred to in a context where a set is expected, then it is understood that the ring's underlying set is what's intended.
@@ -176,7 +176,7 @@ Unlike Java, C, and Kotlin, the coercions are extensible by defining instances o
 <!--
 ## Positive Numbers
 -->
-<h2 id="正数"><a class="header" href="#正数">正数</a></h2>
+<h2 id="正数--positive-numbers-"><a class="header" href="#正数--positive-numbers-">正数 { #positive-numbers }</a></h2>
 <!--
 For example, every positive number corresponds to a natural number.
 The function `Pos.toNat` that was defined earlier converts a `Pos` to the corresponding `Nat`:
@@ -237,7 +237,7 @@ Using `#check` shows the result of the instance search that was used behind the 
 <!--
 ## Chaining Coercions
 -->
-<h2 id="链式强制转换"><a class="header" href="#链式强制转换">链式强制转换</a></h2>
+<h2 id="链式强制转换--chaining-coercions-"><a class="header" href="#链式强制转换--chaining-coercions-">链式强制转换 { #chaining-coercions }</a></h2>
 <!--
 When searching for coercions, Lean will attempt to assemble a coercion out of a chain of smaller coercions.
 For example, there is already a coercion from `Nat` to `Int`.
@@ -349,7 +349,7 @@ It can also make the programmer's intentions more clear.
 <!--
 ## Non-Empty Lists and Dependent Coercions
 -->
-<h2 id="非空列表与依值强制转换"><a class="header" href="#非空列表与依值强制转换">非空列表与依值强制转换</a></h2>
+<h2 id="非空列表与依值强制转换--non-empty-lists-and-dependent-coercions-"><a class="header" href="#非空列表与依值强制转换--non-empty-lists-and-dependent-coercions-">非空列表与依值强制转换 { #non-empty-lists-and-dependent-coercions }</a></h2>
 <!--
 An instance of `Coe α β` makes sense when the type `β` has a value that can represent each value from the type `α`.
 Coercing from `Nat` to `Int` makes sense, because the type `Int` contains all the natural numbers.
@@ -391,7 +391,7 @@ For example, any `List` that is not actually empty can be coerced to a `NonEmpty
 <!--
 ## Coercing to Types
 -->
-<h2 id="强制转换为类型本节中-sort-的翻译待讨论"><a class="header" href="#强制转换为类型本节中-sort-的翻译待讨论">强制转换为类型（<em>本节中 sort 的翻译待讨论</em>）</a></h2>
+<h2 id="强制转换为类型本节中-sort-的翻译待讨论--coercing-to-types-"><a class="header" href="#强制转换为类型本节中-sort-的翻译待讨论--coercing-to-types-">强制转换为类型（<em>本节中 sort 的翻译待讨论</em>） { #coercing-to-types }</a></h2>
 <!--
 In mathematics, it is common to have a concept that consists of a set equipped with additional structure.
 For example, a monoid is some set _S_, an element _s_ of _S_, and an associative binary operator on _S_, such that _s_ is neutral on the left and right of the operator.
@@ -490,7 +490,7 @@ In this case, the sort in question is `Prop` rather than `Type`.
 <!--
 ## Coercing to Functions
 -->
-<h2 id="强制转换为函数-本节翻译需要润色"><a class="header" href="#强制转换为函数-本节翻译需要润色">强制转换为函数 （<em>本节翻译需要润色</em>）</a></h2>
+<h2 id="强制转换为函数-本节翻译需要润色--coercing-to-functions-"><a class="header" href="#强制转换为函数-本节翻译需要润色--coercing-to-functions-">强制转换为函数 （<em>本节翻译需要润色</em>） { #coercing-to-functions }</a></h2>
 <!--
 Many datatypes that occur regularly in programming consist of a function along with some extra information about it.
 For example, a function might be accompanied by a name to show in logs or by some configuration data.
@@ -622,7 +622,7 @@ The serializer can be passed directly to `buildResponse`:
 <!--
 ### Aside: JSON as a String
 -->
-<h3 id="附注将-json-表示为字符串"><a class="header" href="#附注将-json-表示为字符串">附注：将 JSON 表示为字符串</a></h3>
+<h3 id="附注将-json-表示为字符串--aside-json-as-a-string-"><a class="header" href="#附注将-json-表示为字符串--aside-json-as-a-string-">附注：将 JSON 表示为字符串 { #aside-json-as-a-string }</a></h3>
 <!--
 It can be a bit difficult to understand JSON when encoded as Lean objects.
 To help make sure that the serialized response was what was expected, it can be convenient to write a simple converter from `JSON` to `String`.
@@ -709,7 +709,7 @@ With this definition, the output of serialization is easier to read:
 <!--
 ## Messages You May Meet
 -->
-<h2 id="可能会遇到的问题"><a class="header" href="#可能会遇到的问题">可能会遇到的问题</a></h2>
+<h2 id="可能会遇到的问题--messages-you-may-meet-"><a class="header" href="#可能会遇到的问题--messages-you-may-meet-">可能会遇到的问题 { #messages-you-may-meet }</a></h2>
 <!--
 Natural number literals are overloaded with the `OfNat` type class.
 Because coercions fire in cases where types don't match, rather than in cases of missing instances, a missing `OfNat` instance for a type does not cause a coercion from `Nat` to be applied:
@@ -725,7 +725,7 @@ Because coercions fire in cases where types don't match, rather than in cases of
 <!--
 ## Design Considerations
 -->
-<h2 id="设计原则"><a class="header" href="#设计原则">设计原则</a></h2>
+<h2 id="设计原则--design-considerations-"><a class="header" href="#设计原则--design-considerations-">设计原则 { #design-considerations }</a></h2>
 <!--
 Coercions are a powerful tool that should be used responsibly.
 On the one hand, they can allow an API to naturally follow the everyday rules of the domain being modeled.

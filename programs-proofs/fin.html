@@ -154,7 +154,7 @@
                         <!--
 # Safe Array Indices
 -->
-<h1 id="安全数组索引"><a class="header" href="#安全数组索引">安全数组索引</a></h1>
+<h1 id="安全数组索引--safe-array-indices-"><a class="header" href="#安全数组索引--safe-array-indices-">安全数组索引 { #safe-array-indices }</a></h1>
 <!--
 The `GetElem` instance for `Array` and `Nat` requires a proof that the provided `Nat` is smaller than the array.
 In practice, these proofs often end up being passed to functions along with the indices.
@@ -217,7 +217,7 @@ def Array.find (arr : Array α) (p : α → Bool) : Option (Fin arr.size × α) 
 <!--
 ## Exercise
 -->
-<h2 id="练习"><a class="header" href="#练习">练习</a></h2>
+<h2 id="练习--exercise-"><a class="header" href="#练习--exercise-">练习 { #exercise }</a></h2>
 <!--
 Write a function `Fin.next? : Fin n → Option (Fin n)` that returns the next largest `Fin` when it would be in bounds, or `none` if not.
 Check that

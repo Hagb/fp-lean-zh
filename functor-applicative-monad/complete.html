@@ -154,7 +154,7 @@
                         <!--
 # The Complete Definitions
 -->
-<h1 id="完整定义"><a class="header" href="#完整定义">完整定义</a></h1>
+<h1 id="完整定义--the-complete-definitions-"><a class="header" href="#完整定义--the-complete-definitions-">完整定义 { #the-complete-definitions }</a></h1>
 <!--
 Now that all the relevant language features have been presented, this section describes the complete, honest definitions of `Functor`, `Applicative`, and `Monad` as they occur in the Lean standard library.
 For the sake of understanding, no details are omitted.
@@ -164,7 +164,7 @@ For the sake of understanding, no details are omitted.
 <!--
 ## Functor
 -->
-<h2 id="函子"><a class="header" href="#函子">函子</a></h2>
+<h2 id="函子--functor-"><a class="header" href="#函子--functor-">函子 { #functor }</a></h2>
 <!--
 The complete definition of the `Functor` class makes use of universe polymorphism and a default method implementation:
 ```lean
@@ -251,7 +251,7 @@ All the type classes in this section share this property.
 <!--
 ## Applicative
 -->
-<h2 id="应用类型类"><a class="header" href="#应用类型类">应用类型类</a></h2>
+<h2 id="应用类型类--applicative-"><a class="header" href="#应用类型类--applicative-">应用类型类 { #applicative }</a></h2>
 <!--
 The `Applicative` type class is actually built from a number of smaller classes that each contain some of the relevant methods.
 The first are `Pure` and `Seq`, which contain `pure` and `seq` respectively:
@@ -403,7 +403,7 @@ fun a b =&gt; Seq.seq ((fun _ x =&gt; x) &lt;$&gt; a) b
 <!--
 ## Monad
 -->
-<h2 id="单子"><a class="header" href="#单子">单子</a></h2>
+<h2 id="单子--monad-"><a class="header" href="#单子--monad-">单子 { #monad }</a></h2>
 <!--
 Just as the constituent operations of `Applicative` are split into their own type classes, `Bind` has its own class as well:
 ```lean
@@ -439,7 +439,7 @@ From the perspective of API boundaries, any type with a `Monad` instance gets in
 <!--
 ## Exercises
 -->
-<h2 id="练习"><a class="header" href="#练习">练习</a></h2>
+<h2 id="练习--exercises-"><a class="header" href="#练习--exercises-">练习 { #exercises }</a></h2>
 <!--
  1. Understand the default implementations of `map`, `seq`, `seqLeft`, and `seqRight` in `Monad` by working through examples such as `Option` and `Except`. In other words, substitute their definitions for `bind` and `pure` into the default definitions, and simplify them to recover the versions `map`, `seq`, `seqLeft`, and `seqRight` that would be written by hand.
  2. On paper or in a text file, prove to yourself that the default implementations of `map` and `seq` satisfy the contracts for `Functor` and `Applicative`. In this argument, you're allowed to use the rules from the `Monad` contract as well as ordinary expression evaluation.

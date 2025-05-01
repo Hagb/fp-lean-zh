@@ -154,7 +154,7 @@
                         <!--
 # A Monad Construction Kit
 -->
-<h1 id="单子构建工具包"><a class="header" href="#单子构建工具包">单子构建工具包</a></h1>
+<h1 id="单子构建工具包--a-monad-construction-kit-"><a class="header" href="#单子构建工具包--a-monad-construction-kit-">单子构建工具包 { #a-monad-construction-kit }</a></h1>
 <!--
 `ReaderT` is far from the only useful monad transformer.
 This section describes a number of additional transformers.
@@ -192,7 +192,7 @@ The type classes are a way for programs to express their requirements, and monad
 <!--
 ## Failure with `OptionT`
 -->
-<h2 id="使用-optiont-失败"><a class="header" href="#使用-optiont-失败">使用 <code>OptionT</code> 失败</a></h2>
+<h2 id="使用-optiont-失败--failure-with-optiont-"><a class="header" href="#使用-optiont-失败--failure-with-optiont-">使用 <code>OptionT</code> 失败 { #failure-with-optiont }</a></h2>
 <!--
 Failure, represented by the `Option` monad, and exceptions, represented by the `Except` monad, both have corresponding transformers.
 In the case of `Option`, failure can be added to a monad by having it contain values of type `Option α` where it would otherwise contain values of type `α`.
@@ -254,7 +254,7 @@ The main function, `interact`, invokes `getUserInfo` in a purely `IO` context, w
 <!--
 ### The Monad Instance
 -->
-<h3 id="单子实例"><a class="header" href="#单子实例">单子实例</a></h3>
+<h3 id="单子实例--the-monad-instance-"><a class="header" href="#单子实例--the-monad-instance-">单子实例 { #the-monad-instance }</a></h3>
 <!--
 Writing the monad instance reveals a difficulty.
 Based on the types, `pure` should use `pure` from the underlying monad `m` together with `some`.
@@ -431,7 +431,7 @@ It can be checked in the same way, by expanding the definitions of `bind` and `p
 <!--
 ### An `Alternative` Instance
 -->
-<h3 id="一个-alternative-实例"><a class="header" href="#一个-alternative-实例">一个 <code>Alternative</code> 实例</a></h3>
+<h3 id="一个-alternative-实例--an-alternative-instance-"><a class="header" href="#一个-alternative-实例--an-alternative-instance-">一个 <code>Alternative</code> 实例 { #an-alternative-instance }</a></h3>
 <!--
 One convenient way to use `OptionT` is through the `Alternative` type class.
 Successful return is already indicated by `pure`, and the `failure` and `orElse` methods of `Alternative` provide a way to write a program that returns the first successful result from a number of subprograms:
@@ -448,7 +448,7 @@ Successful return is already indicated by `pure`, and the `failure` and `orElse`
 <!--
 ### Lifting
 -->
-<h3 id="提升"><a class="header" href="#提升">提升</a></h3>
+<h3 id="提升--lifting-"><a class="header" href="#提升--lifting-">提升 { #lifting }</a></h3>
 <!--
 Lifting an action from `m` to `OptionT m` only requires wrapping `some` around the result of the computation:
 -->
@@ -460,7 +460,7 @@ Lifting an action from `m` to `OptionT m` only requires wrapping `some` around t
 <!--
 ## Exceptions
 -->
-<h2 id="异常"><a class="header" href="#异常">异常</a></h2>
+<h2 id="异常--exceptions-"><a class="header" href="#异常--exceptions-">异常 { #exceptions }</a></h2>
 <!--
 The monad transformer version of `Except` is very similar to the monad transformer version of `Option`.
 Adding exceptions of type `ε` to some monadic action of type `m α` can be accomplished by adding exceptions to `α`, yielding type `m (Except ε α)`:
@@ -550,7 +550,7 @@ This can be accomplished using the fact that `Functor` is a superclass of `Monad
 <!--
 ### Type Classes for Exceptions
 -->
-<h3 id="异常的类型类"><a class="header" href="#异常的类型类">异常的类型类</a></h3>
+<h3 id="异常的类型类--type-classes-for-exceptions-"><a class="header" href="#异常的类型类--type-classes-for-exceptions-">异常的类型类 { #type-classes-for-exceptions }</a></h3>
 <!--
 Exception handling fundamentally consists of two operations: the ability to throw exceptions, and the ability to recover from them.
 Thus far, this has been accomplished using the constructors of `Except` and pattern matching, respectively.
@@ -647,7 +647,7 @@ For example, failure due to `Option` can be seen as throwing an exception that c
 <!--
 ## State
 -->
-<h2 id="状态"><a class="header" href="#状态">状态</a></h2>
+<h2 id="状态--state-"><a class="header" href="#状态--state-">状态 { #state }</a></h2>
 <!--
 A simulation of mutable state is added to a monad by having monadic actions accept a starting state as an argument and return a final state together with their result.
 The bind operator for a state monad provides the final state of one action as an argument to the next action, threading the state through the program.
@@ -778,7 +778,7 @@ While it would be possible to provide a default implementation of `modifyGet` in
 <!--
 ## `Of` Classes and `The` Functions
 -->
-<h2 id="of-类和-the-函数"><a class="header" href="#of-类和-the-函数"><code>Of</code> 类和 <code>The</code> 函数</a></h2>
+<h2 id="of-类和-the-函数--of-classes-and-the-functions-"><a class="header" href="#of-类和-the-函数--of-classes-and-the-functions-"><code>Of</code> 类和 <code>The</code> 函数 { #of-classes-and-the-functions }</a></h2>
 <!--
 Thus far, each monad type class that takes extra information, like the type of exceptions for `MonadExcept` or the type of the state for `MonadState`, has this type of extra information as an output parameter.
 For simple programs, this is generally convenient, because a monad that combines one use each of `StateT`, `ReaderT`, and `ExceptT` has only a single state type, environment type, and exception type.
@@ -826,7 +826,7 @@ It's generally a good idea to implement the `Of` version, and then start writing
 <!--
 ## Transformers and `Id`
 -->
-<h2 id="转换器和-id"><a class="header" href="#转换器和-id">转换器和 <code>Id</code></a></h2>
+<h2 id="转换器和-id--transformers-and-id-"><a class="header" href="#转换器和-id--transformers-and-id-">转换器和 <code>Id</code> { #transformers-and-id }</a></h2>
 <!--
 The identity monad `Id` is the monad that has no effects whatsoever, to be used in contexts that expect a monad for some reason but where none is actually necessary.
 Another use of `Id` is to serve as the bottom of a stack of monad transformers.
@@ -838,11 +838,11 @@ For instance, `StateT σ Id` works just like `State σ`.
 <!--
 ## Exercises
 -->
-<h2 id="练习"><a class="header" href="#练习">练习</a></h2>
+<h2 id="练习--exercises-"><a class="header" href="#练习--exercises-">练习 { #exercises }</a></h2>
 <!--
 ### Monad Contract
 -->
-<h3 id="单子约定"><a class="header" href="#单子约定">单子约定</a></h3>
+<h3 id="单子约定--monad-contract-"><a class="header" href="#单子约定--monad-contract-">单子约定 { #monad-contract }</a></h3>
 <!--
 Using pencil and paper, check that the rules of the monad transformer contract are satisfied for each monad transformer in this section.
 -->
@@ -850,7 +850,7 @@ Using pencil and paper, check that the rules of the monad transformer contract a
 <!--
 ### Logging Transformer
 -->
-<h3 id="日志转换器"><a class="header" href="#日志转换器">日志转换器</a></h3>
+<h3 id="日志转换器--logging-transformer-"><a class="header" href="#日志转换器--logging-transformer-">日志转换器 { #logging-transformer }</a></h3>
 <!--
 Define a monad transformer version of `WithLog`.
 Also define the corresponding type class `MonadWithLog`, and write a program that combines logging and exceptions.
@@ -860,7 +860,7 @@ Also define the corresponding type class `MonadWithLog`, and write a program tha
 <!--
 ### Counting Files
 -->
-<h3 id="文件计数"><a class="header" href="#文件计数">文件计数</a></h3>
+<h3 id="文件计数--counting-files-"><a class="header" href="#文件计数--counting-files-">文件计数 { #counting-files }</a></h3>
 <!--
 Modify `doug`'s monad with `StateT` such that it counts the number of directories and files seen.
 At the end of execution, it should display a report like:

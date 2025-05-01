@@ -154,7 +154,7 @@
                         <!--
 # Interlude: Propositions, Proofs, and Indexing
 -->
-<h1 id="插曲命题证明与索引"><a class="header" href="#插曲命题证明与索引">插曲：命题、证明与索引</a></h1>
+<h1 id="插曲命题证明与索引--interlude-propositions-proofs-and-indexing-"><a class="header" href="#插曲命题证明与索引--interlude-propositions-proofs-and-indexing-">插曲：命题、证明与索引 { #interlude-propositions-proofs-and-indexing }</a></h1>
 <!--
 Like many languages, Lean uses square brackets for indexing into arrays and lists.
 For instance, if `woodlandCritters` is defined as follows:
@@ -199,7 +199,7 @@ Understanding how this works requires an understanding of three key ideas: propo
 <!--
 ## Propositions and Proofs
 -->
-<h2 id="命题与证明"><a class="header" href="#命题与证明">命题与证明</a></h2>
+<h2 id="命题与证明--propositions-and-proofs-"><a class="header" href="#命题与证明--propositions-and-proofs-">命题与证明 { #propositions-and-proofs }</a></h2>
 <!--
 A _proposition_ is a statement that can be true or false.
 All of the following are propositions:
@@ -324,7 +324,7 @@ theorem onePlusOneIsTwo : OnePlusOneIsTwo := rfl
 <!--
 ## Tactics
 -->
-<h2 id="策略"><a class="header" href="#策略">策略</a></h2>
+<h2 id="策略--tactics-"><a class="header" href="#策略--tactics-">策略 { #tactics }</a></h2>
 <!--
 Proofs are normally written using _tactics_, rather than by providing evidence directly.
 Tactics are small programs that construct evidence for a proposition.
@@ -379,7 +379,7 @@ This tactic is `simp`, configured to take certain arithmetic identities into acc
 <!--
 ## Connectives
 -->
-<h2 id="连词"><a class="header" href="#连词">连词</a></h2>
+<h2 id="连词--connectives-"><a class="header" href="#连词--connectives-">连词 { #connectives }</a></h2>
 <!--
 The basic building blocks of logic, such as "and", "or", "true", "false", and "not", are called _logical connectives_.
 Each connective defines what counts as evidence of its truth.
@@ -469,7 +469,7 @@ theorem falseImpliesTrue : False → True := by simp
 <!--
 ## Evidence as Arguments
 -->
-<h2 id="证据作为参数"><a class="header" href="#证据作为参数">证据作为参数</a></h2>
+<h2 id="证据作为参数--evidence-as-arguments-"><a class="header" href="#证据作为参数--evidence-as-arguments-">证据作为参数 { #evidence-as-arguments }</a></h2>
 <!--
 While `simp` does a great job proving propositions that involve equalities and inequalities of specific numbers, it is not very good at proving statements that involve variables.
 For instance, `simp` can prove that `4 < 15`, but it can't easily tell that because `x < 4`, it's also true that `x < 15`.
@@ -520,7 +520,7 @@ In these cases, `by simp` can construct the evidence automatically:
 <!--
 ## Indexing Without Evidence
 -->
-<h2 id="无证据索引"><a class="header" href="#无证据索引">无证据索引</a></h2>
+<h2 id="无证据索引--indexing-without-evidence-"><a class="header" href="#无证据索引--indexing-without-evidence-">无证据索引 { #indexing-without-evidence }</a></h2>
 <!--
 In cases where it's not practical to prove that an indexing operation is in bounds, there are other alternatives.
 Adding a question mark results in an `Option`, where the result is `some` if the index is in bounds, and `none` otherwise.
@@ -555,7 +555,7 @@ Because code that is run with `#eval` runs in the context of the Lean compiler, 
 <!--
 ## Messages You May Meet
 -->
-<h2 id="你可能会遇到的信息"><a class="header" href="#你可能会遇到的信息">你可能会遇到的信息</a></h2>
+<h2 id="你可能会遇到的信息--messages-you-may-meet-"><a class="header" href="#你可能会遇到的信息--messages-you-may-meet-">你可能会遇到的信息 { #messages-you-may-meet }</a></h2>
 <!--
 In addition to the error that occurs when Lean is unable to find compile-time evidence that an indexing operation is safe, polymorphic functions that use unsafe indexing may produce the following message:
 -->
@@ -604,7 +604,7 @@ This error message results from having Lean attempt to treat `woodlandCritters` 
 <!--
 ## Exercises
 -->
-<h2 id="练习"><a class="header" href="#练习">练习</a></h2>
+<h2 id="练习--exercises-"><a class="header" href="#练习--exercises-">练习 { #exercises }</a></h2>
 <!--
 * Prove the following theorems using `rfl`: `2 + 3 = 5`, `15 - 8 = 7`, `"Hello, ".append "world" = "Hello, world"`. What happens if `rfl` is used to prove `5 < 18`? Why?
 * Prove the following theorems using `by simp`: `2 + 3 = 5`, `15 - 8 = 7`, `"Hello, ".append "world" = "Hello, world"`, `5 < 18`.

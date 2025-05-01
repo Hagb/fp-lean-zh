@@ -154,7 +154,7 @@
                         <!--
 # The Applicative Contract
 -->
-<h1 id="应用函子的契约"><a class="header" href="#应用函子的契约">应用函子的契约</a></h1>
+<h1 id="应用函子的契约--the-applicative-contract-"><a class="header" href="#应用函子的契约--the-applicative-contract-">应用函子的契约 { #the-applicative-contract }</a></h1>
 <!--
 Just like `Functor`, `Monad`, and types that implement `BEq` and `Hashable`, `Applicative` has a set of rules that all instances should adhere to.
 -->
@@ -252,7 +252,7 @@ In the fourth case, assume that `u` is `some f`, because if it's `none`, both si
 <!--
 ## All Applicatives are Functors
 -->
-<h2 id="所有的应用函子都是函子"><a class="header" href="#所有的应用函子都是函子">所有的应用函子都是函子</a></h2>
+<h2 id="所有的应用函子都是函子--all-applicatives-are-functors-"><a class="header" href="#所有的应用函子都是函子--all-applicatives-are-functors-">所有的应用函子都是函子 { #all-applicatives-are-functors }</a></h2>
 <!--
 The two operators for `Applicative` are enough to define `map`:
 ```lean
@@ -296,7 +296,7 @@ class Applicative (f : Type → Type) extends Functor f where
 <!--
 ## All Monads are Applicative Functors
 -->
-<h2 id="所有单子都是应用函子"><a class="header" href="#所有单子都是应用函子">所有单子都是应用函子</a></h2>
+<h2 id="所有单子都是应用函子--all-monads-are-applicative-functors-"><a class="header" href="#所有单子都是应用函子--all-monads-are-applicative-functors-">所有单子都是应用函子 { #all-monads-are-applicative-functors }</a></h2>
 <!--
 An instance of `Monad` already requires an implementation of `pure`.
 Together with `bind`, this is enough to define `seq`:
@@ -859,7 +859,7 @@ class Monad (m : Type → Type) extends Applicative m where
 <!--
 ## Additional Stipulations
 -->
-<h2 id="附加规定"><a class="header" href="#附加规定">附加规定</a></h2>
+<h2 id="附加规定--additional-stipulations-"><a class="header" href="#附加规定--additional-stipulations-">附加规定 { #additional-stipulations }</a></h2>
 <!--
 In addition to adhering to the individual contracts associated with each type class, combined implementations `Functor`, `Applicative` and `Monad` should work equivalently to these default implementations.
 In other words, a type that provides both `Applicative` and `Monad` instances should not have an implementation of `seq` that works differently from the version that the `Monad` instance generates as a default implementation.

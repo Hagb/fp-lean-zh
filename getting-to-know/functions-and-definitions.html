@@ -154,7 +154,7 @@
                         <!--
 # Functions and Definitions
 -->
-<h1 id="函数与定义"><a class="header" href="#函数与定义">函数与定义</a></h1>
+<h1 id="函数与定义--functions-and-definitions-"><a class="header" href="#函数与定义--functions-and-definitions-">函数与定义 { #functions-and-definitions }</a></h1>
 <!--
 In Lean, definitions are introduced using the `def` keyword. For instance, to define the name `hello` to refer to the string `"Hello"`, write:
 -->
@@ -210,7 +210,7 @@ Nonetheless, definitions such as `hello` introduce names that refer _directly_ t
 <!--
 ## Defining Functions
 -->
-<h2 id="定义函数"><a class="header" href="#定义函数">定义函数</a></h2>
+<h2 id="定义函数--defining-functions-"><a class="header" href="#定义函数--defining-functions-">定义函数 { #defining-functions }</a></h2>
 <!--
 There are a variety of ways to define functions in Lean. The simplest is to place the function's arguments before the definition's type, separated by spaces. For instance, a function that adds one to its argument can be written:
 -->
@@ -293,7 +293,7 @@ Function arrows associate to the right, which means that `Nat → Nat → Nat` s
 <!--
 ### Exercises
 -->
-<h3 id="练习"><a class="header" href="#练习">练习</a></h3>
+<h3 id="练习--exercises-"><a class="header" href="#练习--exercises-">练习 { #exercises }</a></h3>
 <!--
  * Define the function `joinStringsWith` with type `String -> String -> String -> String` that creates a new string by placing its first argument between its second and third arguments. `joinStringsWith ", " "one" "and another"` should evaluate to `"one, and another"`.
  * What is the type of `joinStringsWith ": "`? Check your answer with Lean.
@@ -311,7 +311,7 @@ Function arrows associate to the right, which means that `Nat → Nat → Nat` s
 <!--
 ## Defining Types
 -->
-<h2 id="定义类型"><a class="header" href="#定义类型">定义类型</a></h2>
+<h2 id="定义类型--defining-types-"><a class="header" href="#定义类型--defining-types-">定义类型 { #defining-types }</a></h2>
 <!--
 Most typed programming languages have some means of defining aliases for types, such as C's `typedef`.
 In Lean, however, types are a first-class part of the language - they are expressions like any other.
@@ -343,7 +343,7 @@ Because ``Str`` has been defined to mean ``String``, the definition of ``aStr`` 
 <!--
 ### Messages You May Meet
 -->
-<h3 id="你可能会遇到的信息"><a class="header" href="#你可能会遇到的信息">你可能会遇到的信息</a></h3>
+<h3 id="你可能会遇到的信息--messages-you-may-meet-"><a class="header" href="#你可能会遇到的信息--messages-you-may-meet-">你可能会遇到的信息 { #messages-you-may-meet }</a></h3>
 <!--
 Experimenting with using definitions for types is made more complicated by the way that Lean supports overloaded integer literals.
 If ``Nat`` is too short, a longer name ``NaturalNumber`` can be defined:

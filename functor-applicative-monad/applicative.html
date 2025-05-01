@@ -154,7 +154,7 @@
                         <!--
 # Applicative Functors
 -->
-<h1 id="应用函子"><a class="header" href="#应用函子">应用函子</a></h1>
+<h1 id="应用函子--applicative-functors-"><a class="header" href="#应用函子--applicative-functors-">应用函子 { #applicative-functors }</a></h1>
 <!--
 An _applicative functor_ is a functor that has two additional operations available: `pure` and `seq`.
 `pure` is the same operator used in `Monad`, because `Monad` in fact inherits from `Applicative`.
@@ -368,7 +368,7 @@ x : β
 <!--
 ## A Non-Monadic Applicative
 -->
-<h2 id="一个非单子的应用函子"><a class="header" href="#一个非单子的应用函子">一个非单子的应用函子</a></h2>
+<h2 id="一个非单子的应用函子--a-non-monadic-applicative-"><a class="header" href="#一个非单子的应用函子--a-non-monadic-applicative-">一个非单子的应用函子 { #a-non-monadic-applicative }</a></h2>
 <!--
 When validating user input to a form, it's generally considered to be best to provide many errors at once, rather than one error at a time.
 This allows the user to have an overview of what is needed to please the computer, rather than feeling badgered as they correct the errors field by field.
@@ -404,7 +404,7 @@ Unlike `Except`, it allows multiple errors to be accumulated, without a risk of 
 <!--
 ### User Input
 -->
-<h3 id="用户输入"><a class="header" href="#用户输入">用户输入</a></h3>
+<h3 id="用户输入--user-input-"><a class="header" href="#用户输入--user-input-">用户输入 { #user-input }</a></h3>
 <!--
 As an example of user input, take the following structure:
 ```lean
@@ -437,7 +437,7 @@ With this tool in hand, a validation framework can be written that uses an appli
 <!--
 ### Subtypes
 -->
-<h3 id="子类型"><a class="header" href="#子类型">子类型</a></h3>
+<h3 id="子类型--subtypes-"><a class="header" href="#子类型--subtypes-">子类型 { #subtypes }</a></h3>
 <!--
 Representing these conditions is easiest with one additional Lean type, called `Subtype`:
 ```lean
@@ -540,7 +540,7 @@ In the `then` branch, `h` is bound to evidence that `n > 0`, and this evidence c
 <!--
 ### Validated Input
 -->
-<h3 id="经验证输入"><a class="header" href="#经验证输入">经验证输入</a></h3>
+<h3 id="经验证输入--validated-input-"><a class="header" href="#经验证输入--validated-input-">经验证输入 { #validated-input }</a></h3>
 <!--
 The validated user input is a structure that expresses the business logic using multiple techniques:
  * The structure type itself encodes the year in which it was checked for validity, so that `CheckedInput 2019` is not the same type as `CheckedInput 2020`

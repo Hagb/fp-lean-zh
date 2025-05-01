@@ -154,7 +154,7 @@
                         <!--
 # Proving Equivalence
 -->
-<h1 id="证明等价"><a class="header" href="#证明等价">证明等价</a></h1>
+<h1 id="证明等价--proving-equivalence-"><a class="header" href="#证明等价--proving-equivalence-">证明等价 { #proving-equivalence }</a></h1>
 <!--
 Programs that have been rewritten to use tail recursion and an accumulator can look quite different from the original program.
 The original recursive function is often much easier to understand, but it runs the risk of exhausting the stack at run time.
@@ -166,7 +166,7 @@ After testing both versions of the program on examples to rule out simple bugs, 
 <!--
 ## Proving `sum` Equal
 -->
-<h2 id="证明-sum-相等"><a class="header" href="#证明-sum-相等">证明 <code>sum</code> 相等</a></h2>
+<h2 id="证明-sum-相等--proving-sum-equal-"><a class="header" href="#证明-sum-相等--proving-sum-equal-">证明 <code>sum</code> 相等 { #proving-sum-equal }</a></h2>
 <!--
 To prove that both versions of `sum` are equal, begin by writing the theorem statement with a stub proof:
 -->
@@ -366,7 +366,7 @@ In other words, this proof is stuck.
 <!--
 ## A Second Attempt
 -->
-<h2 id="第二次尝试"><a class="header" href="#第二次尝试">第二次尝试</a></h2>
+<h2 id="第二次尝试--a-second-attempt-"><a class="header" href="#第二次尝试--a-second-attempt-">第二次尝试 { #a-second-attempt }</a></h2>
 <!--
 Rather than attempting to muddle through the proof, it's time to take a step back and think.
 Why is it that the tail-recursive version of the function is equal to the non-tail-recursive version?
@@ -736,11 +736,11 @@ This may require rewriting the goal to make the neutral initial accumulator valu
 <!--
 ## Exercise
 -->
-<h2 id="练习"><a class="header" href="#练习">练习</a></h2>
+<h2 id="练习--exercise-"><a class="header" href="#练习--exercise-">练习 { #exercise }</a></h2>
 <!--
 ### Warming Up
 -->
-<h3 id="热身"><a class="header" href="#热身">热身</a></h3>
+<h3 id="热身--warming-up-"><a class="header" href="#热身--warming-up-">热身 { #warming-up }</a></h3>
 <!--
 Write your own proofs for `Nat.zero_add`, `Nat.add_assoc`, and `Nat.add_comm` using the `induction` tactic.
 -->
@@ -748,11 +748,11 @@ Write your own proofs for `Nat.zero_add`, `Nat.add_assoc`, and `Nat.add_comm` us
 <!--
 ### More Accumulator Proofs
 -->
-<h3 id="更多累加器证明"><a class="header" href="#更多累加器证明">更多累加器证明</a></h3>
+<h3 id="更多累加器证明--more-accumulator-proofs-"><a class="header" href="#更多累加器证明--more-accumulator-proofs-">更多累加器证明 { #more-accumulator-proofs }</a></h3>
 <!--
 #### Reversing Lists
 -->
-<h4 id="反转列表"><a class="header" href="#反转列表">反转列表</a></h4>
+<h4 id="反转列表--reversing-lists-"><a class="header" href="#反转列表--reversing-lists-">反转列表 { #reversing-lists }</a></h4>
 <!--
 Adapt the proof for `sum` into a proof for `NonTail.reverse` and `Tail.reverse`.
 The first step is to think about the relationship between the accumulator value being passed to `Tail.reverseHelper` and the non-tail-recursive reverse.
@@ -788,7 +788,7 @@ xs : List α
 <!--
 #### Factorial
 -->
-<h4 id="阶乘"><a class="header" href="#阶乘">阶乘</a></h4>
+<h4 id="阶乘--factorial-"><a class="header" href="#阶乘--factorial-">阶乘 { #factorial }</a></h4>
 <!--
 Prove that `NonTail.factorial` from the exercises in the previous section is equal to your tail-recursive solution by finding the relationship between the accumulator and the result and proving a suitable helper theorem.
 -->
