@@ -1,0 +1,402 @@
+<!DOCTYPE HTML>
+<html lang="zh-CN" class="sidebar-visible no-js light">
+    <head>
+        <!-- Book generated using mdBook -->
+        <meta charset="UTF-8">
+        <title>对单子变换器排序 - Lean 函数式编程</title>
+
+
+        <!-- Custom HTML head -->
+        
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="theme-color" content="#ffffff" />
+
+        <link rel="icon" href="../favicon.svg">
+        <link rel="shortcut icon" href="../favicon.png">
+        <link rel="stylesheet" href="../css/variables.css">
+        <link rel="stylesheet" href="../css/general.css">
+        <link rel="stylesheet" href="../css/chrome.css">
+        <link rel="stylesheet" href="../css/print.css" media="print">
+
+        <!-- Fonts -->
+        <link rel="stylesheet" href="../FontAwesome/css/font-awesome.css">
+        <link rel="stylesheet" href="../fonts/fonts.css">
+
+        <!-- Highlight.js Stylesheets -->
+        <link rel="stylesheet" href="../highlight.css">
+        <link rel="stylesheet" href="../tomorrow-night.css">
+        <link rel="stylesheet" href="../ayu-highlight.css">
+
+        <!-- Custom theme stylesheets -->
+        <link rel="stylesheet" href="../custom.css">
+        <link rel="stylesheet" href="../pygments.css">
+
+        <!-- MathJax -->
+        <script async src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    </head>
+    <body>
+        <!-- Provide site root to javascript -->
+        <script>
+            var path_to_root = "../";
+            var default_theme = window.matchMedia("(prefers-color-scheme: dark)").matches ? "navy" : "light";
+        </script>
+
+        <!-- Work around some values being stored in localStorage wrapped in quotes -->
+        <script>
+            try {
+                var theme = localStorage.getItem('mdbook-theme');
+                var sidebar = localStorage.getItem('mdbook-sidebar');
+
+                if (theme.startsWith('"') && theme.endsWith('"')) {
+                    localStorage.setItem('mdbook-theme', theme.slice(1, theme.length - 1));
+                }
+
+                if (sidebar.startsWith('"') && sidebar.endsWith('"')) {
+                    localStorage.setItem('mdbook-sidebar', sidebar.slice(1, sidebar.length - 1));
+                }
+            } catch (e) { }
+        </script>
+
+        <!-- Set the theme before any content is loaded, prevents flash -->
+        <script>
+            var theme;
+            try { theme = localStorage.getItem('mdbook-theme'); } catch(e) { }
+            if (theme === null || theme === undefined) { theme = default_theme; }
+            var html = document.querySelector('html');
+            html.classList.remove('no-js')
+            html.classList.remove('light')
+            html.classList.add(theme);
+            html.classList.add('js');
+        </script>
+
+        <!-- Hide / unhide sidebar before it is displayed -->
+        <script>
+            var html = document.querySelector('html');
+            var sidebar = 'hidden';
+            if (document.body.clientWidth >= 1080) {
+                try { sidebar = localStorage.getItem('mdbook-sidebar'); } catch(e) { }
+                sidebar = sidebar || 'visible';
+            }
+            html.classList.remove('sidebar-visible');
+            html.classList.add("sidebar-" + sidebar);
+        </script>
+
+        <nav id="sidebar" class="sidebar" aria-label="Table of contents">
+            <div class="sidebar-scrollbox">
+                <ol class="chapter"><li class="chapter-item expanded affix "><a href="../title.html">Lean 函数式编程</a></li><li class="chapter-item expanded affix "><a href="../introduction.html">引言</a></li><li class="chapter-item expanded affix "><a href="../acknowledgments.html">鸣谢</a></li><li class="chapter-item expanded "><a href="../getting-to-know.html"><strong aria-hidden="true">1.</strong> 了解 Lean</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../getting-to-know/evaluating.html"><strong aria-hidden="true">1.1.</strong> 求值表达式</a></li><li class="chapter-item expanded "><a href="../getting-to-know/types.html"><strong aria-hidden="true">1.2.</strong> 类型</a></li><li class="chapter-item expanded "><a href="../getting-to-know/functions-and-definitions.html"><strong aria-hidden="true">1.3.</strong> 函数与定义</a></li><li class="chapter-item expanded "><a href="../getting-to-know/structures.html"><strong aria-hidden="true">1.4.</strong> 结构体</a></li><li class="chapter-item expanded "><a href="../getting-to-know/datatypes-and-patterns.html"><strong aria-hidden="true">1.5.</strong> 数据类型、模式匹配与递归</a></li><li class="chapter-item expanded "><a href="../getting-to-know/polymorphism.html"><strong aria-hidden="true">1.6.</strong> 多态</a></li><li class="chapter-item expanded "><a href="../getting-to-know/conveniences.html"><strong aria-hidden="true">1.7.</strong> 其他便利功能</a></li><li class="chapter-item expanded "><a href="../getting-to-know/summary.html"><strong aria-hidden="true">1.8.</strong> 总结</a></li></ol></li><li class="chapter-item expanded "><a href="../hello-world.html"><strong aria-hidden="true">2.</strong> Hello, World!</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../hello-world/running-a-program.html"><strong aria-hidden="true">2.1.</strong> 运行程序</a></li><li class="chapter-item expanded "><a href="../hello-world/step-by-step.html"><strong aria-hidden="true">2.2.</strong> 逐步执行</a></li><li class="chapter-item expanded "><a href="../hello-world/starting-a-project.html"><strong aria-hidden="true">2.3.</strong> 创建项目</a></li><li class="chapter-item expanded "><a href="../hello-world/cat.html"><strong aria-hidden="true">2.4.</strong> 现实示例：cat</a></li><li class="chapter-item expanded "><a href="../hello-world/conveniences.html"><strong aria-hidden="true">2.5.</strong> 其他便利功能</a></li><li class="chapter-item expanded "><a href="../hello-world/summary.html"><strong aria-hidden="true">2.6.</strong> 总结</a></li></ol></li><li class="chapter-item expanded "><a href="../props-proofs-indexing.html"><strong aria-hidden="true">3.</strong> 插曲：命题、证明与索引</a></li><li class="chapter-item expanded "><a href="../type-classes.html"><strong aria-hidden="true">4.</strong> 重载与类型类</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../type-classes/pos.html"><strong aria-hidden="true">4.1.</strong> 正数</a></li><li class="chapter-item expanded "><a href="../type-classes/polymorphism.html"><strong aria-hidden="true">4.2.</strong> 类型类与多态</a></li><li class="chapter-item expanded "><a href="../type-classes/out-params.html"><strong aria-hidden="true">4.3.</strong> 控制实例搜索</a></li><li class="chapter-item expanded "><a href="../type-classes/indexing.html"><strong aria-hidden="true">4.4.</strong> 数组与索引</a></li><li class="chapter-item expanded "><a href="../type-classes/standard-classes.html"><strong aria-hidden="true">4.5.</strong> 标准类</a></li><li class="chapter-item expanded "><a href="../type-classes/coercion.html"><strong aria-hidden="true">4.6.</strong> 强制转换</a></li><li class="chapter-item expanded "><a href="../type-classes/conveniences.html"><strong aria-hidden="true">4.7.</strong> 其他便利功能</a></li><li class="chapter-item expanded "><a href="../type-classes/summary.html"><strong aria-hidden="true">4.8.</strong> 总结</a></li></ol></li><li class="chapter-item expanded "><a href="../monads.html"><strong aria-hidden="true">5.</strong> 单子</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../monads/class.html"><strong aria-hidden="true">5.1.</strong> 单子类型类</a></li><li class="chapter-item expanded "><a href="../monads/arithmetic.html"><strong aria-hidden="true">5.2.</strong> 示例：用单子表达算术运算</a></li><li class="chapter-item expanded "><a href="../monads/do.html"><strong aria-hidden="true">5.3.</strong> 单子的 do-记法</a></li><li class="chapter-item expanded "><a href="../monads/io.html"><strong aria-hidden="true">5.4.</strong> IO 单子</a></li><li class="chapter-item expanded "><a href="../monads/conveniences.html"><strong aria-hidden="true">5.5.</strong> 其他便利功能</a></li><li class="chapter-item expanded "><a href="../monads/summary.html"><strong aria-hidden="true">5.6.</strong> 总结</a></li></ol></li><li class="chapter-item expanded "><a href="../functor-applicative-monad.html"><strong aria-hidden="true">6.</strong> 函子、应用函子与单子</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../functor-applicative-monad/inheritance.html"><strong aria-hidden="true">6.1.</strong> 结构体和继承</a></li><li class="chapter-item expanded "><a href="../functor-applicative-monad/applicative.html"><strong aria-hidden="true">6.2.</strong> 应用函子</a></li><li class="chapter-item expanded "><a href="../functor-applicative-monad/applicative-contract.html"><strong aria-hidden="true">6.3.</strong> 应用函子的契约</a></li><li class="chapter-item expanded "><a href="../functor-applicative-monad/alternative.html"><strong aria-hidden="true">6.4.</strong> 选择子</a></li><li class="chapter-item expanded "><a href="../functor-applicative-monad/universes.html"><strong aria-hidden="true">6.5.</strong> 宇宙</a></li><li class="chapter-item expanded "><a href="../functor-applicative-monad/complete.html"><strong aria-hidden="true">6.6.</strong> 完整定义</a></li><li class="chapter-item expanded "><a href="../functor-applicative-monad/summary.html"><strong aria-hidden="true">6.7.</strong> 总结</a></li></ol></li><li class="chapter-item expanded "><a href="../monad-transformers.html"><strong aria-hidden="true">7.</strong> 单子变换器</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../monad-transformers/reader-io.html"><strong aria-hidden="true">7.1.</strong> 组合 IO 与 Reader</a></li><li class="chapter-item expanded "><a href="../monad-transformers/transformers.html"><strong aria-hidden="true">7.2.</strong> 单子构建工具包</a></li><li class="chapter-item expanded "><a href="../monad-transformers/order.html" class="active"><strong aria-hidden="true">7.3.</strong> 对单子变换器排序</a></li><li class="chapter-item expanded "><a href="../monad-transformers/do.html"><strong aria-hidden="true">7.4.</strong> 更多 do 的特性</a></li><li class="chapter-item expanded "><a href="../monad-transformers/conveniences.html"><strong aria-hidden="true">7.5.</strong> 其他便利功能</a></li><li class="chapter-item expanded "><a href="../monad-transformers/summary.html"><strong aria-hidden="true">7.6.</strong> 总结</a></li></ol></li><li class="chapter-item expanded "><a href="../dependent-types.html"><strong aria-hidden="true">8.</strong> 依值类型编程</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../dependent-types/indexed-families.html"><strong aria-hidden="true">8.1.</strong> 索引族</a></li><li class="chapter-item expanded "><a href="../dependent-types/universe-pattern.html"><strong aria-hidden="true">8.2.</strong> 宇宙设计模式</a></li><li class="chapter-item expanded "><a href="../dependent-types/typed-queries.html"><strong aria-hidden="true">8.3.</strong> 现实示例：类型化查询</a></li><li class="chapter-item expanded "><a href="../dependent-types/indices-parameters-universes.html"><strong aria-hidden="true">8.4.</strong> 索引、形参与宇宙层级</a></li><li class="chapter-item expanded "><a href="../dependent-types/pitfalls.html"><strong aria-hidden="true">8.5.</strong> 依值类型编程的陷阱</a></li><li class="chapter-item expanded "><a href="../dependent-types/summary.html"><strong aria-hidden="true">8.6.</strong> 总结</a></li></ol></li><li class="chapter-item expanded "><a href="../tactics-induction-proofs.html"><strong aria-hidden="true">9.</strong> 插曲：策略、归纳与证明</a></li><li class="chapter-item expanded "><a href="../programs-proofs.html"><strong aria-hidden="true">10.</strong> 编程、证明与性能</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../programs-proofs/tail-recursion.html"><strong aria-hidden="true">10.1.</strong> 尾递归</a></li><li class="chapter-item expanded "><a href="../programs-proofs/tail-recursion-proofs.html"><strong aria-hidden="true">10.2.</strong> 证明等价</a></li><li class="chapter-item expanded "><a href="../programs-proofs/arrays-termination.html"><strong aria-hidden="true">10.3.</strong> 数组与停机性</a></li><li class="chapter-item expanded "><a href="../programs-proofs/inequalities.html"><strong aria-hidden="true">10.4.</strong> 更多不等式</a></li><li class="chapter-item expanded "><a href="../programs-proofs/fin.html"><strong aria-hidden="true">10.5.</strong> 安全数组索引</a></li><li class="chapter-item expanded "><a href="../programs-proofs/insertion-sort.html"><strong aria-hidden="true">10.6.</strong> 插入排序与数组可变性</a></li><li class="chapter-item expanded "><a href="../programs-proofs/special-types.html"><strong aria-hidden="true">10.7.</strong> 特殊类型</a></li><li class="chapter-item expanded "><a href="../programs-proofs/summary.html"><strong aria-hidden="true">10.8.</strong> 总结</a></li></ol></li><li class="chapter-item expanded "><a href="../next-steps.html">下一步</a></li></ol>
+            </div>
+            <div id="sidebar-resize-handle" class="sidebar-resize-handle"></div>
+        </nav>
+
+        <div id="page-wrapper" class="page-wrapper">
+
+            <div class="page">
+                                <div id="menu-bar-hover-placeholder"></div>
+                <div id="menu-bar" class="menu-bar sticky bordered">
+                    <div class="left-buttons">
+                        <button id="sidebar-toggle" class="icon-button" type="button" title="Toggle Table of Contents" aria-label="Toggle Table of Contents" aria-controls="sidebar">
+                            <i class="fa fa-bars"></i>
+                        </button>
+                        <button id="theme-toggle" class="icon-button" type="button" title="Change theme" aria-label="Change theme" aria-haspopup="true" aria-expanded="false" aria-controls="theme-list">
+                            <i class="fa fa-paint-brush"></i>
+                        </button>
+                        <ul id="theme-list" class="theme-popup" aria-label="Themes" role="menu">
+                            <li role="none"><button role="menuitem" class="theme" id="light">Light</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="rust">Rust</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="coal">Coal</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="navy">Navy</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="ayu">Ayu</button></li>
+                        </ul>
+                        <button id="search-toggle" class="icon-button" type="button" title="Search. (Shortkey: s)" aria-label="Toggle Searchbar" aria-expanded="false" aria-keyshortcuts="S" aria-controls="searchbar">
+                            <i class="fa fa-search"></i>
+                        </button>
+                    </div>
+
+                    <h1 class="menu-title">Lean 函数式编程</h1>
+
+                    <div class="right-buttons">
+                        <a href="../print.html" title="Print this book" aria-label="Print this book">
+                            <i id="print-button" class="fa fa-print"></i>
+                        </a>
+                        <a href="https://github.com/Lean-zh/fp-lean-zh" title="Git repository" aria-label="Git repository">
+                            <i id="git-repository-button" class="fa fa-github"></i>
+                        </a>
+                        <a href="https://github.com/Lean-zh/fp-lean-zh/edit/master/functional-programming-lean/src/monad-transformers/order.md" title="Suggest an edit" aria-label="Suggest an edit">
+                            <i id="git-edit-button" class="fa fa-edit"></i>
+                        </a>
+
+                    </div>
+                </div>
+
+                <div id="search-wrapper" class="hidden">
+                    <form id="searchbar-outer" class="searchbar-outer">
+                        <input type="search" id="searchbar" name="searchbar" placeholder="Search this book ..." aria-controls="searchresults-outer" aria-describedby="searchresults-header">
+                    </form>
+                    <div id="searchresults-outer" class="searchresults-outer hidden">
+                        <div id="searchresults-header" class="searchresults-header"></div>
+                        <ul id="searchresults">
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- Apply ARIA attributes after the sidebar and the sidebar toggle button are added to the DOM -->
+                <script>
+                    document.getElementById('sidebar-toggle').setAttribute('aria-expanded', sidebar === 'visible');
+                    document.getElementById('sidebar').setAttribute('aria-hidden', sidebar !== 'visible');
+                    Array.from(document.querySelectorAll('#sidebar a')).forEach(function(link) {
+                        link.setAttribute('tabIndex', sidebar === 'visible' ? 0 : -1);
+                    });
+                </script>
+
+                <div id="content" class="content">
+                    <main>
+                        <!--
+# Ordering Monad Transformers
+-->
+<h1 id="对单子转换器排序"><a class="header" href="#对单子转换器排序">对单子转换器排序</a></h1>
+<!--
+When composing a monad from a stack of monad transformers, it's important to be aware that the order in which the monad transformers are layered matters.
+Different orderings of the same set of transformers result in different monads.
+-->
+<p>在使用单子转换器栈组成单子时，必须注意单子转换器的分层顺序。
+同一组转换器的不同排列顺序会产生不同的单子。</p>
+<!--
+This version of `countLetters` is just like the previous version, except it uses type classes to describe the set of available effects instead of providing a concrete monad:
+-->
+<p>这个版本的 <code>countLetters</code> 和之前的版本一样，只是它使用类型类来描述可用的作用集，而不是提供一个具体的单子：</p>
+<pre><code class="language-lean">def countLetters [Monad m] [MonadState LetterCounts m] [MonadExcept Err m] (str : String) : m Unit :=
+  let rec loop (chars : List Char) := do
+    match chars with
+    | [] =&gt; pure ()
+    | c :: cs =&gt;
+      if c.isAlpha then
+        if vowels.contains c then
+          modify fun st =&gt; {st with vowels := st.vowels + 1}
+        else if consonants.contains c then
+          modify fun st =&gt; {st with consonants := st.consonants + 1}
+        else -- modified or non-English letter
+          pure ()
+      else throw (.notALetter c)
+      loop cs
+  loop str.toList
+</code></pre>
+<!--
+The state and exception monad transformers can be combined in two different orders, each resulting in a monad that has instances of both type classes:
+-->
+<p>状态和异常单子转换器可以两种不同的顺序组合，每种组合都会产生一个同时拥有这两种类型实例的单子： </p>
+<pre><code class="language-lean">abbrev M1 := StateT LetterCounts (ExceptT Err Id)
+abbrev M2 := ExceptT Err (StateT LetterCounts Id)
+</code></pre>
+<!--
+When run on input for which the program does not throw an exception, both monads yield similar results:
+-->
+<p>当程序运行接受没有抛出异常的输入时，这两个单子都会产生类似的结果：</p>
+<pre><code class="language-lean">#eval countLetters (m := M1) &quot;hello&quot; ⟨0, 0⟩
+</code></pre>
+<pre><code class="language-output info">Except.ok ((), { vowels := 2, consonants := 3 })
+</code></pre>
+<pre><code class="language-lean">#eval countLetters (m := M2) &quot;hello&quot; ⟨0, 0⟩
+</code></pre>
+<pre><code class="language-output info">(Except.ok (), { vowels := 2, consonants := 3 })
+</code></pre>
+<!--
+However, there is a subtle difference between these return values.
+In the case of `M1`, the outermost constructor is `Except.ok`, and it contains a pair of the unit constructor with the final state.
+In the case of `M2`, the outermost constructor is the pair, which contains `Except.ok` applied only to the unit constructor.
+The final state is outside of `Except.ok`.
+In both cases, the program returns the counts of vowels and consonants.
+-->
+<p>然而，这些返回值之间有一个微妙的区别。
+对于 <code>M1</code>，最外层的构造函数是 <code>Except.ok</code>，它包含单元构造函数与最终状态的元组。
+对于 <code>M2</code>，最外层的构造函数是一个元组，其中包含只应用于单元构造函数的 <code>Except.ok</code>。
+最终状态在 <code>Except.ok</code> 之外。
+在这两种情况下，程序都会返回元音和辅音的数目。</p>
+<!--
+On the other hand, only one monad yields a count of vowels and consonants when the string causes an exception to be thrown.
+Using `M1`, only an exception value is returned:
+-->
+<p>另一方面，当字符串导致抛出异常时，只有一个单子会产生元音和辅音的计数。
+使用 <code>M1</code>，只会返回一个异常值：</p>
+<pre><code class="language-lean">#eval countLetters (m := M1) &quot;hello!&quot; ⟨0, 0⟩
+</code></pre>
+<pre><code class="language-output info">Except.error (StEx.Err.notALetter '!')
+</code></pre>
+<!--
+Using `M2`, the exception value is paired with the state as it was at the time that the exception was thrown:
+-->
+<p>使用 <code>M2</code> 时，异常值与抛出异常时的状态配对：</p>
+<pre><code class="language-lean">#eval countLetters (m := M2) &quot;hello!&quot; ⟨0, 0⟩
+</code></pre>
+<pre><code class="language-output info">(Except.error (StEx.Err.notALetter '!'), { vowels := 2, consonants := 3 })
+</code></pre>
+<!--
+It might be tempting to think that `M2` is superior to `M1` because it provides more information that might be useful when debugging.
+The same program might compute _different_ answers in `M1` than it does in `M2`, and there's no principled reason to say that one of these answers is necessarily better than the other.
+This can be seen by adding a step to the program that handles exceptions:
+-->
+<p>我们可能会认为<code>M2</code>比<code>M1</code>更优越，因为它提供了更多在调试时可能有用的信息。
+同样的程序在<code>M1</code>中计算出的答案可能与在<code>M2</code>中计算出的答案 <em>不同</em> ，没有原则性的理由说其中一个答案一定比另一个好。
+在程序中增加一个处理异常的步骤，就可以看到这一点：</p>
+<pre><code class="language-lean">def countWithFallback
+    [Monad m] [MonadState LetterCounts m] [MonadExcept Err m]
+    (str : String) : m Unit :=
+  try
+    countLetters str
+  catch _ =&gt;
+    countLetters &quot;Fallback&quot;
+</code></pre>
+<!--
+This program always succeeds, but it might succeed with different results.
+If no exception is thrown, then the results are the same as `countLetters`:
+-->
+<p>该程序总会成功，但成功的结果可能不同。
+如果没有抛出异常，则结果与 <code>countLetters</code> 相同：</p>
+<pre><code class="language-lean">#eval countWithFallback (m := M1) &quot;hello&quot; ⟨0, 0⟩
+</code></pre>
+<pre><code class="language-output info">Except.ok ((), { vowels := 2, consonants := 3 })
+</code></pre>
+<pre><code class="language-lean">#eval countWithFallback (m := M2) &quot;hello&quot; ⟨0, 0⟩
+</code></pre>
+<pre><code class="language-output info">(Except.ok (), { vowels := 2, consonants := 3 })
+</code></pre>
+<!--
+However, if the exception is thrown and caught, then the final states are very different.
+With `M1`, the final state contains only the letter counts from `"Fallback"`:
+-->
+<p>但是，如果异常被抛出并捕获，那么最终状态就会截然不同。
+对于 <code>M1</code>，最终状态只包含来自 <code>&quot;Fallback&quot;</code>的字母计数：</p>
+<pre><code class="language-lean">#eval countWithFallback (m := M1) &quot;hello!&quot; ⟨0, 0⟩
+</code></pre>
+<pre><code class="language-output info">Except.ok ((), { vowels := 2, consonants := 6 })
+</code></pre>
+<!--
+With `M2`, the final state contains letter counts from both `"hello"` and from `"Fallback"`, as one would expect in an imperative language:
+-->
+<p>对于 <code>M2</code>，最终状态包含来自 <code>&quot;hello&quot;</code> 和 <code>&quot;Fallback&quot;</code> 二者的字母计数，这与是命令式语言的结果相似：</p>
+<pre><code class="language-lean">#eval countWithFallback (m := M2) &quot;hello!&quot; ⟨0, 0⟩
+</code></pre>
+<pre><code class="language-output info">(Except.ok (), { vowels := 4, consonants := 9 })
+</code></pre>
+<!--
+In `M1`, throwing an exception "rolls back" the state to where the exception was caught.
+In `M2`, modifications to the state persist across the throwing and catching of exceptions.
+This difference can be seen by unfolding the definitions of `M1` and `M2`.
+`M1 α` unfolds to `LetterCounts → Except Err (α × LetterCounts)`, and `M2 α` unfolds to `LetterCounts → Except Err α × LetterCounts`.
+That is to say, `M1 α` describes functions that take an initial letter count, returning either an error or an `α` paired with updated counts.
+When an exception is thrown in `M1`, there is no final state.
+`M2 α` describes functions that take an initial letter count and return a new letter count paired with either an error or an `α`.
+When an exception is thrown in `M2`, it is accompanied by a state.
+-->
+<p>在 <code>M1</code>中，抛出异常会将状态 “回滚” 到捕获异常的位置。
+而在 <code>M2</code>中，对状态的修改会在抛出和捕获异常时持续存在。
+通过展开 <code>M1</code> 和 <code>M2</code> 的定义，我们可以看到这种区别。
+<code>M1 α</code> 展开为 <code>LetterCounts → Except Err (α × LetterCounts)</code> ，而 <code>M2 α</code> 展开为 <code>LetterCounts → Except Err α × LetterCounts</code> 。
+也就是说，<code>M1 α</code> 描述的函数获取初始字母计数，返回错误或与更新计数配对的 <code>α</code>。
+当 <code>M1</code> 中抛出异常时，没有最终状态。
+<code>M2 α</code> 描述的是获取初始字母计数并返回新字母计数的函数，同时返回错误或 <code>α</code>。
+当<code>M2</code>中抛出异常时，会伴随一个状态。</p>
+<!--
+## Commuting Monads
+-->
+<h2 id="交换单子"><a class="header" href="#交换单子">交换单子</a></h2>
+<!--
+In the jargon of functional programming, two monad transformers are said to _commute_ if they can be re-ordered without the meaning of the program changing.
+The fact that the result of the program can differ when `StateT` and `ExceptT` are reordered means that state and exceptions do not commute.
+In general, monad transformers should not be expected to commute.
+-->
+<p>在函数式编程的行话中，如果两个单子转换器可以重新排序而不改变程序的意义，那么这两个单子转换器就被称为 <em>可交换</em>。
+当 <code>StateT</code> 和 <code>ExceptT</code> 被重新排序时，程序的结果可能会不同，这意味着状态和异常并不可交换。
+一般来说，单子转换器不应该可交换。</p>
+<!--
+Even though not all monad transformers commute, some do.
+For example, two uses of `StateT` can be re-ordered.
+Expanding the definitions in `StateT σ (StateT σ' Id) α` yields the type `σ → σ' → ((α × σ) × σ')`, and `StateT σ' (StateT σ Id) α` yields `σ' → σ → ((α × σ') × σ)`.
+In other words, the differences between them are that they nest the `σ` and `σ'` types in different places in the return type, and they accept their arguments in a different order.
+Any client code will still need to provide the same inputs, and it will still receive the same outputs.
+-->
+<p>尽管并非所有的单子转换器都可交换，但有些单子转换器还是可交换的的。
+例如，<code>StateT</code> 的两种用法可以重新排序。
+对 <code>StateT σ (StateT σ' Id) α</code> 中的定义进行扩展，可以得到 <code>σ → σ' → ((α × σ) × σ')</code> 类型。 而 <code>StateT σ' (StateT σ Id) α</code> 则生成 <code>σ' → σ → ((α × σ') × σ)</code> 类型。
+换句话说，它们的区别在于将 <code>σ</code> 和 <code>σ'</code> 类型嵌套到了返回类型的不同位置，而且接受参数的顺序也不同。
+客户端代码仍需提供相同的输入，并接收相同的输出。</p>
+<!--
+Most programming languages that have both mutable state and exceptions work like `M2`.
+In those languages, state that _should_ be rolled back when an exception is thrown is difficult to express, and it usually needs to be simulated in a manner that looks much like the passing of explicit state values in `M1`.
+Monad transformers grant the freedom to choose an interpretation of effect ordering that works for the problem at hand, with both choices being equally easy to program with.
+However, they also require care to be taken in the choice of ordering of transformers.
+With great expressive power comes the responsibility to check that what's being expressed is what is intended, and the type signature of `countWithFallback` is probably more polymorphic than it should be.
+-->
+<p>大多数既有可变状态又有异常的编程语言的工作方式类似于 <code>M2</code>。
+在这些语言中，当异常抛出时应该回滚的状态是很难表达的，通常需要用像 <code>M1</code> 中那样传递显式状态值的方式来模拟。
+单子转换器允许自由选择适合当前问题的作用序的解释，两种选择都同样易于编程。
+然而，在选择转换器的序时也需要小心谨慎。
+有强大的表达能力，我们也有责任检查所表达的是否是我们想要的，而 <code>countWithFallback</code> 的类型签名可能比它应有的多态性更强。</p>
+<!--
+## Exercises
+-->
+<h2 id="练习"><a class="header" href="#练习">练习</a></h2>
+<!--
+ * Check that `ReaderT` and `StateT` commute by expanding their definitions and reasoning about the resulting types.
+ * Do `ReaderT` and `ExceptT` commute? Check your answer by expanding their definitions and reasoning about the resulting types.
+ * Construct a monad transformer `ManyT` based on the definition of `Many`, with a suitable `Alternative` instance. Check that it satisfies the `Monad` contract.
+ * Does `ManyT` commute with `StateT`? If so, check your answer by expanding definitions and reasoning about the resulting types. If not, write a program in `ManyT (StateT σ Id)` and a program in `StateT σ (ManyT Id)`. Each program should be one that makes more sense for the given ordering of monad transformers.
+-->
+<ul>
+<li>通过扩展 <code>ReaderT</code> 和 <code>StateT</code> 的定义并推理得到的类型，检查 <code>ReaderT</code> 和 <code>StateT</code> 是否可交换。</li>
+<li><code>ReaderT</code> 和 <code>ExceptT</code> 是否可交换？通过扩展它们的定义和推理得到的类型来检验你的答案。</li>
+<li>根据 <code>Many</code> 的定义，用一个合适的 <code>Alternative</code> 实例构造一个单子转换器 <code>ManyT</code>。检查它是否满足 <code>Monad</code> 约定。</li>
+<li><code>ManyT</code> 是否与 <code>StateT</code> 交换？如果是，通过扩展定义和推理得到的类型来检查答案。如果不是，请写一个 <code>ManyT (StateT σ Id)</code> 的程序和一个 <code>StateT σ (ManyT Id)</code> 的程序。每个程序都应该是比给定的单子转换器排序更合理的程序。</li>
+</ul>
+
+                    </main>
+
+                    <nav class="nav-wrapper" aria-label="Page navigation">
+                        <!-- Mobile navigation buttons -->
+                            <a rel="prev" href="../monad-transformers/transformers.html" class="mobile-nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                                <i class="fa fa-angle-left"></i>
+                            </a>
+
+                            <a rel="next" href="../monad-transformers/do.html" class="mobile-nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                                <i class="fa fa-angle-right"></i>
+                            </a>
+
+                        <div style="clear: both"></div>
+                    </nav>
+                </div>
+            </div>
+
+            <nav class="nav-wide-wrapper" aria-label="Page navigation">
+                    <a rel="prev" href="../monad-transformers/transformers.html" class="nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                        <i class="fa fa-angle-left"></i>
+                    </a>
+
+                    <a rel="next" href="../monad-transformers/do.html" class="nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                        <i class="fa fa-angle-right"></i>
+                    </a>
+            </nav>
+
+        </div>
+
+
+
+
+        <script>
+            window.playground_copyable = true;
+        </script>
+
+
+        <script src="../elasticlunr.min.js"></script>
+        <script src="../mark.min.js"></script>
+        <script src="../searcher.js"></script>
+
+        <script src="../clipboard.min.js"></script>
+        <script src="../highlight.js"></script>
+        <script src="../book.js"></script>
+
+        <!-- Custom JS scripts -->
+        <script src="../custom.js"></script>
+
+
+    </body>
+</html>

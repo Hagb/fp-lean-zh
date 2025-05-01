@@ -1,0 +1,1132 @@
+<!DOCTYPE HTML>
+<html lang="zh-CN" class="sidebar-visible no-js light">
+    <head>
+        <!-- Book generated using mdBook -->
+        <meta charset="UTF-8">
+        <title>示例：用单子表达算术运算 - Lean 函数式编程</title>
+
+
+        <!-- Custom HTML head -->
+        
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="theme-color" content="#ffffff" />
+
+        <link rel="icon" href="../favicon.svg">
+        <link rel="shortcut icon" href="../favicon.png">
+        <link rel="stylesheet" href="../css/variables.css">
+        <link rel="stylesheet" href="../css/general.css">
+        <link rel="stylesheet" href="../css/chrome.css">
+        <link rel="stylesheet" href="../css/print.css" media="print">
+
+        <!-- Fonts -->
+        <link rel="stylesheet" href="../FontAwesome/css/font-awesome.css">
+        <link rel="stylesheet" href="../fonts/fonts.css">
+
+        <!-- Highlight.js Stylesheets -->
+        <link rel="stylesheet" href="../highlight.css">
+        <link rel="stylesheet" href="../tomorrow-night.css">
+        <link rel="stylesheet" href="../ayu-highlight.css">
+
+        <!-- Custom theme stylesheets -->
+        <link rel="stylesheet" href="../custom.css">
+        <link rel="stylesheet" href="../pygments.css">
+
+        <!-- MathJax -->
+        <script async src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    </head>
+    <body>
+        <!-- Provide site root to javascript -->
+        <script>
+            var path_to_root = "../";
+            var default_theme = window.matchMedia("(prefers-color-scheme: dark)").matches ? "navy" : "light";
+        </script>
+
+        <!-- Work around some values being stored in localStorage wrapped in quotes -->
+        <script>
+            try {
+                var theme = localStorage.getItem('mdbook-theme');
+                var sidebar = localStorage.getItem('mdbook-sidebar');
+
+                if (theme.startsWith('"') && theme.endsWith('"')) {
+                    localStorage.setItem('mdbook-theme', theme.slice(1, theme.length - 1));
+                }
+
+                if (sidebar.startsWith('"') && sidebar.endsWith('"')) {
+                    localStorage.setItem('mdbook-sidebar', sidebar.slice(1, sidebar.length - 1));
+                }
+            } catch (e) { }
+        </script>
+
+        <!-- Set the theme before any content is loaded, prevents flash -->
+        <script>
+            var theme;
+            try { theme = localStorage.getItem('mdbook-theme'); } catch(e) { }
+            if (theme === null || theme === undefined) { theme = default_theme; }
+            var html = document.querySelector('html');
+            html.classList.remove('no-js')
+            html.classList.remove('light')
+            html.classList.add(theme);
+            html.classList.add('js');
+        </script>
+
+        <!-- Hide / unhide sidebar before it is displayed -->
+        <script>
+            var html = document.querySelector('html');
+            var sidebar = 'hidden';
+            if (document.body.clientWidth >= 1080) {
+                try { sidebar = localStorage.getItem('mdbook-sidebar'); } catch(e) { }
+                sidebar = sidebar || 'visible';
+            }
+            html.classList.remove('sidebar-visible');
+            html.classList.add("sidebar-" + sidebar);
+        </script>
+
+        <nav id="sidebar" class="sidebar" aria-label="Table of contents">
+            <div class="sidebar-scrollbox">
+                <ol class="chapter"><li class="chapter-item expanded affix "><a href="../title.html">Lean 函数式编程</a></li><li class="chapter-item expanded affix "><a href="../introduction.html">引言</a></li><li class="chapter-item expanded affix "><a href="../acknowledgments.html">鸣谢</a></li><li class="chapter-item expanded "><a href="../getting-to-know.html"><strong aria-hidden="true">1.</strong> 了解 Lean</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../getting-to-know/evaluating.html"><strong aria-hidden="true">1.1.</strong> 求值表达式</a></li><li class="chapter-item expanded "><a href="../getting-to-know/types.html"><strong aria-hidden="true">1.2.</strong> 类型</a></li><li class="chapter-item expanded "><a href="../getting-to-know/functions-and-definitions.html"><strong aria-hidden="true">1.3.</strong> 函数与定义</a></li><li class="chapter-item expanded "><a href="../getting-to-know/structures.html"><strong aria-hidden="true">1.4.</strong> 结构体</a></li><li class="chapter-item expanded "><a href="../getting-to-know/datatypes-and-patterns.html"><strong aria-hidden="true">1.5.</strong> 数据类型、模式匹配与递归</a></li><li class="chapter-item expanded "><a href="../getting-to-know/polymorphism.html"><strong aria-hidden="true">1.6.</strong> 多态</a></li><li class="chapter-item expanded "><a href="../getting-to-know/conveniences.html"><strong aria-hidden="true">1.7.</strong> 其他便利功能</a></li><li class="chapter-item expanded "><a href="../getting-to-know/summary.html"><strong aria-hidden="true">1.8.</strong> 总结</a></li></ol></li><li class="chapter-item expanded "><a href="../hello-world.html"><strong aria-hidden="true">2.</strong> Hello, World!</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../hello-world/running-a-program.html"><strong aria-hidden="true">2.1.</strong> 运行程序</a></li><li class="chapter-item expanded "><a href="../hello-world/step-by-step.html"><strong aria-hidden="true">2.2.</strong> 逐步执行</a></li><li class="chapter-item expanded "><a href="../hello-world/starting-a-project.html"><strong aria-hidden="true">2.3.</strong> 创建项目</a></li><li class="chapter-item expanded "><a href="../hello-world/cat.html"><strong aria-hidden="true">2.4.</strong> 现实示例：cat</a></li><li class="chapter-item expanded "><a href="../hello-world/conveniences.html"><strong aria-hidden="true">2.5.</strong> 其他便利功能</a></li><li class="chapter-item expanded "><a href="../hello-world/summary.html"><strong aria-hidden="true">2.6.</strong> 总结</a></li></ol></li><li class="chapter-item expanded "><a href="../props-proofs-indexing.html"><strong aria-hidden="true">3.</strong> 插曲：命题、证明与索引</a></li><li class="chapter-item expanded "><a href="../type-classes.html"><strong aria-hidden="true">4.</strong> 重载与类型类</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../type-classes/pos.html"><strong aria-hidden="true">4.1.</strong> 正数</a></li><li class="chapter-item expanded "><a href="../type-classes/polymorphism.html"><strong aria-hidden="true">4.2.</strong> 类型类与多态</a></li><li class="chapter-item expanded "><a href="../type-classes/out-params.html"><strong aria-hidden="true">4.3.</strong> 控制实例搜索</a></li><li class="chapter-item expanded "><a href="../type-classes/indexing.html"><strong aria-hidden="true">4.4.</strong> 数组与索引</a></li><li class="chapter-item expanded "><a href="../type-classes/standard-classes.html"><strong aria-hidden="true">4.5.</strong> 标准类</a></li><li class="chapter-item expanded "><a href="../type-classes/coercion.html"><strong aria-hidden="true">4.6.</strong> 强制转换</a></li><li class="chapter-item expanded "><a href="../type-classes/conveniences.html"><strong aria-hidden="true">4.7.</strong> 其他便利功能</a></li><li class="chapter-item expanded "><a href="../type-classes/summary.html"><strong aria-hidden="true">4.8.</strong> 总结</a></li></ol></li><li class="chapter-item expanded "><a href="../monads.html"><strong aria-hidden="true">5.</strong> 单子</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../monads/class.html"><strong aria-hidden="true">5.1.</strong> 单子类型类</a></li><li class="chapter-item expanded "><a href="../monads/arithmetic.html" class="active"><strong aria-hidden="true">5.2.</strong> 示例：用单子表达算术运算</a></li><li class="chapter-item expanded "><a href="../monads/do.html"><strong aria-hidden="true">5.3.</strong> 单子的 do-记法</a></li><li class="chapter-item expanded "><a href="../monads/io.html"><strong aria-hidden="true">5.4.</strong> IO 单子</a></li><li class="chapter-item expanded "><a href="../monads/conveniences.html"><strong aria-hidden="true">5.5.</strong> 其他便利功能</a></li><li class="chapter-item expanded "><a href="../monads/summary.html"><strong aria-hidden="true">5.6.</strong> 总结</a></li></ol></li><li class="chapter-item expanded "><a href="../functor-applicative-monad.html"><strong aria-hidden="true">6.</strong> 函子、应用函子与单子</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../functor-applicative-monad/inheritance.html"><strong aria-hidden="true">6.1.</strong> 结构体和继承</a></li><li class="chapter-item expanded "><a href="../functor-applicative-monad/applicative.html"><strong aria-hidden="true">6.2.</strong> 应用函子</a></li><li class="chapter-item expanded "><a href="../functor-applicative-monad/applicative-contract.html"><strong aria-hidden="true">6.3.</strong> 应用函子的契约</a></li><li class="chapter-item expanded "><a href="../functor-applicative-monad/alternative.html"><strong aria-hidden="true">6.4.</strong> 选择子</a></li><li class="chapter-item expanded "><a href="../functor-applicative-monad/universes.html"><strong aria-hidden="true">6.5.</strong> 宇宙</a></li><li class="chapter-item expanded "><a href="../functor-applicative-monad/complete.html"><strong aria-hidden="true">6.6.</strong> 完整定义</a></li><li class="chapter-item expanded "><a href="../functor-applicative-monad/summary.html"><strong aria-hidden="true">6.7.</strong> 总结</a></li></ol></li><li class="chapter-item expanded "><a href="../monad-transformers.html"><strong aria-hidden="true">7.</strong> 单子变换器</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../monad-transformers/reader-io.html"><strong aria-hidden="true">7.1.</strong> 组合 IO 与 Reader</a></li><li class="chapter-item expanded "><a href="../monad-transformers/transformers.html"><strong aria-hidden="true">7.2.</strong> 单子构建工具包</a></li><li class="chapter-item expanded "><a href="../monad-transformers/order.html"><strong aria-hidden="true">7.3.</strong> 对单子变换器排序</a></li><li class="chapter-item expanded "><a href="../monad-transformers/do.html"><strong aria-hidden="true">7.4.</strong> 更多 do 的特性</a></li><li class="chapter-item expanded "><a href="../monad-transformers/conveniences.html"><strong aria-hidden="true">7.5.</strong> 其他便利功能</a></li><li class="chapter-item expanded "><a href="../monad-transformers/summary.html"><strong aria-hidden="true">7.6.</strong> 总结</a></li></ol></li><li class="chapter-item expanded "><a href="../dependent-types.html"><strong aria-hidden="true">8.</strong> 依值类型编程</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../dependent-types/indexed-families.html"><strong aria-hidden="true">8.1.</strong> 索引族</a></li><li class="chapter-item expanded "><a href="../dependent-types/universe-pattern.html"><strong aria-hidden="true">8.2.</strong> 宇宙设计模式</a></li><li class="chapter-item expanded "><a href="../dependent-types/typed-queries.html"><strong aria-hidden="true">8.3.</strong> 现实示例：类型化查询</a></li><li class="chapter-item expanded "><a href="../dependent-types/indices-parameters-universes.html"><strong aria-hidden="true">8.4.</strong> 索引、形参与宇宙层级</a></li><li class="chapter-item expanded "><a href="../dependent-types/pitfalls.html"><strong aria-hidden="true">8.5.</strong> 依值类型编程的陷阱</a></li><li class="chapter-item expanded "><a href="../dependent-types/summary.html"><strong aria-hidden="true">8.6.</strong> 总结</a></li></ol></li><li class="chapter-item expanded "><a href="../tactics-induction-proofs.html"><strong aria-hidden="true">9.</strong> 插曲：策略、归纳与证明</a></li><li class="chapter-item expanded "><a href="../programs-proofs.html"><strong aria-hidden="true">10.</strong> 编程、证明与性能</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../programs-proofs/tail-recursion.html"><strong aria-hidden="true">10.1.</strong> 尾递归</a></li><li class="chapter-item expanded "><a href="../programs-proofs/tail-recursion-proofs.html"><strong aria-hidden="true">10.2.</strong> 证明等价</a></li><li class="chapter-item expanded "><a href="../programs-proofs/arrays-termination.html"><strong aria-hidden="true">10.3.</strong> 数组与停机性</a></li><li class="chapter-item expanded "><a href="../programs-proofs/inequalities.html"><strong aria-hidden="true">10.4.</strong> 更多不等式</a></li><li class="chapter-item expanded "><a href="../programs-proofs/fin.html"><strong aria-hidden="true">10.5.</strong> 安全数组索引</a></li><li class="chapter-item expanded "><a href="../programs-proofs/insertion-sort.html"><strong aria-hidden="true">10.6.</strong> 插入排序与数组可变性</a></li><li class="chapter-item expanded "><a href="../programs-proofs/special-types.html"><strong aria-hidden="true">10.7.</strong> 特殊类型</a></li><li class="chapter-item expanded "><a href="../programs-proofs/summary.html"><strong aria-hidden="true">10.8.</strong> 总结</a></li></ol></li><li class="chapter-item expanded "><a href="../next-steps.html">下一步</a></li></ol>
+            </div>
+            <div id="sidebar-resize-handle" class="sidebar-resize-handle"></div>
+        </nav>
+
+        <div id="page-wrapper" class="page-wrapper">
+
+            <div class="page">
+                                <div id="menu-bar-hover-placeholder"></div>
+                <div id="menu-bar" class="menu-bar sticky bordered">
+                    <div class="left-buttons">
+                        <button id="sidebar-toggle" class="icon-button" type="button" title="Toggle Table of Contents" aria-label="Toggle Table of Contents" aria-controls="sidebar">
+                            <i class="fa fa-bars"></i>
+                        </button>
+                        <button id="theme-toggle" class="icon-button" type="button" title="Change theme" aria-label="Change theme" aria-haspopup="true" aria-expanded="false" aria-controls="theme-list">
+                            <i class="fa fa-paint-brush"></i>
+                        </button>
+                        <ul id="theme-list" class="theme-popup" aria-label="Themes" role="menu">
+                            <li role="none"><button role="menuitem" class="theme" id="light">Light</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="rust">Rust</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="coal">Coal</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="navy">Navy</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="ayu">Ayu</button></li>
+                        </ul>
+                        <button id="search-toggle" class="icon-button" type="button" title="Search. (Shortkey: s)" aria-label="Toggle Searchbar" aria-expanded="false" aria-keyshortcuts="S" aria-controls="searchbar">
+                            <i class="fa fa-search"></i>
+                        </button>
+                    </div>
+
+                    <h1 class="menu-title">Lean 函数式编程</h1>
+
+                    <div class="right-buttons">
+                        <a href="../print.html" title="Print this book" aria-label="Print this book">
+                            <i id="print-button" class="fa fa-print"></i>
+                        </a>
+                        <a href="https://github.com/Lean-zh/fp-lean-zh" title="Git repository" aria-label="Git repository">
+                            <i id="git-repository-button" class="fa fa-github"></i>
+                        </a>
+                        <a href="https://github.com/Lean-zh/fp-lean-zh/edit/master/functional-programming-lean/src/monads/arithmetic.md" title="Suggest an edit" aria-label="Suggest an edit">
+                            <i id="git-edit-button" class="fa fa-edit"></i>
+                        </a>
+
+                    </div>
+                </div>
+
+                <div id="search-wrapper" class="hidden">
+                    <form id="searchbar-outer" class="searchbar-outer">
+                        <input type="search" id="searchbar" name="searchbar" placeholder="Search this book ..." aria-controls="searchresults-outer" aria-describedby="searchresults-header">
+                    </form>
+                    <div id="searchresults-outer" class="searchresults-outer hidden">
+                        <div id="searchresults-header" class="searchresults-header"></div>
+                        <ul id="searchresults">
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- Apply ARIA attributes after the sidebar and the sidebar toggle button are added to the DOM -->
+                <script>
+                    document.getElementById('sidebar-toggle').setAttribute('aria-expanded', sidebar === 'visible');
+                    document.getElementById('sidebar').setAttribute('aria-hidden', sidebar !== 'visible');
+                    Array.from(document.querySelectorAll('#sidebar a')).forEach(function(link) {
+                        link.setAttribute('tabIndex', sidebar === 'visible' ? 0 : -1);
+                    });
+                </script>
+
+                <div id="content" class="content">
+                    <main>
+                        <!--
+## Example: Arithmetic in Monads
+-->
+<h2 id="例子利用单子实现算术表达式求值"><a class="header" href="#例子利用单子实现算术表达式求值">例子：利用单子实现算术表达式求值</a></h2>
+<!--
+Monads are a way of encoding programs with side effects into a language that does not have them.
+It would be easy to read this as a sort of admission that pure functional programs are missing something important, requiring programmers to jump through hoops just to write a normal program.
+However, while using the `Monad` API does impose a syntactic cost on a program, it brings two important benefits:
+ 1. Programs must be honest about which effects they use in their types. A quick glance at a type signature describes _everything_ that the program can do, rather than just what it accepts and what it returns.
+ 2. Not every language provides the same effects. For example, only some language have exceptions. Other languages have unique, exotic effects, such as [Icon's searching over multiple values](https://www2.cs.arizona.edu/icon/) and Scheme or Ruby's continuations. Because monads can encode _any_ effect, programmers can choose which ones are the best fit for a given application, rather than being stuck with what the language developers provided.
+-->
+<p>单子是一种将具有副作用的程序编入没有副作用的语言中的范式。
+但很容易将此误解为：承认纯函数式编程缺少一些重要的东西，程序员要越过这些障碍才能编写一个普通的程序。
+虽然使用 <code>Monad</code> 确实给程序带来了语法上的成本，但它带来了两个重要的优点：</p>
+<ol>
+<li>程序必须在类型中诚实地告知它们使用的作用（Effects）。因此看一眼类型签名就可以知道程序能做的所有事情，而不只是知道它接受什么和返回什么。</li>
+<li>并非每种语言都提供相同的作用。例如只有某些语言有异常。其他语言具有独特的新奇作用，例如 <a href="https://www2.cs.arizona.edu/icon/">Icon's searching over multiple values</a>以及Scheme 或Ruby的continuations。由于单子可以编码 <strong>任何</strong> 作用，因此程序员可以选择最适合给定程序的作用，而不是局限于语言开发者提供的作用。</li>
+</ol>
+<!--
+One example of a program that can make sense in a variety of monads is an evaluator for arithmetic expressions.
+-->
+<p>对许多单子都有意义的一个例子是算术表达式的求值器。</p>
+<!--
+### Arithmetic Expressions
+-->
+<h3 id="算术表达式"><a class="header" href="#算术表达式">算术表达式</a></h3>
+<!--
+An arithmetic expression is either a literal integer or a primitive binary operator applied to two expressions. The operators are addition, subtraction, multiplication, and division:
+-->
+<p>一条算术表达式要么是一个字面量(Literal)，要么是应用于两个算术表达式的二元运算。运算符包括加法、减法、乘法和除法：</p>
+<pre><code class="language-lean">inductive Expr (op : Type) where
+  | const : Int → Expr op
+  | prim : op → Expr op → Expr op → Expr op
+
+
+inductive Arith where
+  | plus
+  | minus
+  | times
+  | div
+</code></pre>
+<!--
+The expression `2 + 3` is represented:
+-->
+<p>表达式 <code>2 + 3</code> 表示为：</p>
+<pre><code class="language-lean">open Expr in
+open Arith in
+def twoPlusThree : Expr Arith :=
+  prim plus (const 2) (const 3)
+</code></pre>
+<!--
+and `14 / (45 - 5 * 9)` is represented:
+-->
+<p>而 <code>14 / (45 - 5 * 9)</code> 表示为：</p>
+<pre><code class="language-lean">open Expr in
+open Arith in
+def fourteenDivided : Expr Arith :=
+  prim div (const 14) (prim minus (const 45) (prim times (const 5) (const 9)))
+</code></pre>
+<!--
+### Evaluating Expressions
+-->
+<h3 id="对表达式求值"><a class="header" href="#对表达式求值">对表达式求值</a></h3>
+<!--
+Because expressions include division, and division by zero is undefined, evaluation might fail.
+One way to represent failure is to use `Option`:
+-->
+<p>由于表达式包含除法，而除以零是未定义的，因此求值可能会失败。
+表示失败的一种方法是使用 <code>Option</code>：</p>
+<pre><code class="language-lean">def evaluateOption : Expr Arith → Option Int
+  | Expr.const i =&gt; pure i
+  | Expr.prim p e1 e2 =&gt;
+    evaluateOption e1 &gt;&gt;= fun v1 =&gt;
+    evaluateOption e2 &gt;&gt;= fun v2 =&gt;
+    match p with
+    | Arith.plus =&gt; pure (v1 + v2)
+    | Arith.minus =&gt; pure (v1 - v2)
+    | Arith.times =&gt; pure (v1 * v2)
+    | Arith.div =&gt; if v2 == 0 then none else pure (v1 / v2)
+</code></pre>
+<!--
+This definition uses the `Monad Option` instance to propagate failures from evaluating both branches of a binary operator.
+However, the function mixes two concerns: evaluating subexpressions and applying a binary operator to the results.
+It can be improved by splitting it into two functions:
+-->
+<p>此定义使用 <code>Monad Option</code> 实例，来传播从二元运算符的两个分支求值产生的失败。
+然而该函数混合了两个问题：对子表达式的求值和对运算符的计算。
+可以将其拆分为两个函数：</p>
+<pre><code class="language-lean">def applyPrim : Arith → Int → Int → Option Int
+  | Arith.plus, x, y =&gt; pure (x + y)
+  | Arith.minus, x, y =&gt; pure (x - y)
+  | Arith.times, x, y =&gt; pure (x * y)
+  | Arith.div, x, y =&gt; if y == 0 then none else pure (x / y)
+
+def evaluateOption : Expr Arith → Option Int
+  | Expr.const i =&gt; pure i
+  | Expr.prim p e1 e2 =&gt;
+    evaluateOption e1 &gt;&gt;= fun v1 =&gt;
+    evaluateOption e2 &gt;&gt;= fun v2 =&gt;
+    applyPrim p v1 v2
+</code></pre>
+<!--
+Running `#eval evaluateOption fourteenDivided` yields `none`, as expected, but this is not a very useful error message.
+Because the code was written using `>>=` rather than by explicitly handling the `none` constructor, only a small modification is required for it to provide an error message on failure:
+-->
+<p>运行 <code>#eval evaluateOption fourteenDivided</code> 产生 <code>none</code>, 与预期一样, 但这个报错信息却并不十分有用.
+由于代码使用 <code>&gt;&gt;=</code> 而非显式处理<code>none</code>，所以只需少量修改即可在失败时提供错误消息：</p>
+<pre><code class="language-lean">def applyPrim : Arith → Int → Int → Except String Int
+  | Arith.plus, x, y =&gt; pure (x + y)
+  | Arith.minus, x, y =&gt; pure (x - y)
+  | Arith.times, x, y =&gt; pure (x * y)
+  | Arith.div, x, y =&gt;
+    if y == 0 then
+      Except.error s!&quot;Tried to divide {x} by zero&quot;
+    else pure (x / y)
+
+
+def evaluateExcept : Expr Arith → Except String Int
+  | Expr.const i =&gt; pure i
+  | Expr.prim p e1 e2 =&gt;
+    evaluateExcept e1 &gt;&gt;= fun v1 =&gt;
+    evaluateExcept e2 &gt;&gt;= fun v2 =&gt;
+    applyPrim p v1 v2
+</code></pre>
+<!--
+The only difference is that the type signature mentions `Except String` instead of `Option`, and the failing case uses `Except.error` instead of `none`.
+By making `evaluate` polymorphic over its monad and passing it `applyPrim` as an argument, a single evaluator becomes capable of both forms of error reporting:
+-->
+<p>唯一区别是：类型签名提到的是 <code>Except String</code> 而非 <code>Option</code>，并且失败时使用
+<code>Except.error</code> 而不是 <code>none</code>。通过让 <code>evaluate</code> 对单子多态，并将对应的求值函数作为参数
+<code>applyPrim</code> 传递，单个求值器就足够以两种形式报告错误：</p>
+<pre><code class="language-lean">def applyPrimOption : Arith → Int → Int → Option Int
+  | Arith.plus, x, y =&gt; pure (x + y)
+  | Arith.minus, x, y =&gt; pure (x - y)
+  | Arith.times, x, y =&gt; pure (x * y)
+  | Arith.div, x, y =&gt;
+    if y == 0 then
+      none
+    else pure (x / y)
+
+def applyPrimExcept : Arith → Int → Int → Except String Int
+  | Arith.plus, x, y =&gt; pure (x + y)
+  | Arith.minus, x, y =&gt; pure (x - y)
+  | Arith.times, x, y =&gt; pure (x * y)
+  | Arith.div, x, y =&gt;
+    if y == 0 then
+      Except.error s!&quot;Tried to divide {x} by zero&quot;
+    else pure (x / y)
+
+def evaluateM [Monad m] (applyPrim : Arith → Int → Int → m Int): Expr Arith → m Int
+  | Expr.const i =&gt; pure i
+  | Expr.prim p e1 e2 =&gt;
+    evaluateM applyPrim e1 &gt;&gt;= fun v1 =&gt;
+    evaluateM applyPrim e2 &gt;&gt;= fun v2 =&gt;
+    applyPrim p v1 v2
+</code></pre>
+<!--
+Using it with `applyPrimOption` works just like the first version of `evaluate`:
+-->
+<p>将其与 <code>applyPrimOption</code> 一起使用作用就和最初的 <code>evaluate</code> 一样：</p>
+<pre><code class="language-lean">#eval evaluateM applyPrimOption fourteenDivided
+</code></pre>
+<pre><code class="language-output info">none
+</code></pre>
+<!--
+Similarly, using it with `applyPrimExcept` works just like the version with error messages:
+-->
+<p>类似地，和 <code>applyPrimExcept</code> 函数一起使用时作用与带有错误消息的版本相同：</p>
+<pre><code class="language-lean">#eval evaluateM applyPrimExcept fourteenDivided
+</code></pre>
+<pre><code class="language-output info">Except.error &quot;Tried to divide 14 by zero&quot;
+</code></pre>
+<!--
+The code can still be improved.
+The functions `applyPrimOption` and `applyPrimExcept` differ only in their treatment of division, which can be extracted into another parameter to the evaluator:
+-->
+<p>代码仍有改进空间。
+<code>applyPrimOption</code>和 <code>applyPrimExcept</code> 函数仅在除法处理上有所不同，因此可以将它提取到另一个参数中：</p>
+<pre><code class="language-lean">def applyDivOption (x : Int) (y : Int) : Option Int :=
+    if y == 0 then
+      none
+    else pure (x / y)
+
+def applyDivExcept (x : Int) (y : Int) : Except String Int :=
+    if y == 0 then
+      Except.error s!&quot;Tried to divide {x} by zero&quot;
+    else pure (x / y)
+
+def applyPrim [Monad m] (applyDiv : Int → Int → m Int) : Arith → Int → Int → m Int
+  | Arith.plus, x, y =&gt; pure (x + y)
+  | Arith.minus, x, y =&gt; pure (x - y)
+  | Arith.times, x, y =&gt; pure (x * y)
+  | Arith.div, x, y =&gt; applyDiv x y
+
+def evaluateM [Monad m] (applyDiv : Int → Int → m Int): Expr Arith → m Int
+  | Expr.const i =&gt; pure i
+  | Expr.prim p e1 e2 =&gt;
+    evaluateM applyDiv e1 &gt;&gt;= fun v1 =&gt;
+    evaluateM applyDiv e2 &gt;&gt;= fun v2 =&gt;
+    applyPrim applyDiv p v1 v2
+</code></pre>
+<!--
+In this refactored code, the fact that the two code paths differ only in their treatment of failure has been made fully apparent.
+-->
+<p>在重构后的代码中，两条路径仅在对失败情况的处理上有所不同，这一事实显而易见。</p>
+<!--
+### Further Effects
+-->
+<h3 id="额外的作用"><a class="header" href="#额外的作用">额外的作用</a></h3>
+<!--
+Failure and exceptions are not the only kinds of effects that can be interesting when working with an evaluator.
+While division's only side effect is failure, adding other primitive operators to the expressions make it possible to express other effects.
+-->
+<p>在考虑求值器时，失败和异常并不是唯一值得在意的作用。虽然除法的唯一副作用是失败，但若要增加其他运算符的支持，则可能需要表达对应的作用。</p>
+<!--
+The first step is an additional refactoring, extracting division from the datatype of primitives:
+-->
+<p>第一步是重构，从原始数据类型中提取除法：</p>
+<pre><code class="language-lean">inductive Prim (special : Type) where
+  | plus
+  | minus
+  | times
+  | other : special → Prim special
+
+inductive CanFail where
+  | div
+</code></pre>
+<!--
+The name `CanFail` suggests that the effect introduced by division is potential failure.
+-->
+<p>名称 <code>CanFail</code> 表明被除法引入的作用是可能发生的失败。</p>
+<!--
+The second step is to broaden the scope of the division handler argument to `evaluateM` so that it can process any special operator:
+-->
+<p>第二步是将 <code>evaluateM</code> 的作为除法计算的参数扩展，以便它可以处理任何特殊运算符：</p>
+<pre><code class="language-lean">def divOption : CanFail → Int → Int → Option Int
+  | CanFail.div, x, y =&gt; if y == 0 then none else pure (x / y)
+
+def divExcept : CanFail → Int → Int → Except String Int
+  | CanFail.div, x, y =&gt;
+    if y == 0 then
+      Except.error s!&quot;Tried to divide {x} by zero&quot;
+    else pure (x / y)
+
+def applyPrim [Monad m] (applySpecial : special → Int → Int → m Int) : Prim special → Int → Int → m Int
+  | Prim.plus, x, y =&gt; pure (x + y)
+  | Prim.minus, x, y =&gt; pure (x - y)
+  | Prim.times, x, y =&gt; pure (x * y)
+  | Prim.other op, x, y =&gt; applySpecial op x y
+
+def evaluateM [Monad m] (applySpecial : special → Int → Int → m Int): Expr (Prim special) → m Int
+  | Expr.const i =&gt; pure i
+  | Expr.prim p e1 e2 =&gt;
+    evaluateM applySpecial e1 &gt;&gt;= fun v1 =&gt;
+    evaluateM applySpecial e2 &gt;&gt;= fun v2 =&gt;
+    applyPrim applySpecial p v1 v2
+</code></pre>
+<!--
+#### No Effects
+-->
+<h4 id="无作用"><a class="header" href="#无作用">无作用</a></h4>
+<!--
+The type `Empty` has no constructors, and thus no values, like the `Nothing` type in Scala or Kotlin.
+In Scala and Kotlin, `Nothing` can represent computations that never return a result, such as functions that crash the program, throw exceptions, or always fall into infinite loops.
+An argument to a function or method of type `Nothing` indicates dead code, as there will never be a suitable argument value.
+Lean doesn't support infinite loops and exceptions, but `Empty` is still useful as an indication to the type system that a function cannot be called.
+Using the syntax `nomatch E` when `E` is an expression whose type has no constructors indicates to Lean that the current expression need not return a result, because it could never have been called.
+-->
+<p><code>Empty</code>类型没有构造子，因此没有任何取值，就像Scala或Kotlin中的 <code>Nothing</code> 类型。
+在Scala和Kotlin中，返回类型为 <code>Nothing</code> 表示永不返回结果的计算，例如导致程序崩溃、或引发异常、或陷入无限循环的函数。
+参数类型为 <code>Nothing</code> 表示函数是死代码，因为我们永远无法构造出合适的参数值来调用它。
+Lean 不支持无限循环和异常，但 <code>Empty</code> 仍然可作为向类型系统说明函数不可被调用的标志。
+当 <code>E</code> 是一条表达式，但它的类型没有任何取值时，使用 <code>nomatch E</code> 向Lean说明当前表达式不返回结果，因为它永远不会被调用。</p>
+<!--
+Using `Empty` as the parameter to `Prim` indicates that there are no additional cases beyond `Prim.plus`, `Prim.minus`, and `Prim.times`, because it is impossible to come up with a value of type `Empty` to place in the `Prim.other` constructor.
+Because a function to apply an operator of type `Empty` to two integers can never be called, it doesn't need to return a result.
+Thus, it can be used in _any_ monad:
+-->
+<p>将 <code>Empty</code> 用作 <code>Prim</code> 的参数，表示除了 <code>Prim.plus</code>、<code>Prim.minus</code> 和 <code>Prim.times</code> 之外没有其他情况，因为不可能找到一个 <code>Empty</code> 类型的值来放在 <code>Prim.other</code> 构造子中。
+由于类型为 <code>Empty</code> 的运算符应用于两个整数的函数永远不会被调用，所以它不需要返回结果。
+因此，它可以在 <strong>任何</strong> 单子中使用：</p>
+<pre><code class="language-lean">def applyEmpty [Monad m] (op : Empty) (_ : Int) (_ : Int) : m Int :=
+  nomatch op
+</code></pre>
+<!--
+This can be used together with `Id`, the identity monad, to evaluate expressions that have no effects whatsoever:
+-->
+<p>这可以与恒等单子 <code>Id</code> 一起使用，用来计算没有任何副作用的表达式：</p>
+<pre><code class="language-lean">open Expr Prim in
+#eval evaluateM (m := Id) applyEmpty (prim plus (const 5) (const (-14)))
+</code></pre>
+<pre><code class="language-output info">-9
+</code></pre>
+<!--
+#### Nondeterministic Search
+-->
+<h4 id="非确定性搜索"><a class="header" href="#非确定性搜索">非确定性搜索</a></h4>
+<!--
+Instead of simply failing when encountering division by zero, it would also be sensible to backtrack and try a different input.
+Given the right monad, the very same `evaluateM` can perform a nondeterministic search for a _set_ of answers that do not result in failure.
+This requires, in addition to division, some means of specifying a choice of results.
+One way to do this is to add a function `choose` to the language of expressions that instructs the evaluator to pick either of its arguments while searching for non-failing results.
+-->
+<p>遇到除以零时，除了直接失败并结束之外，还可以回溯并尝试不同的输入。
+给定适当的单子，同一个 <code>evaluateM</code> 可以对不致失败的答案 <strong>集合</strong> 执行非确定性搜索。
+这要求除了除法之外，还需要指定选择结果的方式。
+一种方法是在表达式的语言中添加一个函数<code>choose</code>，告诉求值器在搜索非失败结果时选择其中一个参数。</p>
+<!--
+The result of the evaluator is now a multiset of values, rather than a single value.
+The rules for evaluation into a multiset are:
+ * Constants \\( n \\) evaluate to singleton sets \\( \{n\} \\).
+ * Arithmetic operators other than division are called on each pair from the Cartesian product of the operators, so \\( X + Y \\) evaluates to \\( \\{ x + y \\mid x ∈ X, y ∈ Y \\} \\).
+ * Division \\( X / Y \\) evaluates to \\( \\{ x / y \\mid x ∈ X, y ∈ Y, y ≠ 0\\} \\). In other words, all \\( 0 \\) values in \\( Y \\)  are thrown out.
+ * A choice \\( \\mathrm{choose}(x, y) \\) evaluates to \\( \\{ x, y \\} \\).
+-->
+<p>求值结果现在变成一个多重集合(multiset)，而不是一个单一值
+求值到多重集合的规则如下：</p>
+<ul>
+<li>常量 \( n \) 求值为单元素集合 \( {n} \)。</li>
+<li>除法以外的算术运算符作用于两个参数的笛卡尔积中的每一对，所以 \( X + Y \) 求值为 \( \{ x + y \mid x ∈ X, y ∈ Y \} \)。</li>
+<li>除法 \( X / Y \) 求值为 \( \{ x / y \mid x ∈ X, y ∈ Y, y ≠ 0\} \). 换句话说，所有 \( Y \) 中的 \( 0 \) 都被丢弃。</li>
+<li>选择 \( \mathrm{choose}(x, y) \) 求值为 \( \{ x, y \} \)。</li>
+</ul>
+<!--
+For example, \\( 1 + \\mathrm{choose}(2, 5) \\) evaluates to \\( \\{ 3, 6 \\} \\), \\(1 + 2 / 0 \\) evaluates to \\( \\{\\} \\), and \\( 90 / (\\mathrm{choose}(-5, 5) + 5) \\) evaluates to \\( \\{ 9 \\} \\).
+Using multisets instead of true sets simplifies the code by removing the need to check for uniqueness of elements.
+-->
+<p>例如， \( 1 + \mathrm{choose}(2, 5) \) 求值为 \( \{ 3, 6 \} \)， \(1 + 2 / 0 \) 求值为 \( \{\} \)，并且 \( 90 / (\mathrm{choose}(-5, 5) + 5) \) 求值为 \( \{ 9 \} \)。
+使用多重集合而非集合，是为了避免处理元素重复的情况而使代码过于复杂。</p>
+<!--
+A monad that represents this non-deterministic effect must be able to represent a situation in which there are no answers, and a situation in which there is at least one answer together with any remaining answers:
+-->
+<p>表示这种非确定性作用的单子必须能够处理没有答案的情况，以及至少有一个答案和其他答案的情况：</p>
+<pre><code class="language-lean">inductive Many (α : Type) where
+  | none : Many α
+  | more : α → (Unit → Many α) → Many α
+</code></pre>
+<!--
+This datatype looks very much like `List`.
+The difference is that where `cons` stores the rest of the list, `more` stores a function that should compute the next value on demand.
+This means that a consumer of `Many` can stop the search when some number of results have been found.
+-->
+<p>该数据类型看起来非常像<code>List</code>。
+不同之处在于，<code>cons</code>存储列表的其余部分，而 <code>more</code> 存储一个函数，该函数仅在需要时才会被调用来计算下一个值。
+这意味着 <code>Many</code> 的使用者可以在找到一定数量的结果后停止搜索。</p>
+<!--
+A single result is represented by a `more` constructor that returns no further results:
+-->
+<p>单个结果由 <code>more</code> 构造子表示，该构造子不返回任何进一步的结果：</p>
+<pre><code class="language-lean">def Many.one (x : α) : Many α := Many.more x (fun () =&gt; Many.none)
+</code></pre>
+<!--
+The union of two multisets of results can be computed by checking whether the first multiset is empty.
+If so, the second multiset is the union.
+If not, the union consists of the first element of the first multiset followed by the union of the rest of the first multiset with the second multiset:
+-->
+<p>两个作为结果的多重集合的并集，可以通过检查第一个是否为空来计算。
+如果第一个为空则第二个多重集合就是并集。
+如果非空，则并集由第一个多重集合的第一个元素，紧跟着其余部分与第二个多重集的并集：</p>
+<pre><code class="language-lean">def Many.union : Many α → Many α → Many α
+  | Many.none, ys =&gt; ys
+  | Many.more x xs, ys =&gt; Many.more x (fun () =&gt; union (xs ()) ys)
+</code></pre>
+<!--
+It can be convenient to start a search process with a list of values.
+`Many.fromList` converts a list into a multiset of results:
+-->
+<p>对值列表搜索会比手动构造多重集合更方便。
+函数 <code>Many.fromList</code> 将列表转换为结果的多重集合：</p>
+<pre><code class="language-lean">def Many.fromList : List α → Many α
+  | [] =&gt; Many.none
+  | x :: xs =&gt; Many.more x (fun () =&gt; fromList xs)
+</code></pre>
+<!--
+Similarly, once a search has been specified, it can be convenient to extract either a number of values, or all the values:
+-->
+<p>类似地，一旦搜索已经确定，就可以方便地提取固定数量的值或所有值：</p>
+<pre><code class="language-lean">def Many.take : Nat → Many α → List α
+  | 0, _ =&gt; []
+  | _ + 1, Many.none =&gt; []
+  | n + 1, Many.more x xs =&gt; x :: (xs ()).take n
+
+def Many.takeAll : Many α → List α
+  | Many.none =&gt; []
+  | Many.more x xs =&gt; x :: (xs ()).takeAll
+</code></pre>
+<!--
+A `Monad Many` instance requires a `bind` operator.
+In a nondeterministic search, sequencing two operations consists of taking all possibilities from the first step and running the rest of the program on each of them, taking the union of the results.
+In other words, if the first step returns three possible answers, the second step needs to be tried for all three.
+Because the second step can return any number of answers for each input, taking their union represents the entire search space.
+-->
+<p><code>Monad Many</code>实例需要一个 <code>bind</code> 运算符。
+在非确定性搜索中，对两个操作进行排序包括：从第一步中获取所有可能性，并对每种可能性都运行程序的其余部分，取结果的并集。
+换句话说，如果第一步返回三个可能的答案，则需要对这三个答案分别尝试第二步。
+由于第二步为每个输入都可以返回任意数量的答案，因此取它们的并集表示整个搜索空间。</p>
+<pre><code class="language-lean">def Many.bind : Many α → (α → Many β) → Many β
+  | Many.none, _ =&gt;
+    Many.none
+  | Many.more x xs, f =&gt;
+    (f x).union (bind (xs ()) f)
+</code></pre>
+<!--
+`Many.one` and `Many.bind` obey the monad contract.
+To check that `Many.bind (Many.one v) f` is the same as `f v`, start by evaluating the expression as far as possible:
+-->
+<p><code>Many.one</code>和 <code>Many.bind</code> 遵循单子约定。
+要检查 <code>Many.bind (Many.one v) f</code> 是否与 <code>f v</code> 相同，首先应最大限度地计算表达式：</p>
+<pre><code class="language-lean">Many.bind (Many.one v) f
+===&gt;
+Many.bind (Many.more v (fun () =&gt; Many.none)) f
+===&gt;
+(f v).union (Many.bind Many.none f)
+===&gt;
+(f v).union Many.none
+</code></pre>
+<!--
+The empty multiset is a right identity of `union`, so the answer is equivalent to `f v`.
+To check that `Many.bind v Many.one` is the same as `v`, consider that `bind` takes the union of applying `Many.one` to each element of `v`.
+In other words, if `v` has the form `{v1, v2, v3, ..., vn}`, then `Many.bind v Many.one` is `{v1} ∪ {v2} ∪ {v3} ∪ ... ∪ {vn}`, which is `{v1, v2, v3, ..., vn}`.
+-->
+<p>空集是 <code>union</code> 的右单位元，因此答案等同于<code>f v</code>。
+要检查 <code>Many.bind v Many.one</code> 是否与 <code>v</code> 相同，需要考虑 <code>Many.one</code> 应用于 <code>v</code> 的各元素结果的并集。
+换句话说，如果 <code>v</code> 的形式为 <code>{v1, v2, v3, ..., vn}</code>，则<code>Many.bind v Many.one</code> 为<code>{v1} ∪ {v2} ∪ {v3} ∪ ... ∪ {vn}</code>，即<code>{v1, v2, v3, ..., vn}</code>。</p>
+<!--
+Finally, to check that `Many.bind` is associative, check that `Many.bind (Many.bind bind v f) g` is the same as `Many.bind v (fun x => Many.bind (f x) g)`.
+If `v` has the form `{v1, v2, v3, ..., vn}`, then:
+-->
+<p>最后，要检查 <code>Many.bind</code> 是否满足结合律，需要检查 <code>Many.bind (Many.bind bind v f) g</code> 是否与 <code>Many.bind v (fun x =&gt; Many.bind (f x) g)</code> 相同。
+如果 <code>v</code> 的形式为<code>{v1, v2, v3, ..., vn}</code>，则：</p>
+<pre><code class="language-lean">Many.bind v f
+===&gt;
+f v1 ∪ f v2 ∪ f v3 ∪ ... ∪ f vn
+</code></pre>
+<p>which means that</p>
+<pre><code class="language-lean">Many.bind (Many.bind bind v f) g
+===&gt;
+Many.bind (f v1) g ∪
+Many.bind (f v2) g ∪
+Many.bind (f v3) g ∪
+... ∪
+Many.bind (f vn) g
+</code></pre>
+<!--
+Similarly,
+-->
+<p>与此类似，</p>
+<pre><code class="language-lean">Many.bind v (fun x =&gt; Many.bind (f x) g)
+===&gt;
+(fun x =&gt; Many.bind (f x) g) v1 ∪
+(fun x =&gt; Many.bind (f x) g) v2 ∪
+(fun x =&gt; Many.bind (f x) g) v3 ∪
+... ∪
+(fun x =&gt; Many.bind (f x) g) vn
+===&gt;
+Many.bind (f v1) g ∪
+Many.bind (f v2) g ∪
+Many.bind (f v3) g ∪
+... ∪
+Many.bind (f vn) g
+</code></pre>
+<!--
+Thus, both sides are equal, so `Many.bind` is associative.
+-->
+<p>因此两边相等，所以 <code>Many.bind</code> 满足结合律。</p>
+<p>由此得到的单子实例为：</p>
+<pre><code class="language-lean">instance : Monad Many where
+  pure := Many.one
+  bind := Many.bind
+</code></pre>
+<!--
+An example search using this monad finds all the combinations of numbers in a list that add to 15:
+-->
+<p>利用此单子，下例可找到列表中所有加起来等于15的数字组合：</p>
+<pre><code class="language-lean">def addsTo (goal : Nat) : List Nat → Many (List Nat)
+  | [] =&gt;
+    if goal == 0 then
+      pure []
+    else
+      Many.none
+  | x :: xs =&gt;
+    if x &gt; goal then
+      addsTo goal xs
+    else
+      (addsTo goal xs).union
+        (addsTo (goal - x) xs &gt;&gt;= fun answer =&gt;
+         pure (x :: answer))
+</code></pre>
+<!--
+The search process is recursive over the list.
+The empty list is a successful search when the goal is `0`; otherwise, it fails.
+When the list is non-empty, there are two possibilities: either the head of the list is greater than the goal, in which case it cannot participate in any successful searches, or it is not, in which case it can.
+If the head of the list is _not_ a candidate, then the search proceeds to the tail of the list.
+If the head is a candidate, then there are two possibilities to be combined with `Many.union`: either the solutions found contain the head, or they do not.
+The solutions that do not contain the head are found with a recursive call on the tail, while the solutions that do contain it result from subtracting the head from the goal, and then attaching the head to the solutions that result from the recursive call.
+-->
+<p>(译者注：这是一个动态规划算法)对列表进行递归搜索。
+当输入列表为空且目标为 <code>0</code> 时，返回空列表表示成功；否则返回 <code>Many.none</code> 表示失败，因为空输入不可能得到非0加和。
+当列表非空时，有两种可能性：若输入列表的第一个元素大于goal，此时它的任何加和都大于 <code>0</code> 因此不可能是候选者；若第一个元素不大于goal，可以参与后续的搜索。
+如果列表的头部x <strong>不是</strong> 候选者，对列表的尾部xs递归搜索。
+如果头部是候选者，则有两种用 <code>Many.union</code> 合并起来的可能性：找到的解含有当前的x，或者不含有。
+不含x的解通过xs递归搜索找到；而含有x的解则通过从goal中减去x，然后将x附加到递归的解中得到。</p>
+<!--
+Returning to the arithmetic evaluator that produces multisets of results, the `both` and `neither` operators can be written as follows:
+-->
+<p>让我们回到产生多重集合的算术求值器，<code>both</code>和 <code>neither</code> 运算符可以写成如下形式：</p>
+<pre><code class="language-lean">inductive NeedsSearch
+  | div
+  | choose
+
+def applySearch : NeedsSearch → Int → Int → Many Int
+  | NeedsSearch.choose, x, y =&gt;
+    Many.fromList [x, y]
+  | NeedsSearch.div, x, y =&gt;
+    if y == 0 then
+      Many.none
+    else Many.one (x / y)
+</code></pre>
+<!--
+Using these operators, the earlier examples can be evaluated:
+-->
+<p>可以用这些运算符对前面的示例求值：</p>
+<pre><code class="language-lean">open Expr Prim NeedsSearch
+
+#eval (evaluateM applySearch (prim plus (const 1) (prim (other choose) (const 2) (const 5)))).takeAll
+</code></pre>
+<pre><code class="language-output info">[3, 6]
+</code></pre>
+<pre><code class="language-lean">#eval (evaluateM applySearch (prim plus (const 1) (prim (other div) (const 2) (const 0)))).takeAll
+</code></pre>
+<pre><code class="language-output info">[]
+</code></pre>
+<pre><code class="language-lean">#eval (evaluateM applySearch (prim (other div) (const 90) (prim plus (prim (other choose) (const (-5)) (const 5)) (const 5)))).takeAll
+</code></pre>
+<pre><code class="language-output info">[9]
+</code></pre>
+<!--
+#### Custom Environments
+-->
+<h4 id="自定义环境"><a class="header" href="#自定义环境">自定义环境</a></h4>
+<!--
+The evaluator can be made user-extensible by allowing strings to be used as operators, and then providing a mapping from strings to a function that implements them.
+For example, users could extend the evaluator with a remainder operator or with one that returns the maximum of its two arguments.
+The mapping from function names to function implementations is called an _environment_.
+-->
+<p>可以通过允许将字符串当作运算符，然后提供从字符串到它们的实现函数之间的映射，使求值器可由用户扩展。
+例如，用户可以用余数运算或最大值运算来扩展求值器。
+从函数名称到函数实现的映射称为 <strong>环境</strong> 。</p>
+<!--
+The environments needs to be passed in each recursive call.
+Initially, it might seem that `evaluateM` needs an extra argument to hold the environment, and that this argument should be passed to each recursive invocation.
+However, passing an argument like this is another form of monad, so an appropriate `Monad` instance allows the evaluator to be used unchanged.
+-->
+<p>环境需要在每层递归调用之间传递。
+因此一开始 <code>evaluateM</code> 看起来需要一个额外的参数来保存环境，并且该参数需要在每次递归调用时传递。
+然而，像这样传递参数是单子的另一种形式，因此一个适当的 <code>Monad</code> 实例允许求值器本身保持不变。</p>
+<!--
+Using functions as a monad is typically called a _reader_ monad.
+When evaluating expressions in the reader monad, the following rules are used:
+ * Constants \\( n \\) evaluate to constant functions \\( λ e . n \\),
+ * Arithmetic operators evaluate to functions that pass their arguments on, so \\( f + g \\) evaluates to \\( λ e . f(e) + g(e) \\), and
+ * Custom operators evaluate to the result of applying the custom operator to the arguments, so \\( f \\ \\mathrm{OP}\\ g \\) evaluates to
+   \\[
+     λ e .
+     \\begin{cases}
+     h(f(e), g(e)) & \\mathrm{if}\\ e\\ \\mathrm{contains}\\ (\\mathrm{OP}, h) \\\\
+     0 & \\mathrm{otherwise}
+     \\end{cases}
+   \\]
+   with \\( 0 \\) serving as a fallback in case an unknown operator is applied.
+-->
+<p>将函数当作单子，这通常称为 <strong>reader</strong> 单子。
+在reader单子中对表达式求值使用以下规则：</p>
+<ul>
+<li>常量 \( n \) 映射为常量函数 \( λ e . n \)，</li>
+<li>算术运算符映射为将参数各自传递然后计算的函数，因此 \( f + g \) 映射为 \( λ e . f(e) + g(e) \)，并且</li>
+<li>自定义运算符求值为将自定义运算符应用于参数的结果，因此 \( f \ \mathrm{OP}\ g \) 映射为
+\[
+λ e .
+\begin{cases}
+h(f(e), g(e)) &amp; \mathrm{if}\ e\ \mathrm{contains}\ (\mathrm{OP}, h) \\
+0 &amp; \mathrm{otherwise}
+\end{cases}
+\]
+其中 \( 0 \) 用于运算符未知的情况。</li>
+</ul>
+<!--
+To define the reader monad in Lean, the first step is to define the `Reader` type and the effect that allows users to get ahold of the environment:
+-->
+<p>要在Lean中定义reader单子，第一步是定义 <code>Reader</code> 类型，和用户获取环境的作用：</p>
+<pre><code class="language-lean">def Reader (ρ : Type) (α : Type) : Type := ρ → α
+
+def read : Reader ρ ρ := fun env =&gt; env
+</code></pre>
+<!--
+By convention, the Greek letter `ρ`, which is pronounced "rho", is used for environments.
+-->
+<p>按照惯例，希腊字母<code>ρ</code>（发音为“rho”）用于表示环境。</p>
+<!--
+The fact that constants in arithmetic expressions evaluate to constant functions suggests that the appropriate definition of `pure` for `Reader` is a a constant function:
+-->
+<p>算术表达式中的常量映射为常量函数这一事实表明，<code>Reader</code>的 <code>pure</code> 的适当定义是一个常量函数：</p>
+<pre><code class="language-lean">def Reader.pure (x : α) : Reader ρ α := fun _ =&gt; x
+</code></pre>
+<!--
+On the other hand, `bind` is a bit tricker.
+Its type is `Reader ρ α → (α → Reader ρ β) → Reader ρ β`.
+This type can be easier to understand by expanding the definitions of `Reader`, which yields `(ρ → α) → (α → ρ → β) → ρ → β`.
+It should take an environment-accepting function as its first argument, while the second argument should transform the result of the environment-accepting function into yet another environment-accepting function.
+The result of combining these is itself a function, waiting for an environment.
+-->
+<p>另一方面 <code>bind</code> 则有点棘手。
+它的类型是<code>Reader ρ α → (α → Reader ρ β) → Reader ρ β</code>。
+通过展开 <code>Reader</code> 的定义，可以更容易地理解此类型，从而产生<code>(ρ → α) → (α → ρ → β) → ρ → β</code>。
+它将读取环境的函数作为第一个参数，而第二个参数将第一个参数的结果转换为另一个读取环境的函数。
+组合这些结果本身就是一个读取环境的函数。</p>
+<!--
+It's possible to use Lean interactively to get help writing this function.
+The first step is to write down the arguments and return type, being very explicit in order to get as much help as possible, with an underscore for the definition's body:
+-->
+<p>可以交互式地使用Lean，获得编写该函数的帮助。
+为了获得尽可能多的帮助，第一步是非常明确地写下参数的类型和返回的类型，用下划线表示定义的主体：</p>
+<pre><code class="language-lean">def Reader.bind {ρ : Type} {α : Type} {β : Type}
+  (result : ρ → α) (next : α → ρ → β) : ρ → β :=
+  _
+</code></pre>
+<!--
+Lean provides a message that describes which variables are available in scope, and the type that's expected for the result.
+The `⊢` symbol, called a _turnstile_ due to its resemblance to subway entrances, separates the local variables from the desired type, which is `ρ → β` in this message:
+-->
+<p>Lean提供的消息描述了哪些变量在作用域内可用，以及结果的预期类型。
+<code>⊢</code>符号，由于它类似于地铁入口而被称为 <strong>turnstile</strong> ，将局部变量与所需类型分开，在此消息中为<code>ρ → β</code>：</p>
+<pre><code class="language-output error">don't know how to synthesize placeholder
+context:
+ρ α β : Type
+result : ρ → α
+next : α → ρ → β
+⊢ ρ → β
+</code></pre>
+<!--
+Because the return type is a function, a good first step is to wrap a `fun` around the underscore:
+-->
+<p>因为返回类型是一个函数，所以第一步最好在下划线外套一层<code>fun</code>：</p>
+<pre><code class="language-lean">def Reader.bind {ρ : Type} {α : Type} {β : Type}
+  (result : ρ → α) (next : α → ρ → β) : ρ → β :=
+  fun env =&gt; _
+</code></pre>
+<!--
+The resulting message now shows the function's argument as a local variable:
+-->
+<p>产生的消息说明现在函数的参数已经成为一个局部变量：</p>
+<pre><code class="language-output error">don't know how to synthesize placeholder
+context:
+ρ α β : Type
+result : ρ → α
+next : α → ρ → β
+env : ρ
+⊢ β
+</code></pre>
+<!--
+The only thing in the context that can produce a `β` is `next`, and it will require two arguments to do so.
+Each argument can itself be an underscore:
+-->
+<p>上下文中唯一可以产生 <code>β</code> 的是 <code>next</code>， 并且它需要两个参数。
+每个参数都可以用下划线表示：</p>
+<pre><code class="language-lean">def Reader.bind {ρ : Type} {α : Type} {β : Type}
+  (result : ρ → α) (next : α → ρ → β) : ρ → β :=
+  fun env =&gt; next _ _
+</code></pre>
+<!--
+The two underscores have the following respective messages associated with them:
+-->
+<p>这两个下划线分别有如下的消息：</p>
+<pre><code class="language-output error">don't know how to synthesize placeholder
+context:
+ρ α β : Type
+result : ρ → α
+next : α → ρ → β
+env : ρ
+⊢ α
+</code></pre>
+<pre><code class="language-output error">don't know how to synthesize placeholder
+context:
+ρ α β : Type
+result : ρ → α
+next : α → ρ → β
+env : ρ
+⊢ ρ
+</code></pre>
+<!--
+Attacking the first underscore, only one thing in the context can produce an `α`, namely `result`:
+-->
+<p>先处理第一条下划线，注意到上下文中只有一个东西可以产生<code>α</code>，即<code>result</code>：</p>
+<pre><code class="language-lean">def Reader.bind {ρ : Type} {α : Type} {β : Type}
+  (result : ρ → α) (next : α → ρ → β) : ρ → β :=
+  fun env =&gt; next (result _) _
+</code></pre>
+<!--
+Now, both underscores have the same error:
+-->
+<p>现在两条下划线都有一样的报错了：</p>
+<pre><code class="language-output error">don't know how to synthesize placeholder
+context:
+ρ α β : Type
+result : ρ → α
+next : α → ρ → β
+env : ρ
+⊢ ρ
+</code></pre>
+<!--
+Happily, both underscores can be replaced by `env`, yielding:
+-->
+<p>值得高兴的是，两条下划线都可以被 <code>env</code> 替换，得到：</p>
+<pre><code class="language-lean">def Reader.bind {ρ : Type} {α : Type} {β : Type}
+  (result : ρ → α) (next : α → ρ → β) : ρ → β :=
+  fun env =&gt; next (result env) env
+</code></pre>
+<!--
+The final version can be obtained by undoing the expansion of `Reader` and cleaning up the explicit details:
+-->
+<p>要得到最后的版本，只需要把我们前面对 <code>Reader</code> 的展开撤销，并且去掉过于明确的细节：</p>
+<pre><code class="language-lean">def Reader.bind (result : Reader ρ α) (next : α → Reader ρ β) : Reader ρ β :=
+  fun env =&gt; next (result env) env
+</code></pre>
+<!--
+It's not always possible to write correct functions by simply "following the types", and it carries the risk of not understanding the resulting program.
+However, it can also be easier to understand a program that has been written than one that has not, and the process of filling in the underscores can bring insights.
+In this case, `Reader.bind` works just like `bind` for `Id`, except it accepts an additional argument that it then passes down to its arguments, and this intuition can help in understanding how it works.
+-->
+<p>仅仅跟着类型信息走并不总是能写出正确的函数，并且有未能完全理解产生的程序的风险。
+然而理解一个已经写出的程序比理解还没写出的要简单，而且逐步填充下划线的内容也可以提供思路。
+这张情况下，<code>Reader.bind</code>和 <code>Id</code> 的 <code>bind</code> 很像，唯一区别在于它接受一个额外的参数并传递到其他参数中。这个直觉可以帮助理解它的原理。</p>
+<!--
+`Reader.pure`, which generates constant functions, and `Reader.bind` obey the monad contract.
+To check that `Reader.bind (Reader.pure v) f` is the same as `f v`, it's enough to replace definitions until the last step:
+-->
+<p><code>Reader.pure</code>和 <code>Reader.bind</code> 遵循单子约定。
+要检查 <code>Reader.bind (Reader.pure v) f</code> 与 <code>f v</code> 等价, 只需要不断地展开定义即可：</p>
+<pre><code class="language-lean">Reader.bind (Reader.pure v) f
+===&gt;
+fun env =&gt; f ((Reader.pure v) env) env
+===&gt;
+fun env =&gt; f ((fun _ =&gt; v) env) env
+===&gt;
+fun env =&gt; f v env
+===&gt;
+f v
+</code></pre>
+<!--
+For every function `f`, `fun x => f x` is the same as `f`, so the first part of the contract is satisfied.
+To check that `Reader.bind r Reader.pure` is the same as `r`, a similar technique works:
+-->
+<p>对任意函数 <code>f</code> 来说，<code>fun x =&gt; f x</code>和 <code>f</code> 是等价的，所以约定的第一部分已经满足。
+要检查 <code>Reader.bind r Reader.pure</code> 与 <code>r</code> 等价，只需要相似的技巧：</p>
+<pre><code class="language-lean">Reader.bind r Reader.pure
+===&gt;
+fun env =&gt; Reader.pure (r env) env
+===&gt;
+fun env =&gt; (fun _ =&gt; (r env)) env
+===&gt;
+fun env =&gt; r env
+</code></pre>
+<!--
+Because reader actions `r` are themselves functions, this is the same as `r`.
+To check associativity, the same thing can be done for both `Reader.bind (Reader.bind r f) g` and `Reader.bind r (fun x => Reader.bind (f x) g)`:
+-->
+<p>因为 <code>r</code> 本身是函数，所以这和 <code>r</code> 也是等价的。
+要检查结合律，只需要对 <code>Reader.bind (Reader.bind r f) g</code> 和 <code>Reader.bind r (fun x =&gt; Reader.bind (f x) g)</code> 重复同样的步骤：</p>
+<pre><code class="language-lean">Reader.bind (Reader.bind r f) g
+===&gt;
+fun env =&gt; g ((Reader.bind r f) env) env
+===&gt;
+fun env =&gt; g ((fun env' =&gt; f (r env') env') env) env
+===&gt;
+fun env =&gt; g (f (r env) env) env
+</code></pre>
+<pre><code class="language-lean">Reader.bind r (fun x =&gt; Reader.bind (f x) g)
+===&gt;
+Reader.bind r (fun x =&gt; fun env =&gt; g (f x env) env)
+===&gt;
+fun env =&gt; (fun x =&gt; fun env' =&gt; g (f x env') env') (r env) env
+===&gt;
+fun env =&gt; (fun env' =&gt; g (f (r env) env') env') env
+===&gt;
+fun env =&gt; g (f (r env) env) env
+</code></pre>
+<!--
+Thus, a `Monad (Reader ρ)` instance is justified:
+-->
+<p>至此，<code>Monad (Reader ρ)</code>实例已经得到了充分验证：</p>
+<pre><code class="language-lean">instance : Monad (Reader ρ) where
+  pure x := fun _ =&gt; x
+  bind x f := fun env =&gt; f (x env) env
+</code></pre>
+<!--
+The custom environments that will be passed to the expression evaluator can be represented as lists of pairs:
+-->
+<p>要被传递给表达式求值器的环境可以用键值对的列表来表示：</p>
+<pre><code class="language-lean">abbrev Env : Type := List (String × (Int → Int → Int))
+</code></pre>
+<!--
+For instance, `exampleEnv` contains maximum and modulus functions:
+-->
+<p>例如，<code>exampleEnv</code>包含最大值和模函数：</p>
+<pre><code class="language-lean">def exampleEnv : Env := [(&quot;max&quot;, max), (&quot;mod&quot;, (· % ·))]
+</code></pre>
+<!--
+Lean already has a function `List.lookup` that finds the value associated with a key in a list of pairs, so `applyPrimReader` needs only check whether the custom function is present in the environment. It returns `0` if the function is unknown:
+-->
+<p>Lean已提供函数 <code>List.lookup</code> 用来在键值对的列表中根据键寻找对应的值，所以 <code>applyPrimReader</code> 只需要确认自定义函数是否存在于环境中即可。如果不存在则返回<code>0</code>：</p>
+<pre><code class="language-lean">def applyPrimReader (op : String) (x : Int) (y : Int) : Reader Env Int :=
+  read &gt;&gt;= fun env =&gt;
+  match env.lookup op with
+  | none =&gt; pure 0
+  | some f =&gt; pure (f x y)
+</code></pre>
+<!--
+Using `evaluateM` with `applyPrimReader` and an expression results in a function that expects an environment.
+Luckily, `exampleEnv` is available:
+-->
+<p>将<code>evaluateM</code>、<code>applyPrimReader</code>、和一条表达式一起使用，即得到一个接受环境的函数。
+而我们前面已经准备好了<code>exampleEnv</code>：</p>
+<pre><code class="language-lean">open Expr Prim in
+#eval evaluateM applyPrimReader (prim (other &quot;max&quot;) (prim plus (const 5) (const 4)) (prim times (const 3) (const 2))) exampleEnv
+</code></pre>
+<pre><code class="language-output info">9
+</code></pre>
+<!--
+Like `Many`, `Reader` is an example of an effect that is difficult to encode in most languages, but type classes and monads make it just as convenient as any other effect.
+The dynamic or special variables found in Common Lisp, Clojure, and Emacs Lisp can be used like `Reader`.
+Similarly, Scheme and Racket's parameter objects are an effect that exactly correspond to `Reader`.
+The Kotlin idiom of context objects can solve a similar problem, but they are fundamentally a means of passing function arguments automatically, so this idiom is more like the encoding as a reader monad than it is an effect in the language.
+-->
+<p>与 <code>Many</code> 一样，<code>Reader</code>是难以在大多数语言中编码的作用，但类型类和单子使其与任何其他作用一样方便。
+Common Lisp、Clojure和Emacs Lisp中的动态或特殊变量可以用作<code>Reader</code>。
+类似地，Scheme和Racket的参数对象是一个与 <code>Reader</code> 完全对应的作用。
+Kotlin的上下文对象可以解决类似的问题，但根本上是一种自动传递函数参数的方式，因此更像是作为reader单子的编码，而不是语言中实现的作用。</p>
+<!--
+## Exercises
+-->
+<h2 id="练习"><a class="header" href="#练习">练习</a></h2>
+<!--
+### Checking Contracts
+-->
+<h3 id="检查约定"><a class="header" href="#检查约定">检查约定</a></h3>
+<!--
+Check the monad contract for `State σ` and `Except ε`.
+-->
+<p>检查 <code>State σ</code> 和 <code>Except ε</code> 满足单子约定。</p>
+<!--
+### Readers with Failure
+-->
+<h3 id="允许reader失败"><a class="header" href="#允许reader失败">允许Reader失败</a></h3>
+<!--
+Adapt the reader monad example so that it can also indicate failure when the custom operator is not defined, rather than just returning zero.
+In other words, given these definitions:
+-->
+<p>调整例子中的reader单子，使得它可以在自定义的运算符不存在时提供错误信息而不是直接返回0。
+换句话说，给定这些定义：</p>
+<pre><code class="language-lean">def ReaderOption (ρ : Type) (α : Type) : Type := ρ → Option α
+
+def ReaderExcept (ε : Type) (ρ : Type) (α : Type) : Type := ρ → Except ε α
+</code></pre>
+<!--
+do the following:
+ 1. Write suitable `pure` and `bind` functions
+ 2. Check that these functions satisfy the `Monad` contract
+ 3. Write `Monad` instances for `ReaderOption` and `ReaderExcept`
+ 4. Define suitable `applyPrim` operators and test them with `evaluateM` on some example expressions
+-->
+<p>要做的是：</p>
+<ol>
+<li>实现恰当的 <code>pure</code> 和 <code>bind</code> 函数</li>
+<li>验证这些函数满足 <code>Monad</code> 约定</li>
+<li>为 <code>ReaderOption</code> 和 <code>ReaderExcept</code> 实现 <code>Monad</code> 实例</li>
+<li>为它们定义恰当的 <code>applyPrim</code> 运算符，并且将它们和 <code>evaluateM</code> 一起测试一些例子</li>
+</ol>
+<!--
+### A Tracing Evaluator
+-->
+<h3 id="带有跟踪信息的求值器"><a class="header" href="#带有跟踪信息的求值器">带有跟踪信息的求值器</a></h3>
+<!--
+The `WithLog` type can be used with the evaluator to add optional tracing of some operations.
+In particular, the type `ToTrace` can serve as a signal to trace a given operator:
+-->
+<p><code>WithLog</code>类型可以和求值器一起使用，来实现对某些运算的跟踪。
+特别地，可以使用 <code>ToTrace</code> 类型来追踪某个给定的运算符：</p>
+<pre><code class="language-lean">inductive ToTrace (α : Type) : Type where
+  | trace : α → ToTrace α
+</code></pre>
+<!--
+For the tracing evaluator, expressions should have type `Expr (Prim (ToTrace (Prim Empty)))`.
+This says that the operators in the expression consist of addition, subtraction, and multiplication, augmented with traced versions of each. The innermost argument is `Empty` to signal that there are no further special operators inside of `trace`, only the three basic ones.
+-->
+<p>对于带有跟踪信息的求值器，表达式应该具有类型<code>Expr (Prim (ToTrace (Prim Empty)))</code>.
+这说明表达式中的运算符由附加参数的加、减、乘运算组成。最内层的参数是 <code>Empty</code>，说明在<code>trace</code> 内部没有特殊运算符，只有三种基本运算。</p>
+<!--
+Do the following:
+ 1. Implement a `Monad (WithLog logged)` instance
+ 2. Write an `applyTraced` function to apply traced operators to their arguments, logging both the operator and the arguments, with type `ToTrace (Prim Empty) → Int → Int → WithLog (Prim Empty × Int × Int) Int`
+-->
+<p>要做的是：</p>
+<ol>
+<li>实现 <code>Monad (WithLog logged)</code> 实例</li>
+<li>写一个 <code>applyTraced</code> 来将被追踪的运算符应用到参数，将运算符和参数记录到日志，类型为：<code>ToTrace (Prim Empty) → Int → Int → WithLog (Prim Empty × Int × Int) Int</code></li>
+</ol>
+<!--
+If the exercise has been completed correctly, then
+-->
+<p>如果练习已经正确实现，那么</p>
+<pre><code class="language-lean">open Expr Prim ToTrace in
+#eval evaluateM applyTraced (prim (other (trace times)) (prim (other (trace plus)) (const 1) (const 2)) (prim (other (trace minus)) (const 3) (const 4)))
+</code></pre>
+<!--
+should result in
+-->
+<p>将有如下结果</p>
+<pre><code class="language-output info">{ log := [(Prim.plus, 1, 2), (Prim.minus, 3, 4), (Prim.times, 3, -1)], val := -3 }
+</code></pre>
+<!--
+ Hint: values of type `Prim Empty` will appear in the resulting log. In order to display them as a result of `#eval`, the following instances are required:
+-->
+<p>提示：<code>Prim Empty</code>会出现在日志中。为了让它们能被 <code>#eval</code> 输出，需要下面几个实例：</p>
+<pre><code class="language-lean"> deriving instance Repr for WithLog
+deriving instance Repr for Empty
+deriving instance Repr for Prim
+</code></pre>
+
+                    </main>
+
+                    <nav class="nav-wrapper" aria-label="Page navigation">
+                        <!-- Mobile navigation buttons -->
+                            <a rel="prev" href="../monads/class.html" class="mobile-nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                                <i class="fa fa-angle-left"></i>
+                            </a>
+
+                            <a rel="next" href="../monads/do.html" class="mobile-nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                                <i class="fa fa-angle-right"></i>
+                            </a>
+
+                        <div style="clear: both"></div>
+                    </nav>
+                </div>
+            </div>
+
+            <nav class="nav-wide-wrapper" aria-label="Page navigation">
+                    <a rel="prev" href="../monads/class.html" class="nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                        <i class="fa fa-angle-left"></i>
+                    </a>
+
+                    <a rel="next" href="../monads/do.html" class="nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                        <i class="fa fa-angle-right"></i>
+                    </a>
+            </nav>
+
+        </div>
+
+
+
+
+        <script>
+            window.playground_copyable = true;
+        </script>
+
+
+        <script src="../elasticlunr.min.js"></script>
+        <script src="../mark.min.js"></script>
+        <script src="../searcher.js"></script>
+
+        <script src="../clipboard.min.js"></script>
+        <script src="../highlight.js"></script>
+        <script src="../book.js"></script>
+
+        <!-- Custom JS scripts -->
+        <script src="../custom.js"></script>
+
+
+    </body>
+</html>

@@ -1,0 +1,600 @@
+<!DOCTYPE HTML>
+<html lang="zh-CN" class="sidebar-visible no-js light">
+    <head>
+        <!-- Book generated using mdBook -->
+        <meta charset="UTF-8">
+        <title>索引族 - Lean 函数式编程</title>
+
+
+        <!-- Custom HTML head -->
+        
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="theme-color" content="#ffffff" />
+
+        <link rel="icon" href="../favicon.svg">
+        <link rel="shortcut icon" href="../favicon.png">
+        <link rel="stylesheet" href="../css/variables.css">
+        <link rel="stylesheet" href="../css/general.css">
+        <link rel="stylesheet" href="../css/chrome.css">
+        <link rel="stylesheet" href="../css/print.css" media="print">
+
+        <!-- Fonts -->
+        <link rel="stylesheet" href="../FontAwesome/css/font-awesome.css">
+        <link rel="stylesheet" href="../fonts/fonts.css">
+
+        <!-- Highlight.js Stylesheets -->
+        <link rel="stylesheet" href="../highlight.css">
+        <link rel="stylesheet" href="../tomorrow-night.css">
+        <link rel="stylesheet" href="../ayu-highlight.css">
+
+        <!-- Custom theme stylesheets -->
+        <link rel="stylesheet" href="../custom.css">
+        <link rel="stylesheet" href="../pygments.css">
+
+        <!-- MathJax -->
+        <script async src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    </head>
+    <body>
+        <!-- Provide site root to javascript -->
+        <script>
+            var path_to_root = "../";
+            var default_theme = window.matchMedia("(prefers-color-scheme: dark)").matches ? "navy" : "light";
+        </script>
+
+        <!-- Work around some values being stored in localStorage wrapped in quotes -->
+        <script>
+            try {
+                var theme = localStorage.getItem('mdbook-theme');
+                var sidebar = localStorage.getItem('mdbook-sidebar');
+
+                if (theme.startsWith('"') && theme.endsWith('"')) {
+                    localStorage.setItem('mdbook-theme', theme.slice(1, theme.length - 1));
+                }
+
+                if (sidebar.startsWith('"') && sidebar.endsWith('"')) {
+                    localStorage.setItem('mdbook-sidebar', sidebar.slice(1, sidebar.length - 1));
+                }
+            } catch (e) { }
+        </script>
+
+        <!-- Set the theme before any content is loaded, prevents flash -->
+        <script>
+            var theme;
+            try { theme = localStorage.getItem('mdbook-theme'); } catch(e) { }
+            if (theme === null || theme === undefined) { theme = default_theme; }
+            var html = document.querySelector('html');
+            html.classList.remove('no-js')
+            html.classList.remove('light')
+            html.classList.add(theme);
+            html.classList.add('js');
+        </script>
+
+        <!-- Hide / unhide sidebar before it is displayed -->
+        <script>
+            var html = document.querySelector('html');
+            var sidebar = 'hidden';
+            if (document.body.clientWidth >= 1080) {
+                try { sidebar = localStorage.getItem('mdbook-sidebar'); } catch(e) { }
+                sidebar = sidebar || 'visible';
+            }
+            html.classList.remove('sidebar-visible');
+            html.classList.add("sidebar-" + sidebar);
+        </script>
+
+        <nav id="sidebar" class="sidebar" aria-label="Table of contents">
+            <div class="sidebar-scrollbox">
+                <ol class="chapter"><li class="chapter-item expanded affix "><a href="../title.html">Lean 函数式编程</a></li><li class="chapter-item expanded affix "><a href="../introduction.html">引言</a></li><li class="chapter-item expanded affix "><a href="../acknowledgments.html">鸣谢</a></li><li class="chapter-item expanded "><a href="../getting-to-know.html"><strong aria-hidden="true">1.</strong> 了解 Lean</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../getting-to-know/evaluating.html"><strong aria-hidden="true">1.1.</strong> 求值表达式</a></li><li class="chapter-item expanded "><a href="../getting-to-know/types.html"><strong aria-hidden="true">1.2.</strong> 类型</a></li><li class="chapter-item expanded "><a href="../getting-to-know/functions-and-definitions.html"><strong aria-hidden="true">1.3.</strong> 函数与定义</a></li><li class="chapter-item expanded "><a href="../getting-to-know/structures.html"><strong aria-hidden="true">1.4.</strong> 结构体</a></li><li class="chapter-item expanded "><a href="../getting-to-know/datatypes-and-patterns.html"><strong aria-hidden="true">1.5.</strong> 数据类型、模式匹配与递归</a></li><li class="chapter-item expanded "><a href="../getting-to-know/polymorphism.html"><strong aria-hidden="true">1.6.</strong> 多态</a></li><li class="chapter-item expanded "><a href="../getting-to-know/conveniences.html"><strong aria-hidden="true">1.7.</strong> 其他便利功能</a></li><li class="chapter-item expanded "><a href="../getting-to-know/summary.html"><strong aria-hidden="true">1.8.</strong> 总结</a></li></ol></li><li class="chapter-item expanded "><a href="../hello-world.html"><strong aria-hidden="true">2.</strong> Hello, World!</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../hello-world/running-a-program.html"><strong aria-hidden="true">2.1.</strong> 运行程序</a></li><li class="chapter-item expanded "><a href="../hello-world/step-by-step.html"><strong aria-hidden="true">2.2.</strong> 逐步执行</a></li><li class="chapter-item expanded "><a href="../hello-world/starting-a-project.html"><strong aria-hidden="true">2.3.</strong> 创建项目</a></li><li class="chapter-item expanded "><a href="../hello-world/cat.html"><strong aria-hidden="true">2.4.</strong> 现实示例：cat</a></li><li class="chapter-item expanded "><a href="../hello-world/conveniences.html"><strong aria-hidden="true">2.5.</strong> 其他便利功能</a></li><li class="chapter-item expanded "><a href="../hello-world/summary.html"><strong aria-hidden="true">2.6.</strong> 总结</a></li></ol></li><li class="chapter-item expanded "><a href="../props-proofs-indexing.html"><strong aria-hidden="true">3.</strong> 插曲：命题、证明与索引</a></li><li class="chapter-item expanded "><a href="../type-classes.html"><strong aria-hidden="true">4.</strong> 重载与类型类</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../type-classes/pos.html"><strong aria-hidden="true">4.1.</strong> 正数</a></li><li class="chapter-item expanded "><a href="../type-classes/polymorphism.html"><strong aria-hidden="true">4.2.</strong> 类型类与多态</a></li><li class="chapter-item expanded "><a href="../type-classes/out-params.html"><strong aria-hidden="true">4.3.</strong> 控制实例搜索</a></li><li class="chapter-item expanded "><a href="../type-classes/indexing.html"><strong aria-hidden="true">4.4.</strong> 数组与索引</a></li><li class="chapter-item expanded "><a href="../type-classes/standard-classes.html"><strong aria-hidden="true">4.5.</strong> 标准类</a></li><li class="chapter-item expanded "><a href="../type-classes/coercion.html"><strong aria-hidden="true">4.6.</strong> 强制转换</a></li><li class="chapter-item expanded "><a href="../type-classes/conveniences.html"><strong aria-hidden="true">4.7.</strong> 其他便利功能</a></li><li class="chapter-item expanded "><a href="../type-classes/summary.html"><strong aria-hidden="true">4.8.</strong> 总结</a></li></ol></li><li class="chapter-item expanded "><a href="../monads.html"><strong aria-hidden="true">5.</strong> 单子</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../monads/class.html"><strong aria-hidden="true">5.1.</strong> 单子类型类</a></li><li class="chapter-item expanded "><a href="../monads/arithmetic.html"><strong aria-hidden="true">5.2.</strong> 示例：用单子表达算术运算</a></li><li class="chapter-item expanded "><a href="../monads/do.html"><strong aria-hidden="true">5.3.</strong> 单子的 do-记法</a></li><li class="chapter-item expanded "><a href="../monads/io.html"><strong aria-hidden="true">5.4.</strong> IO 单子</a></li><li class="chapter-item expanded "><a href="../monads/conveniences.html"><strong aria-hidden="true">5.5.</strong> 其他便利功能</a></li><li class="chapter-item expanded "><a href="../monads/summary.html"><strong aria-hidden="true">5.6.</strong> 总结</a></li></ol></li><li class="chapter-item expanded "><a href="../functor-applicative-monad.html"><strong aria-hidden="true">6.</strong> 函子、应用函子与单子</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../functor-applicative-monad/inheritance.html"><strong aria-hidden="true">6.1.</strong> 结构体和继承</a></li><li class="chapter-item expanded "><a href="../functor-applicative-monad/applicative.html"><strong aria-hidden="true">6.2.</strong> 应用函子</a></li><li class="chapter-item expanded "><a href="../functor-applicative-monad/applicative-contract.html"><strong aria-hidden="true">6.3.</strong> 应用函子的契约</a></li><li class="chapter-item expanded "><a href="../functor-applicative-monad/alternative.html"><strong aria-hidden="true">6.4.</strong> 选择子</a></li><li class="chapter-item expanded "><a href="../functor-applicative-monad/universes.html"><strong aria-hidden="true">6.5.</strong> 宇宙</a></li><li class="chapter-item expanded "><a href="../functor-applicative-monad/complete.html"><strong aria-hidden="true">6.6.</strong> 完整定义</a></li><li class="chapter-item expanded "><a href="../functor-applicative-monad/summary.html"><strong aria-hidden="true">6.7.</strong> 总结</a></li></ol></li><li class="chapter-item expanded "><a href="../monad-transformers.html"><strong aria-hidden="true">7.</strong> 单子变换器</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../monad-transformers/reader-io.html"><strong aria-hidden="true">7.1.</strong> 组合 IO 与 Reader</a></li><li class="chapter-item expanded "><a href="../monad-transformers/transformers.html"><strong aria-hidden="true">7.2.</strong> 单子构建工具包</a></li><li class="chapter-item expanded "><a href="../monad-transformers/order.html"><strong aria-hidden="true">7.3.</strong> 对单子变换器排序</a></li><li class="chapter-item expanded "><a href="../monad-transformers/do.html"><strong aria-hidden="true">7.4.</strong> 更多 do 的特性</a></li><li class="chapter-item expanded "><a href="../monad-transformers/conveniences.html"><strong aria-hidden="true">7.5.</strong> 其他便利功能</a></li><li class="chapter-item expanded "><a href="../monad-transformers/summary.html"><strong aria-hidden="true">7.6.</strong> 总结</a></li></ol></li><li class="chapter-item expanded "><a href="../dependent-types.html"><strong aria-hidden="true">8.</strong> 依值类型编程</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../dependent-types/indexed-families.html" class="active"><strong aria-hidden="true">8.1.</strong> 索引族</a></li><li class="chapter-item expanded "><a href="../dependent-types/universe-pattern.html"><strong aria-hidden="true">8.2.</strong> 宇宙设计模式</a></li><li class="chapter-item expanded "><a href="../dependent-types/typed-queries.html"><strong aria-hidden="true">8.3.</strong> 现实示例：类型化查询</a></li><li class="chapter-item expanded "><a href="../dependent-types/indices-parameters-universes.html"><strong aria-hidden="true">8.4.</strong> 索引、形参与宇宙层级</a></li><li class="chapter-item expanded "><a href="../dependent-types/pitfalls.html"><strong aria-hidden="true">8.5.</strong> 依值类型编程的陷阱</a></li><li class="chapter-item expanded "><a href="../dependent-types/summary.html"><strong aria-hidden="true">8.6.</strong> 总结</a></li></ol></li><li class="chapter-item expanded "><a href="../tactics-induction-proofs.html"><strong aria-hidden="true">9.</strong> 插曲：策略、归纳与证明</a></li><li class="chapter-item expanded "><a href="../programs-proofs.html"><strong aria-hidden="true">10.</strong> 编程、证明与性能</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../programs-proofs/tail-recursion.html"><strong aria-hidden="true">10.1.</strong> 尾递归</a></li><li class="chapter-item expanded "><a href="../programs-proofs/tail-recursion-proofs.html"><strong aria-hidden="true">10.2.</strong> 证明等价</a></li><li class="chapter-item expanded "><a href="../programs-proofs/arrays-termination.html"><strong aria-hidden="true">10.3.</strong> 数组与停机性</a></li><li class="chapter-item expanded "><a href="../programs-proofs/inequalities.html"><strong aria-hidden="true">10.4.</strong> 更多不等式</a></li><li class="chapter-item expanded "><a href="../programs-proofs/fin.html"><strong aria-hidden="true">10.5.</strong> 安全数组索引</a></li><li class="chapter-item expanded "><a href="../programs-proofs/insertion-sort.html"><strong aria-hidden="true">10.6.</strong> 插入排序与数组可变性</a></li><li class="chapter-item expanded "><a href="../programs-proofs/special-types.html"><strong aria-hidden="true">10.7.</strong> 特殊类型</a></li><li class="chapter-item expanded "><a href="../programs-proofs/summary.html"><strong aria-hidden="true">10.8.</strong> 总结</a></li></ol></li><li class="chapter-item expanded "><a href="../next-steps.html">下一步</a></li></ol>
+            </div>
+            <div id="sidebar-resize-handle" class="sidebar-resize-handle"></div>
+        </nav>
+
+        <div id="page-wrapper" class="page-wrapper">
+
+            <div class="page">
+                                <div id="menu-bar-hover-placeholder"></div>
+                <div id="menu-bar" class="menu-bar sticky bordered">
+                    <div class="left-buttons">
+                        <button id="sidebar-toggle" class="icon-button" type="button" title="Toggle Table of Contents" aria-label="Toggle Table of Contents" aria-controls="sidebar">
+                            <i class="fa fa-bars"></i>
+                        </button>
+                        <button id="theme-toggle" class="icon-button" type="button" title="Change theme" aria-label="Change theme" aria-haspopup="true" aria-expanded="false" aria-controls="theme-list">
+                            <i class="fa fa-paint-brush"></i>
+                        </button>
+                        <ul id="theme-list" class="theme-popup" aria-label="Themes" role="menu">
+                            <li role="none"><button role="menuitem" class="theme" id="light">Light</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="rust">Rust</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="coal">Coal</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="navy">Navy</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="ayu">Ayu</button></li>
+                        </ul>
+                        <button id="search-toggle" class="icon-button" type="button" title="Search. (Shortkey: s)" aria-label="Toggle Searchbar" aria-expanded="false" aria-keyshortcuts="S" aria-controls="searchbar">
+                            <i class="fa fa-search"></i>
+                        </button>
+                    </div>
+
+                    <h1 class="menu-title">Lean 函数式编程</h1>
+
+                    <div class="right-buttons">
+                        <a href="../print.html" title="Print this book" aria-label="Print this book">
+                            <i id="print-button" class="fa fa-print"></i>
+                        </a>
+                        <a href="https://github.com/Lean-zh/fp-lean-zh" title="Git repository" aria-label="Git repository">
+                            <i id="git-repository-button" class="fa fa-github"></i>
+                        </a>
+                        <a href="https://github.com/Lean-zh/fp-lean-zh/edit/master/functional-programming-lean/src/dependent-types/indexed-families.md" title="Suggest an edit" aria-label="Suggest an edit">
+                            <i id="git-edit-button" class="fa fa-edit"></i>
+                        </a>
+
+                    </div>
+                </div>
+
+                <div id="search-wrapper" class="hidden">
+                    <form id="searchbar-outer" class="searchbar-outer">
+                        <input type="search" id="searchbar" name="searchbar" placeholder="Search this book ..." aria-controls="searchresults-outer" aria-describedby="searchresults-header">
+                    </form>
+                    <div id="searchresults-outer" class="searchresults-outer hidden">
+                        <div id="searchresults-header" class="searchresults-header"></div>
+                        <ul id="searchresults">
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- Apply ARIA attributes after the sidebar and the sidebar toggle button are added to the DOM -->
+                <script>
+                    document.getElementById('sidebar-toggle').setAttribute('aria-expanded', sidebar === 'visible');
+                    document.getElementById('sidebar').setAttribute('aria-hidden', sidebar !== 'visible');
+                    Array.from(document.querySelectorAll('#sidebar a')).forEach(function(link) {
+                        link.setAttribute('tabIndex', sidebar === 'visible' ? 0 : -1);
+                    });
+                </script>
+
+                <div id="content" class="content">
+                    <main>
+                        <!-- 
+# Indexed Families
+-->
+<h1 id="索引族"><a class="header" href="#索引族">索引族</a></h1>
+<!--
+Polymorphic inductive types take type arguments.
+For instance, `List` takes an argument that determines the type of the entries in the list, and `Except` takes arguments that determine the types of the exceptions or values.
+These type arguments, which are the same in every constructor of the datatype, are referred to as _parameters_.
+-->
+<p>多态归纳类型接受类型参数。
+例如，<code>List</code> 接受一个类型参数以决定列表中条目的类型，而 <code>Except</code> 接受两个类型参数以决定异常或值的类型。
+这些在数据类型的每个构造子中都一致的类型参数，被称为 <strong>参量（parameters)</strong>。</p>
+<!--
+Arguments to inductive types need not be the same in every constructor, however.
+Inductive types in which the arguments to the type vary based on the choice of constructor are called _indexed families_, and the arguments that vary are referred to as _indices_.
+The "hello world" of indexed families is a type of lists that contains the length of the list in addition to the type of entries, conventionally referred to as "vectors":
+-->
+<p>然而，归纳类型中每个构造子的接受的类型参数并不一定要相同。这种不同构造子可以接受不同类型作为参数的归纳类型被称为 <strong>索引族（indexed families)</strong>，而这些不同的参数被称为 <strong>索引（indices)</strong>。
+索引族最为人熟知的例子是**向量（vectors)**类型：这个类型类似列表类型，但它除了包含列表中元素的类型，还包含列表的长度。这种类型在 Lean 中的定义如下：</p>
+<pre><code class="language-lean">inductive Vect (α : Type u) : Nat → Type u where
+   | nil : Vect α 0
+   | cons : α → Vect α n → Vect α (n + 1)
+</code></pre>
+<!--
+Function declarations may take some arguments before the colon, indicating that they are available in the entire definition, and some arguments after, indicating a desire to pattern-match on them and define the function case by case.
+Inductive datatypes have a similar principle: the argument `α` is named at the top of the datatype declaration, prior to the colon, which indicates that it is a parameter that must be provided as the first argument in all occurrences of `Vect` in the definition, while the `Nat` argument occurs after the colon, indicating that it is an index that may vary.
+Indeed, the three occurrences of `Vect` in the `nil` and `cons` constructor declarations consistently provide `α` as the first argument, while the second argument is different in each case.
+-->
+<p>函数声明可以在冒号之前接受一些参数，表示这些参数在整个定义中都是可用的，也可以在冒号之后接受一些参数，函数会对它们进行模式匹配，并根据不同情形定义不同的函数体。
+归纳数据类型也有类似的原则：以 <code>Vect</code> 为例，在其顶部的数据类型声明中，参数 <code>α</code> 出现在冒号之前，表示它是一个必须提供的参量，而在冒号之后出现的 <code>Nat</code> 参数表示它是一个索引，（在不同的构造子中）可以变化。
+事实上，在 <code>nil</code> 和 <code>cons</code> 构造子的声明中，三个出现 <code>Vect</code> 的地方都将 <code>α</code> 作为第一个参数提供，而第二个参数在每种情形下都不同。</p>
+<!-- 
+The declaration of `nil` states that it is a constructor of type `Vect α 0`.
+This means that using `Vect.nil` in a context expecting a `Vect String 3` is a type error, just as `[1, 2, 3]` is a type error in a context that expects a `List String`: 
+-->
+<p><code>nil</code> 构造子的声明表明它的类型是 <code>Vect α 0</code>。
+这意味着在期望 <code>Vect String 3</code> 的上下文中使用 <code>Vect.nil</code> 会导致类型错误，就像在期望 <code>List String</code> 的上下文中使用 <code>[1, 2, 3]</code> 一样：</p>
+<pre><code class="language-lean">example : Vect String 3 := Vect.nil
+</code></pre>
+<pre><code class="language-output error">type mismatch
+  Vect.nil
+has type
+  Vect String 0 : Type
+but is expected to have type
+  Vect String 3 : Type
+</code></pre>
+<!--
+The mismatch between `0` and `3` in this example plays exactly the same role as any other type mismatch, even though `0` and `3` are not themselves types. 
+-->
+<p>在这个例子中，<code>0</code> 和 <code>3</code> 之间的不匹配和其他例子中类型的不匹配是一模一样的情况，尽管 <code>0</code> 和 <code>3</code> 本身并不是类型。</p>
+<!-- 
+Indexed families are called _families_ of types because different index values can make different constructors available for use.
+In some sense, an indexed family is not a type; rather, it is a collection of related types, and the choice of index values also chooses a type from the collection.
+Choosing the index `5` for `Vect` means that only the constructor `cons` is available, and choosing the index `0` means that only `nil` is available. 
+-->
+<p>类型族被称为 <strong>族（families)</strong>，因为不同的索引值意味着可以使用的构造子不同。
+在某种意义上，一个索引族并不是一个类型；它更像是一组相关的类型的集合，不同索引的值对应了这个集合中的一个类型。
+选择索引 <code>5</code> 作为 <code>Vect</code> 的索引意味着只有 <code>cons</code> 构造子可用，而选择索引 <code>0</code> 意味着只有 <code>nil</code> 构造子可用。</p>
+<!-- 
+If the index is not yet known (e.g. because it is a variable), then no constructor can be used until it becomes known.
+Using `n` for the length allows neither `Vect.nil` nor `Vect.cons`, because there's no way to know whether the variable `n` should stand for a `Nat` that matches `0` or `n + 1`: 
+-->
+<p>如果索引是一个未知的量（例如，一个变量），那么在它变得已知之前，任何构造子都不能被使用。
+如果一个 <code>Vect</code> 的长度为 <code>n</code>，那么 <code>Vect.nil</code> 和 <code>Vect.cons</code> 都无法被用来构造这个类型，因为无法知道变量 <code>n</code> 作为一个 <code>Nat</code> 应该匹配 <code>0</code> 或 <code>n + 1</code>：</p>
+<pre><code class="language-lean">example : Vect String n := Vect.nil
+</code></pre>
+<pre><code class="language-output error">type mismatch
+  Vect.nil
+has type
+  Vect String 0 : Type
+but is expected to have type
+  Vect String n : Type
+</code></pre>
+<pre><code class="language-lean">example : Vect String n := Vect.cons &quot;Hello&quot; (Vect.cons &quot;world&quot; Vect.nil)
+</code></pre>
+<pre><code class="language-output error">type mismatch
+  Vect.cons &quot;Hello&quot; (Vect.cons &quot;world&quot; Vect.nil)
+has type
+  Vect String (0 + 1 + 1) : Type
+but is expected to have type
+  Vect String n : Type
+</code></pre>
+<!-- 
+Having the length of the list as part of its type means that the type becomes more informative.
+For example, `Vect.replicate` is a function that creates a `Vect` with a number of copies of a given value.
+The type that says this precisely is: 
+-->
+<p>让列表的长度作为类型的一部分意味着类型具有更多的信息。
+例如 <code>Vect.replicate</code> 是一个创建包含某个值（<code>x</code>）的特定份数 (<code>n</code>) 副本的 <code>Vect</code> 的函数。
+可以精确地表示这一点的类型是：</p>
+<pre><code class="language-lean">def Vect.replicate (n : Nat) (x : α) : Vect α n := _
+</code></pre>
+<!--
+The argument `n` appears as the length of the result.
+The message associated with the underscore placeholder describes the task at hand:
+-->
+<p>参数 <code>n</code> 出现在结果的类型的长度中。
+以下消息描述了下划线占位符对应的任务：</p>
+<pre><code class="language-output error">don't know how to synthesize placeholder
+context:
+α : Type u_1
+n : Nat
+x : α
+⊢ Vect α n
+</code></pre>
+<!--
+When working with indexed families, constructors can only be applied when Lean can see that the constructor's index matches the index in the expected type.
+However, neither constructor has an index that matches `n`—`nil` matches `Nat.zero`, and `cons` matches `Nat.succ`.
+Just as in the example type errors, the variable `n` could stand for either, depending on which `Nat` is provided to the function as an argument.
+The solution is to use pattern matching to consider both of the possible cases:
+-->
+<p>当编写使用索引族的程序时时，只有当 Lean 能够确定构造子的索引与期望类型中的索引匹配时，才能使用该构造子。
+然而，两个构造子的索引与 <code>n</code> 均不匹配——<code>nil</code> 匹配 <code>Nat.zero</code>，而 <code>cons</code> 匹配 <code>Nat.succ</code>。
+就像在上面的类型错误示例中的情况一样，变量 <code>n</code> 可能代表其中一个，取决于具体调用函数时 <code>Nat</code> 参数的值。
+解决这一问题的方案是利用模式匹配来同时考虑两种情形：</p>
+<pre><code class="language-lean">def Vect.replicate (n : Nat) (x : α) : Vect α n :=
+  match n with
+  | 0 =&gt; _
+  | k + 1 =&gt; _
+</code></pre>
+<!--
+Because `n` occurs in the expected type, pattern matching on `n` _refines_ the expected type in the two cases of the match.
+In the first underscore, the expected type has become `Vect α 0`:
+-->
+<p>因为 <code>n</code> 出现在期望的类型中，对 <code>n</code> 进行模式匹配会在匹配的两种情形下 <strong>细化（refine)</strong> 期望的类型。
+在第一个下划线中，期望的类型变成了 <code>Vect α 0</code>：</p>
+<pre><code class="language-output error">don't know how to synthesize placeholder
+context:
+α : Type u_1
+n : Nat
+x : α
+⊢ Vect α 0
+</code></pre>
+<!--
+In the second underscore, it has become `Vect α (k + 1)`:
+-->
+<p>在第二个下划线中，它变成了 <code>Vect α (k + 1)</code>：</p>
+<pre><code class="language-output error">don't know how to synthesize placeholder
+context:
+α : Type u_1
+n : Nat
+x : α
+k : Nat
+⊢ Vect α (k + 1)
+</code></pre>
+<!--
+When pattern matching refines the type of a program in addition to discovering the structure of a value, it is called _dependent pattern matching_.
+-->
+<p>当模式匹配不仅发现值的结构，还细化程序的类型时，这种模式匹配被称为 <strong>依值模式匹配（dependent pattern matching)</strong>。</p>
+<!--
+The refined type makes it possible to apply the constructors.
+The first underscore matches `Vect.nil`, and the second matches `Vect.cons`: 
+-->
+<p>细化后的类型允许我们使用对应的构造子。
+第一个下划线匹配 <code>Vect.nil</code>，而第二个下划线匹配 <code>Vect.cons</code>：</p>
+<pre><code class="language-lean">def Vect.replicate (n : Nat) (x : α) : Vect α n :=
+  match n with
+  | 0 =&gt; .nil
+  | k + 1 =&gt; .cons _ _
+</code></pre>
+<!--
+The first underscore under the `.cons` should have type `α`.
+There is an `α` available, namely `x`:
+-->
+<p><code>.cons</code> 下的第一个下划线应该是一个具有类型 <code>α</code> 的值。
+恰好我们有这么一个值：<code>x</code>。</p>
+<pre><code class="language-output error">don't know how to synthesize placeholder
+context:
+α : Type u_1
+n : Nat
+x : α
+k : Nat
+⊢ α
+</code></pre>
+<!--
+The second underscore should be a `Vect α k`, which can be produced by a recursive call to `replicate`:
+-->
+<p>第二个下划线应该是一个具有类型 <code>Vect α k</code> 的值。这个值可以通过对 <code>replicate</code> 的递归调用产生：</p>
+<pre><code class="language-output error">don't know how to synthesize placeholder
+context:
+α : Type u_1
+n : Nat
+x : α
+k : Nat
+⊢ Vect α k
+</code></pre>
+<!--
+Here is the final definition of `replicate`:
+-->
+<p>下面是 <code>replicate</code> 的最终定义：</p>
+<pre><code class="language-lean">def Vect.replicate (n : Nat) (x : α) : Vect α n :=
+  match n with
+  | 0 =&gt; .nil
+  | k + 1 =&gt; .cons x (replicate k x)
+</code></pre>
+<!--
+In addition to providing assistance while writing the function, the informative type of `Vect.replicate` also allows client code to rule out a number of unexpected functions without having to read the source code.
+A version of `replicate` for lists could produce a list of the wrong length: 
+-->
+<p>除了在编写函数时提供帮助之外，<code>Vect.replicate</code> 的类型信息还允许调用方不必阅读源代码就明白它一定不是某些错误的实现。
+一个可能会产生错误长度的列表的 <code>replicate</code> 实现如下：</p>
+<pre><code class="language-lean">def List.replicate (n : Nat) (x : α) : List α :=
+  match n with
+  | 0 =&gt; []
+  | k + 1 =&gt; x :: x :: replicate k x
+</code></pre>
+<!--
+However, making this mistake with `Vect.replicate` is a type error: 
+-->
+<p>然而，在实现 <code>Vect.replicate</code> 时犯下同样的错误会引发一个类型错误：</p>
+<pre><code class="language-lean">def Vect.replicate (n : Nat) (x : α) : Vect α n :=
+  match n with
+  | 0 =&gt; .nil
+  | k + 1 =&gt; .cons x (.cons x (replicate k x))
+</code></pre>
+<pre><code class="language-output error">application type mismatch
+  cons x (cons x (replicate k x))
+argument
+  cons x (replicate k x)
+has type
+  Vect α (k + 1) : Type ?u.1998
+but is expected to have type
+  Vect α k : Type ?u.1998
+</code></pre>
+<!--
+The function `List.zip` combines two lists by pairing the first entry in the first list with the first entry in the second list, the second entry in the first list with the second entry in the second list, and so forth.
+`List.zip` can be used to pair the three highest peaks in the US state of Oregon with the three highest peaks in Denmark: 
+-->
+<p><code>List.zip</code> 函数通过将两个列表中对应的项配对（第一个列表中的第一项和第二个列表的第一项，第一个列表中的第二项和第二个列表的第二项, ……）来合并两个列表。
+这个函数可以用来将一个包含美国俄勒冈州前三座最高峰的列表和一个包含丹麦前三座最高峰的列表合并：</p>
+<pre><code class="language-lean">[&quot;Mount Hood&quot;,
+ &quot;Mount Jefferson&quot;,
+ &quot;South Sister&quot;].zip [&quot;Møllehøj&quot;, &quot;Yding Skovhøj&quot;, &quot;Ejer Bavnehøj&quot;]
+</code></pre>
+<p>The result is a list of three pairs:</p>
+<pre><code class="language-lean">[(&quot;Mount Hood&quot;, &quot;Møllehøj&quot;),
+ (&quot;Mount Jefferson&quot;, &quot;Yding Skovhøj&quot;),
+ (&quot;South Sister&quot;, &quot;Ejer Bavnehøj&quot;)]
+</code></pre>
+<!--
+It's somewhat unclear what should happen when the lists have different lengths.
+Like many languages, Lean chooses to ignore the extra entries in one of the lists.
+For instance, combining the heights of the five highest peaks in Oregon with those of the three highest peaks in Denmark yields three pairs.
+In particular, 
+-->
+<p>当列表的长度不同时，结果应该如何呢？
+与许多其他语言一样，Lean 选择忽略长的列表中的额外条目。
+例如，将一个具有俄勒冈州前五座最高峰的高度的列表与一个具有丹麦前三座最高峰的高度的列表合并会产生一个含有三个有序对的列表。</p>
+<pre><code class="language-lean">[3428.8, 3201, 3158.5, 3075, 3064].zip [170.86, 170.77, 170.35]
+</code></pre>
+<!--
+evaluates to
+-->
+<p>求值结果为</p>
+<pre><code class="language-lean">[(3428.8, 170.86), (3201, 170.77), (3158.5, 170.35)]
+</code></pre>
+<!--
+While this approach is convenient because it always returns an answer, it runs the risk of throwing away data when the lists unintentionally have different lengths.
+F# takes a different approach: its version of `List.zip` throws an exception when the lengths don't match, as can be seen in this `fsi` session:
+-->
+<p>这个函数总是返回一个结果，所以它非常易用。但当输入的两个列表意外地具有不同的长度时，一些数据会被悄悄地丢弃。
+F# 采用了不同的方法：它的 <code>List.zip</code> 函数在两个列表长度不匹配时抛出异常，如下面 <code>fsi</code> 会话中展示的那样：</p>
+<pre><code class="language-fsharp">&gt; List.zip [3428.8; 3201.0; 3158.5; 3075.0; 3064.0] [170.86; 170.77; 170.35];;
+</code></pre>
+<pre><code class="language-output error">System.ArgumentException: The lists had different lengths.
+list2 is 2 elements shorter than list1 (Parameter 'list2')
+   at Microsoft.FSharp.Core.DetailedExceptions.invalidArgDifferentListLength[?](String arg1, String arg2, Int32 diff) in /builddir/build/BUILD/dotnet-v3.1.424-SDK/src/fsharp.3ef6f0b514198c0bfa6c2c09fefe41a740b024d5/src/fsharp/FSharp.Core/local.fs:line 24
+   at Microsoft.FSharp.Primitives.Basics.List.zipToFreshConsTail[a,b](FSharpList`1 cons, FSharpList`1 xs1, FSharpList`1 xs2) in /builddir/build/BUILD/dotnet-v3.1.424-SDK/src/fsharp.3ef6f0b514198c0bfa6c2c09fefe41a740b024d5/src/fsharp/FSharp.Core/local.fs:line 918
+   at Microsoft.FSharp.Primitives.Basics.List.zip[T1,T2](FSharpList`1 xs1, FSharpList`1 xs2) in /builddir/build/BUILD/dotnet-v3.1.424-SDK/src/fsharp.3ef6f0b514198c0bfa6c2c09fefe41a740b024d5/src/fsharp/FSharp.Core/local.fs:line 929
+   at Microsoft.FSharp.Collections.ListModule.Zip[T1,T2](FSharpList`1 list1, FSharpList`1 list2) in /builddir/build/BUILD/dotnet-v3.1.424-SDK/src/fsharp.3ef6f0b514198c0bfa6c2c09fefe41a740b024d5/src/fsharp/FSharp.Core/list.fs:line 466
+   at &lt;StartupCode$FSI_0006&gt;.$FSI_0006.main@()
+Stopped due to error
+</code></pre>
+<!--
+This avoids accidentally discarding information, but crashing a program comes with its own difficulties.
+The Lean equivalent, which would use the `Option` or `Except` monads, would introduce a burden that may not be worth the safety.
+-->
+<p>这种方法避免了数据的意外丢失，但一个输入不正确时直接崩溃的程序并不容易使用。
+在 Lean 中相似的实现可以在返回值中使用 <code>Option</code> 或 <code>Except</code> 单子，但是为了避免（可能不大的）数据丢失的风险而引入额外的（操作单子的）编程负担又并不太值得。</p>
+<!--
+Using `Vect`, however, it is possible to write a version of `zip` with a type that requires that both arguments have the same length:
+-->
+<p>然而，如果使用 <code>Vect</code>，可以一个 <code>zip</code> 函数，其类型要求两个输入的列表一定具有相同的长度，如下所示：</p>
+<pre><code class="language-lean">def Vect.zip : Vect α n → Vect β n → Vect (α × β) n
+  | .nil, .nil =&gt; .nil
+  | .cons x xs, .cons y ys =&gt; .cons (x, y) (zip xs ys)
+</code></pre>
+<!--
+This definition only has patterns for the cases where either both arguments are `Vect.nil` or both arguments are `Vect.cons`, and Lean accepts the definition without a "missing cases" error like the one that results from a similar definition for `List`:
+-->
+<p>这个定义只需要考虑两个参数都是 <code>Vect.nil</code> 或都是 <code>Vect.cons</code> 的情形。Lean 接受这个定义，而不会像 <code>List</code> 的类似定义那样产生一个“存在缺失情形”的错误：</p>
+<pre><code class="language-lean">def List.zip : List α → List β → List (α × β)
+  | [], [] =&gt; []
+  | x :: xs, y :: ys =&gt; (x, y) :: zip xs ys
+</code></pre>
+<pre><code class="language-output error">missing cases:
+(List.cons _ _), []
+[], (List.cons _ _)
+</code></pre>
+<!--
+This is because the constructor used in the first pattern, `nil` or `cons`, _refines_ the type checker's knowledge about the length `n`.
+When the first pattern is `nil`, the type checker can additionally determine that the length was `0`, so the only possible choice for the second pattern is `nil`.
+Similarly, when the first pattern is `cons`, the type checker can determine that the length was `k+1` for some `Nat` `k`, so the only possible choice for the second pattern is `cons`.
+Indeed, adding a case that uses `nil` and `cons` together is a type error, because the lengths don't match:
+-->
+<p>这是因为第一个模式匹配中得到的两个构造子，<code>nil</code> 和 <code>cons</code>，<strong>细化</strong> 了类型检查器对长度 <code>n</code> 的知识。
+当它是 <code>nil</code> 时，类型检查器还可以确定长度是 <code>0</code>，因此第二个模式的唯一可能选择是 <code>nil</code>。
+当它是 <code>cons</code> 时，类型检查器可以确定长度是 <code>k+1</code>，因此第二个模式的唯一可能选择是 <code>cons</code>。
+事实上，添加一个同时使用 <code>nil</code> 和 <code>cons</code> 的情形会导致类型错误，因为长度不匹配：</p>
+<pre><code class="language-lean">def Vect.zip : Vect α n → Vect β n → Vect (α × β) n
+  | .nil, .nil =&gt; .nil
+  | .nil, .cons y ys =&gt; .nil
+  | .cons x xs, .cons y ys =&gt; .cons (x, y) (zip xs ys)
+</code></pre>
+<pre><code class="language-output error">type mismatch
+  Vect.cons y ys
+has type
+  Vect β (?m.4718 + 1) : Type ?u.4530
+but is expected to have type
+  Vect β 0 : Type ?u.4530
+</code></pre>
+<!--
+The refinement of the length can be observed by making `n` into an explicit argument:
+-->
+<p>长度的细化可以通过将 <code>n</code> 变成一个显式参数来观察：</p>
+<pre><code class="language-lean">def Vect.zip : (n : Nat) → Vect α n → Vect β n → Vect (α × β) n
+  | 0, .nil, .nil =&gt; .nil
+  | k + 1, .cons x xs, .cons y ys =&gt; .cons (x, y) (zip k xs ys)
+</code></pre>
+<!-- 
+## Exercises
+-->
+<h2 id="练习"><a class="header" href="#练习">练习</a></h2>
+<!--
+Getting a feel for programming with dependent types requires experience, and the exercises in this section are very important.
+For each exercise, try to see which mistakes the type checker can catch, and which ones it can't, by experimenting with the code as you go.
+This is also a good way to develop a feel for the error messages.
+-->
+<p>熟悉使用依值类型编程需要经验，本节的练习非常重要。
+对于每个练习，尝试看看类型检查器可以捕捉到哪些错误，哪些错误它无法捕捉。
+请通过实验代码来进行尝试。 这也是培养理解错误信息能力的好方法。</p>
+<!-- 
+ * Double-check that `Vect.zip` gives the right answer when combining the three highest peaks in Oregon with the three highest peaks in Denmark.
+   Because `Vect` doesn't have the syntactic sugar that `List` has, it can be helpful to begin by defining `oregonianPeaks : Vect String 3` and `danishPeaks : Vect String 3`.
+ -->
+<ul>
+<li>仔细检查 <code>Vect.zip</code> 在将俄勒冈州的三座最高峰与丹麦的三座最高峰组合时是否给出了正确的答案。
+由于 <code>Vect</code> 没有 <code>List</code> 那样的语法糖，因此最好从定义 <code>oregonianPeaks : Vect String 3</code> 和 <code>danishPeaks : Vect String 3</code> 开始。</li>
+</ul>
+<!-- 
+ * Define a function `Vect.map` with type `(α → β) → Vect α n → Vect β n`.
+ -->
+<ul>
+<li>定义一个函数 <code>Vect.map</code>。它的类型为 <code>(α → β) → Vect α n → Vect β n</code>。</li>
+</ul>
+<!-- 
+ * Define a function `Vect.zipWith` that combines the entries in a `Vect` one at a time with a function.
+   It should have the type `(α → β → γ) → Vect α n → Vect β n → Vect γ n`.
+ -->
+<ul>
+<li>定义一个函数 <code>Vect.zipWith</code>，它将一个接受两个参数的函数依次作用在两个 <code>Vect</code> 中的每一项上。
+它的类型应该是 <code>(α → β → γ) → Vect α n → Vect β n → Vect γ n</code>。</li>
+</ul>
+<!-- 
+ * Define a function `Vect.unzip` that splits a `Vect` of pairs into a pair of `Vect`s. It should have the type `Vect (α × β) n → Vect α n × Vect β n`.
+ -->
+<ul>
+<li>定义一个函数 <code>Vect.unzip</code>，它将一个包含有序对的 <code>Vect</code> 分割成两个 <code>Vect</code>。它的类型应该是 <code>Vect (α × β) n → Vect α n × Vect β n</code>。</li>
+</ul>
+<!-- * 
+ Define a function `Vect.snoc` that adds an entry to the _end_ of a `Vect`. Its type should be `Vect α n → α → Vect α (n + 1)` and `#eval Vect.snoc (.cons "snowy" .nil) "peaks"` should yield `Vect.cons "snowy" (Vect.cons "peaks" (Vect.nil))`. The name `snoc` is a traditional functional programming pun: it is `cons` backwards.
+ -->
+<ul>
+<li>定义一个函数 <code>Vect.snoc</code>，它将一个条目添加到 <code>Vect</code> 的 <strong>末尾</strong>。它的类型应该是 <code>Vect α n → α → Vect α (n + 1)</code>，<code>#eval Vect.snoc (.cons &quot;snowy&quot; .nil) &quot;peaks&quot;</code> 应该输出 <code>{{#example_out Examples/   DependentTypes.lean snocSnowy}}</code>。<code>snoc</code> 这个名字是函数式编程常见的习语：将 <code>cons</code> 倒过来写。</li>
+</ul>
+<!-- 
+ * Define a function `Vect.reverse` that reverses the order of a `Vect`.
+ -->
+<ul>
+<li>定义一个函数 <code>Vect.reverse</code>，它反转一个 <code>Vect</code> 的顺序。</li>
+</ul>
+<!-- 
+ * Define a function `Vect.drop` with the following type: `(n : Nat) → Vect α (k + n) → Vect α k`.
+   Verify that it works by checking that `#eval danishPeaks.drop 2` yields `Vect.cons "Ejer Bavnehøj" (Vect.nil)`.
+ -->
+<ul>
+<li>定义一个函数 <code>Vect.drop</code>。 它的类型 <code>(n : Nat) → Vect α (k + n) → Vect α k</code>。
+通过检查 <code>#eval danishPeaks.drop 2</code> 输出 <code>Vect.cons &quot;Ejer Bavnehøj&quot; (Vect.nil)</code> 来验证它是否正确。</li>
+</ul>
+<!-- 
+ * Define a function `Vect.take` with type `(n : Nat) → Vect α (k + n) → Vect α n` that returns the first `n` entries in the `Vect`. Check that it works on an example.
+ -->
+<ul>
+<li>定义一个函数 <code>Vect.take</code>。它的类型为 <code>(n : Nat) → Vect α (k + n) → Vect α n</code>。它返回 <code>Vect</code> 中的前 <code>n</code> 个条目。检查它在一个例子上的结果。 </li>
+</ul>
+
+                    </main>
+
+                    <nav class="nav-wrapper" aria-label="Page navigation">
+                        <!-- Mobile navigation buttons -->
+                            <a rel="prev" href="../dependent-types.html" class="mobile-nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                                <i class="fa fa-angle-left"></i>
+                            </a>
+
+                            <a rel="next" href="../dependent-types/universe-pattern.html" class="mobile-nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                                <i class="fa fa-angle-right"></i>
+                            </a>
+
+                        <div style="clear: both"></div>
+                    </nav>
+                </div>
+            </div>
+
+            <nav class="nav-wide-wrapper" aria-label="Page navigation">
+                    <a rel="prev" href="../dependent-types.html" class="nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                        <i class="fa fa-angle-left"></i>
+                    </a>
+
+                    <a rel="next" href="../dependent-types/universe-pattern.html" class="nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                        <i class="fa fa-angle-right"></i>
+                    </a>
+            </nav>
+
+        </div>
+
+
+
+
+        <script>
+            window.playground_copyable = true;
+        </script>
+
+
+        <script src="../elasticlunr.min.js"></script>
+        <script src="../mark.min.js"></script>
+        <script src="../searcher.js"></script>
+
+        <script src="../clipboard.min.js"></script>
+        <script src="../highlight.js"></script>
+        <script src="../book.js"></script>
+
+        <!-- Custom JS scripts -->
+        <script src="../custom.js"></script>
+
+
+    </body>
+</html>
